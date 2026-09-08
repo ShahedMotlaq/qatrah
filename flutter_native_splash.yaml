@@ -1,0 +1,29 @@
+flutter_native_splash:
+  # ==============================
+  # ☀️ Light Mode
+  # ==============================
+  color: "#054239"               # Golden Wheat Light
+  image: assets/images/logo.png
+
+  # ==============================
+  # 🌙 Dark Mode
+  # ==============================
+  color_dark: "#054239"
+  image_dark: assets/images/logo.png
+
+  # ==============================
+  # 🤖 Android 12+ Configuration
+  # ==============================
+  android_12:
+    image: assets/images/logo_android12.png
+    icon_background_color: "#054239"
+
+    image_dark: assets/images/logo_android12.png
+    icon_background_color_dark: "#054239"
+
+  # ==============================
+  # ⚙️ General Settings
+  # ==============================
+  android: true
+  ios: true
+  web: true

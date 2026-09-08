@@ -1,0 +1,1939 @@
+﻿{
+  "@@locale": "en",
+
+  "appTitle": "Daraa Water Directorate",
+  "@appTitle": {
+    "description": "Main application title"
+  },
+
+  "appName": "Qatrah",
+  "@appName": {
+    "description": "Application name"
+  },
+
+  "welcome": "Welcome",
+  "@welcome": {
+    "description": "Welcome message"
+  },
+   "rememberMe": "Remember Me",
+    "@rememberMe": {
+      "description": "Remember Me Text"
+    },
+
+  "welcomeBack": "Welcome Back",
+  "@welcomeBack": {
+    "description": "Welcome back message"
+  },
+
+  "login": "Login",
+  "@login": {
+    "description": "Login button"
+  },
+
+  "login_employee": "Sign in as an Employee",
+  "@login_employee": {
+    "description": "Employee login button"
+  },
+
+  "login_citizens": "Sign in as a Citizen",
+  "@login_citizens": {
+    "description": "Citizen login button"
+  },
+
+  "register": "Register",
+  "@register": {
+    "description": "Register button"
+  },
+
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button"
+  },
+
+  "username": "Username",
+  "@username": {
+    "description": "Username field"
+  },
+
+  "password": "Password",
+  "@password": {
+    "description": "Password field"
+  },
+
+  "currentPassword": "Current Password",
+  "@currentPassword": {
+    "description": "Current password field"
+  },
+
+  "newPassword": "New Password",
+  "@newPassword": {
+    "description": "New password field"
+  },
+
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Confirm password field"
+  },
+
+  "phoneNumber": "Phone Number",
+  "@phoneNumber": {
+    "description": "Phone number field"
+  },
+
+  "fullName": "Full Name",
+  "@fullName": {
+    "description": "Full name field"
+  },
+
+  "email": "Email",
+  "@email": {
+    "description": "Email field"
+  },
+
+  "submit": "Submit",
+  "@submit": {
+    "description": "Submit button"
+  },
+
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button"
+  },
+
+  "save": "Save",
+  "@save": {
+    "description": "Save button"
+  },
+
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit button"
+  },
+
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button"
+  },
+
+  "close": "Close",
+  "@close": {
+    "description": "Close button"
+  },
+
+  "back": "Back",
+  "@back": {
+    "description": "Back button"
+  },
+
+  "next": "Next",
+  "@next": {
+    "description": "Next button"
+  },
+
+  "done": "Done",
+  "@done": {
+    "description": "Done button"
+  },
+
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button"
+  },
+
+  "refresh": "Refresh",
+  "@refresh": {
+    "description": "Refresh button"
+  },
+
+  "search": "Search",
+  "@search": {
+    "description": "Search button"
+  },
+
+  "filter": "Filter",
+  "@filter": {
+    "description": "Filter button"
+  },
+
+  "forgotPassword": "Forgot Password?",
+  "@forgotPassword": {
+    "description": "Forgot password link"
+  },
+
+  "forgotPasswordDesc": "Enter your registered phone number and we will send you an OTP to reset your password.",
+  "@forgotPasswordDesc": {
+    "description": "Description for forgot password page"
+  },
+
+  "alreadyHaveAccount": "Already have an account?",
+  "@alreadyHaveAccount": {
+    "description": "Already have account text"
+  },
+
+  "dontHaveAccount": "Don't have an account?",
+  "@dontHaveAccount": {
+    "description": "Don't have account text"
+  },
+
+  "createAccount": "Create New Account",
+  "@createAccount": {
+    "description": "Create new account button"
+  },
+
+  "otpVerification": "OTP Verification",
+  "@otpVerification": {
+    "description": "OTP verification page title"
+  },
+
+  "enterOtp": "Enter Verification Code",
+  "@enterOtp": {
+    "description": "Enter verification code message"
+  },
+
+  "otpSent": "Verification code sent to",
+  "@otpSent": {
+    "description": "OTP sent message"
+  },
+
+  "resendOtp": "Resend Code",
+  "@resendOtp": {
+    "description": "Resend code button"
+  },
+
+  "resendOtpIn": "Resend in",
+  "@resendOtpIn": {
+    "description": "Resend in message"
+  },
+
+  "verify": "Verify",
+  "@verify": {
+    "description": "Verify button"
+  },
+
+  "verifyNow": "Verify Now",
+  "@verifyNow": {
+    "description": "Button or label for verifying now"
+  },
+
+  "home": "Home",
+  "@home": {
+    "description": "Home page"
+  },
+
+  "schedules": "Pumping Schedules",
+  "@schedules": {
+    "description": "Schedules page"
+  },
+
+  "complaints": "Complaints",
+  "@complaints": {
+    "description": "Complaints page"
+  },
+
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile page"
+  },
+
+  "notificationsTab": "Notifications",
+  "@notificationsTab": {
+    "description": "Notifications tab"
+  },
+
+  "moreTab": "More",
+  "@moreTab": {
+    "description": "More tab"
+  },
+
+  "dashboard": "Dashboard",
+  "@dashboard": {
+    "description": "Dashboard title"
+  },
+
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings page title"
+  },
+
+  "myProfile": "My Profile",
+  "@myProfile": {
+    "description": "My profile"
+  },
+
+  "editProfile": "Edit Profile",
+  "@editProfile": {
+    "description": "Edit profile button"
+  },
+
+  "profileUpdated": "Profile Updated Successfully",
+  "@profileUpdated": {
+    "description": "Profile updated success message"
+  },
+
+  "profileSaved": "Profile Saved Successfully",
+  "@profileSaved": {
+    "description": "Profile saved success message"
+  },
+
+  "chooseFromGallery": "Choose from Gallery",
+  "@chooseFromGallery": {
+    "description": "Choose from gallery option"
+  },
+
+  "takeFromCamera": "Take from Camera",
+  "@takeFromCamera": {
+    "description": "Take from camera option"
+  },
+
+  "removePicture": "Remove Picture",
+  "@removePicture": {
+    "description": "Remove picture option"
+  },
+
+  "imageSource": "Image Source",
+  "@imageSource": {
+    "description": "Image source dialog title"
+  },
+
+  "completeProfileTitle": "Complete Profile",
+  "@completeProfileTitle": {
+    "description": "Profile completion screen title after login"
+  },
+
+  "changePassword": "Change Password",
+  "@changePassword": {
+    "description": "Change password button"
+  },
+
+  "changePasswordDesc": "Choose a strong password to protect your account. Your new password must be different from the current one.",
+  "@changePasswordDesc": {
+    "description": "Description below avatar in change password page"
+  },
+
+  "currentPasswordLabel": "Current Password",
+  "@currentPasswordLabel": {
+    "description": "Label for current password field"
+  },
+
+  "newPasswordLabel": "New Password",
+  "@newPasswordLabel": {
+    "description": "Label for new password field"
+  },
+
+  "confirmPasswordLabel": "Confirm New Password",
+  "@confirmPasswordLabel": {
+    "description": "Label for confirm password field"
+  },
+
+  "fieldRequired": "This field is required",
+  "@fieldRequired": {
+    "description": "Validation error for required fields"
+  },
+
+  "requiredField": "This field is required",
+  "@requiredField": {
+    "description": "Required field message"
+  },
+
+  "passwordTooShort": "Password must be at least {length} characters",
+  "@passwordTooShort": {
+    "description": "Validation error for short password",
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+
+  "passwordsDoNotMatch": "Passwords do not match",
+  "@passwordsDoNotMatch": {
+    "description": "Validation error when passwords differ"
+  },
+
+  "newPasswordSameAsCurrent": "New password cannot be the same as the current one",
+  "@newPasswordSameAsCurrent": {
+    "description": "Validation error when new password matches old"
+  },
+
+  "invalidPhoneNumber": "Invalid phone number",
+  "@invalidPhoneNumber": {
+    "description": "Invalid phone number message"
+  },
+
+  "invalidEmail": "Invalid email address",
+  "@invalidEmail": {
+    "description": "Invalid email message"
+  },
+
+  "invalidEmployeeCredential": "Invalid username",
+  "@invalidEmployeeCredential": {
+    "description": "Error message for invalid employee login credentials"
+  },
+
+  "maxCharacters": "Maximum {max} characters",
+  "@maxCharacters": {
+    "description": "Maximum characters message",
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+
+  "charactersRemaining": "{count} characters remaining",
+  "@charactersRemaining": {
+    "description": "Characters remaining message",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "loginSuccess": "Login Successful",
+  "@loginSuccess": {
+    "description": "Login success message"
+  },
+
+  "registrationSuccess": "Registration Successful",
+  "@registrationSuccess": {
+    "description": "Registration success message"
+  },
+
+  "complaintSubmitted": "Complaint Submitted Successfully",
+  "@complaintSubmitted": {
+    "description": "Complaint submitted success message"
+  },
+
+  "loginTemporarilyDisabled": "Login has been temporarily disabled.",
+  "@loginTemporarilyDisabled": {
+    "description": "Message shown when login is temporarily disabled"
+  },
+
+  "logoutConfirmation": "Are you sure you want to logout?",
+  "@logoutConfirmation": {
+    "description": "Logout confirmation message"
+  },
+
+  "logoutConfirmationMessage": "Are you sure you want to logout from the application?",
+  "@logoutConfirmationMessage": {
+    "description": "Logout confirmation message"
+  },
+
+  "confirmation": "Confirmation",
+  "@confirmation": {
+    "description": "Generic confirmation dialogue title"
+  },
+
+  "yes": "Yes",
+  "@yes": {
+    "description": "Yes"
+  },
+
+  "no": "No",
+  "@no": {
+    "description": "No"
+  },
+
+  "confirm": "Confirm",
+  "@confirm": {
+    "description": "Confirm"
+  },
+
+  "language": "Language",
+  "@language": {
+    "description": "Language"
+  },
+
+  "changeLanguage": "Change Language",
+  "@changeLanguage": {
+    "description": "Change language"
+  },
+
+  "arabic": "Arabic",
+  "@arabic": {
+    "description": "Arabic language"
+  },
+
+  "english": "English",
+  "@english": {
+    "description": "English language"
+  },
+
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Dark mode option"
+  },
+
+  "application": "Application",
+  "@application": {
+    "description": "Application section title"
+  },
+
+  "account": "Account",
+  "@account": {
+    "description": "Account section title"
+  },
+
+  "about": "About",
+  "@about": {
+    "description": "About"
+  },
+
+  "aboutQatrahDescription": "A service platform for managing schedules, complaints, and notifications. This informational page can be updated later.",
+  "@aboutQatrahDescription": {
+    "description": "About page description"
+  },
+
+  "version": "Version",
+  "@version": {
+    "description": "Version"
+  },
+
+  "contactUs": "Contact Us",
+  "@contactUs": {
+    "description": "Contact us"
+  },
+
+  "contactOfficeAddress": "Daraa - Citizen Service Center",
+  "@contactOfficeAddress": {
+    "description": "Contact office address"
+  },
+
+  "region": "Region",
+  "@region": {
+    "description": "Region"
+  },
+
+  "zone": "Zone",
+  "@zone": {
+    "description": "Zone"
+  },
+
+  "unit": "Unit",
+  "@unit": {
+    "description": "Unit"
+  },
+
+  "neighborhood": "Neighborhood",
+  "@neighborhood": {
+    "description": "Neighborhood"
+  },
+
+  "selectRegion": "Select Region",
+  "@selectRegion": {
+    "description": "Select region"
+  },
+
+  "selectZone": "Select Zone",
+  "@selectZone": {
+    "description": "Select zone"
+  },
+
+  "selectUnit": "Select Unit",
+  "@selectUnit": {
+    "description": "Select unit"
+  },
+
+  "selectNeighborhood": "Select Neighborhood",
+  "@selectNeighborhood": {
+    "description": "Select neighborhood"
+  },
+
+  "selectLocation": "Select Location",
+  "@selectLocation": {
+    "description": "Select location"
+  },
+
+  "location": "Location",
+  "@location": {
+    "description": "Location"
+  },
+
+  "clearSelection": "Clear Selection",
+  "@clearSelection": {
+    "description": "Clear selection"
+  },
+
+  "defaultLocation": "Default Location",
+  "@defaultLocation": {
+    "description": "Default location"
+  },
+
+  "watchedLocation": "Watched Location",
+  "@watchedLocation": {
+    "description": "Watched location"
+  },
+
+  "chooseAreasToWatch": "Choose areas you want to follow",
+  "@chooseAreasToWatch": {
+    "description": "Choose areas text"
+  },
+
+  "addWatch": "Add Follow",
+  "@addWatch": {
+    "description": "Add follow button"
+  },
+
+  "watchedAreasCount": "{count} Watched Areas",
+  "@watchedAreasCount": {
+    "description": "Number of watched areas",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "selectRegionToWatchInfo": "Select one or more regions to follow their pumping schedules and updates",
+  "@selectRegionToWatchInfo": {
+    "description": "Info message in dropdown"
+  },
+
+  "currentPumpingStatus": "Current Pumping Status",
+  "@currentPumpingStatus": {
+    "description": "Current pumping title"
+  },
+
+  "mySchedules": "My Schedules",
+  "@mySchedules": {
+    "description": "My schedules"
+  },
+
+  "upcomingSchedules": "Upcoming Schedules",
+  "@upcomingSchedules": {
+    "description": "Upcoming schedules"
+  },
+
+  "nextPumpingSchedule": "Next Pumping Schedule",
+  "@nextPumpingSchedule": {
+    "description": "Next pumping schedule"
+  },
+
+  "scheduleDetails": "Schedule Details",
+  "@scheduleDetails": {
+    "description": "Schedule details"
+  },
+
+  "viewAllSchedules": "View All Schedules",
+  "@viewAllSchedules": {
+    "description": "View all schedules button"
+  },
+
+  "addNewSchedule": "Add New Schedule",
+  "@addNewSchedule": {
+    "description": "Add schedule button"
+  },
+
+  "totalSchedules": "Total Schedules",
+  "@totalSchedules": {
+    "description": "Total schedules stat"
+  },
+
+  "activePumping": "Active Pumping",
+  "@activePumping": {
+    "description": "Active pumping stat"
+  },
+
+  "regionsCount": "Regions",
+  "@regionsCount": {
+    "description": "Regions stat"
+  },
+
+  "startTime": "Start Time",
+  "@startTime": {
+    "description": "Start time"
+  },
+
+  "endTime": "End Time",
+  "@endTime": {
+    "description": "End time"
+  },
+
+  "actualStartTime": "Actual Start Time",
+  "@actualStartTime": {
+    "description": "Actual start time"
+  },
+
+  "actualEndTime": "Actual End Time",
+  "@actualEndTime": {
+    "description": "Actual end time"
+  },
+
+  "startedFrom": "Started from",
+  "@startedFrom": {
+    "description": "Started from time text"
+  },
+
+  "status": "Status",
+  "@status": {
+    "description": "Status"
+  },
+
+  "scheduled": "Scheduled",
+  "@scheduled": {
+    "description": "Status: Scheduled"
+  },
+
+  "active": "Active",
+  "@active": {
+    "description": "Status: Active"
+  },
+
+  "activeNow": "Active Now",
+  "@activeNow": {
+    "description": "Active now"
+  },
+
+  "completed": "Completed",
+  "@completed": {
+    "description": "Status: Completed"
+  },
+
+  "cancelled": "Cancelled",
+  "@cancelled": {
+    "description": "Status: Cancelled"
+  },
+
+  "startsIn": "Starts in",
+  "@startsIn": {
+    "description": "Starts in"
+  },
+
+  "endedAgo": "Ended",
+  "@endedAgo": {
+    "description": "Ended ago"
+  },
+
+  "remainingTimeLabel": "Remaining time:",
+  "@remainingTimeLabel": {
+    "description": "Static label for remaining time without variable"
+  },
+
+  "notes": "Notes",
+  "@notes": {
+    "description": "Notes"
+  },
+
+  "createdBy": "Created By",
+  "@createdBy": {
+    "description": "Created by"
+  },
+
+  "filterByRegion": "Filter by Region",
+  "@filterByRegion": {
+    "description": "Region filter"
+  },
+
+  "fromDate": "From Date",
+  "@fromDate": {
+    "description": "From date filter"
+  },
+
+  "toDate": "To Date",
+  "@toDate": {
+    "description": "To date filter"
+  },
+
+  "allRegions": "All Regions",
+  "@allRegions": {
+    "description": "All regions option in filters"
+  },
+
+  "dateRange": "Date Range",
+  "@dateRange": {
+    "description": "Date range"
+  },
+
+  "selectDateRange": "Select Date Range",
+  "@selectDateRange": {
+    "description": "Select date range"
+  },
+
+  "today": "Today",
+  "@today": {
+    "description": "Today"
+  },
+
+  "thisWeek": "This Week",
+  "@thisWeek": {
+    "description": "This week"
+  },
+
+  "thisMonth": "This Month",
+  "@thisMonth": {
+    "description": "This month"
+  },
+
+  "myComplaints": "My Complaints",
+  "@myComplaints": {
+    "description": "My complaints"
+  },
+
+  "submitComplaint": "Submit Complaint",
+  "@submitComplaint": {
+    "description": "Submit complaint button"
+  },
+
+  "createComplaintTitle": "Submit New Complaint",
+  "@createComplaintTitle": {
+    "description": "Complaint submission screen title"
+  },
+
+  "complaintDetails": "Complaint Details",
+  "@complaintDetails": {
+    "description": "Complaint details"
+  },
+
+  "complaintTitle": "Complaint Title",
+  "@complaintTitle": {
+    "description": "Complaint title"
+  },
+
+  "complaintTitleHint": "Example: Continuous water outage in the neighborhood...",
+  "@complaintTitleHint": {
+    "description": "Hint for complaint title field"
+  },
+
+  "complaintDescription": "Complaint Description",
+  "@complaintDescription": {
+    "description": "Complaint description"
+  },
+
+  "complaintDescLabel": "Complaint Details",
+  "@complaintDescLabel": {
+    "description": "Label for complaint details field"
+  },
+
+  "complaintCategory": "Complaint Category",
+  "@complaintCategory": {
+    "description": "Complaint category"
+  },
+
+  "complaintCategoryLabel": "Complaint Type",
+  "@complaintCategoryLabel": {
+    "description": "Label for complaint type field"
+  },
+
+  "selectCategory": "Select Category",
+  "@selectCategory": {
+    "description": "Select category"
+  },
+
+  "categoryNoWater": "Water Outage",
+  "@categoryNoWater": {
+    "description": "Complaint category: Water outage"
+  },
+
+  "categoryWaterQuality": "Poor Water Quality",
+  "@categoryWaterQuality": {
+    "description": "Complaint category: Water quality"
+  },
+
+  "categoryLowPressure": "Low Water Pressure",
+  "@categoryLowPressure": {
+    "description": "Complaint category: Low pressure"
+  },
+
+  "categoryScheduleIssue": "Pumping Schedule Issue",
+  "@categoryScheduleIssue": {
+    "description": "Complaint category: Schedule issue"
+  },
+
+  "categoryOther": "Other",
+  "@categoryOther": {
+    "description": "Complaint category: Other"
+  },
+
+  "pending": "Pending",
+  "@pending": {
+    "description": "Complaint status: Pending"
+  },
+
+  "inProgress": "In Progress",
+  "@inProgress": {
+    "description": "Complaint status: In progress"
+  },
+
+  "resolved": "Resolved",
+  "@resolved": {
+    "description": "Complaint status: Resolved"
+  },
+
+  "rejected": "Rejected",
+  "@rejected": {
+    "description": "Complaint status: Rejected"
+  },
+
+  "statusPending": "Pending",
+  "@statusPending": {
+    "description": "Complaint status: Pending"
+  },
+
+  "statusInProgress": "In Progress",
+  "@statusInProgress": {
+    "description": "Complaint status: In progress"
+  },
+
+  "statusResolved": "Resolved",
+  "@statusResolved": {
+    "description": "Complaint status: Resolved"
+  },
+
+  "statusRejected": "Rejected",
+  "@statusRejected": {
+    "description": "Complaint status: Rejected"
+  },
+
+  "adminResponse": "Admin Response",
+  "@adminResponse": {
+    "description": "Admin response"
+  },
+
+  "respondToComplaint": "Respond to Complaint",
+  "@respondToComplaint": {
+    "description": "Admin button to respond to a complaint"
+  },
+
+  "complaintResponseHint": "Write your response here...",
+  "@complaintResponseHint": {
+    "description": "Hint text for complaint response field"
+  },
+
+  "sendResponse": "Send Response",
+  "@sendResponse": {
+    "description": "Send response button"
+  },
+
+  "complaintRespondSuccess": "Response sent successfully",
+  "@complaintRespondSuccess": {
+    "description": "Success message after admin responds to a complaint"
+  },
+
+  "handledBy": "Handled By",
+  "@handledBy": {
+    "description": "Handled by"
+  },
+
+  "handledAt": "Handled At",
+  "@handledAt": {
+    "description": "Handled at"
+  },
+
+  "createdAt": "Created At",
+  "@createdAt": {
+    "description": "Created at"
+  },
+
+  "updatedAt": "Updated At",
+  "@updatedAt": {
+    "description": "Updated at"
+  },
+
+  "role": "Role",
+  "@role": {
+    "description": "Role"
+  },
+
+  "admin": "Admin",
+  "@admin": {
+    "description": "Role: Admin"
+  },
+
+  "operator": "Operator",
+  "@operator": {
+    "description": "Role: Operator"
+  },
+
+  "citizen": "Citizen",
+  "@citizen": {
+    "description": "Role: Citizen"
+  },
+
+  "employeeRegisterTitle": "Employee Account Registration",
+  "@employeeRegisterTitle": {
+    "description": "Employee registration screen title"
+  },
+
+  "usernameLabel": "Username",
+  "@usernameLabel": {
+    "description": "Label for username field"
+  },
+
+  "passwordLabel": "Password",
+  "@passwordLabel": {
+    "description": "Label for password field"
+  },
+
+  "phoneNumberLabel": "Phone Number",
+  "@phoneNumberLabel": {
+    "description": "Label for phone number field"
+  },
+
+  "createAccountBtn": "Create Account",
+  "@createAccountBtn": {
+    "description": "Create account button"
+  },
+
+  "saveAndContinue": "Save & Continue",
+  "@saveAndContinue": {
+    "description": "Save and continue button"
+  },
+
+  "fullNameLabel": "Full Name",
+  "@fullNameLabel": {
+    "description": "Label for full name field"
+  },
+
+  "regionLabel": "Region",
+  "@regionLabel": {
+    "description": "Label for region field"
+  },
+
+  "unitLabel": "Unit",
+  "@unitLabel": {
+    "description": "Label for unit field"
+  },
+
+  "neighborhoodLabel": "Neighborhood",
+  "@neighborhoodLabel": {
+    "description": "Label for neighborhood field"
+  },
+
+  "zoneLabel": "Zone",
+  "@zoneLabel": {
+    "description": "Label for zone field"
+  },
+
+  "resetFilter": "Reset Filter",
+  "@resetFilter": {
+    "description": "Reset filter button"
+  },
+  "all": "All",
+  "@all": {
+    "description": "All option"
+  },
+  "finished": "Finished",
+  "@finished": {
+    "description": "Finished status"
+  },
+  "filterByStatus": "Filter by Status",
+  "@filterByStatus": {
+    "description": "Status filter"
+  },
+  "startPumping": "Start Pumping",
+  "@startPumping": {
+    "description": "Start pumping button"
+  },
+  "endPumping": "End Pumping",
+  "@endPumping": {
+    "description": "End pumping button"
+  },
+  "actions": "Actions",
+  "@actions": {
+    "description": "Actions column"
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading message"
+  },
+
+  "error": "Error",
+  "@error": {
+    "description": "Error"
+  },
+
+  "errorOccurred": "An Error Occurred",
+  "@errorOccurred": {
+    "description": "Error occurred message"
+  },
+
+  "networkError": "Network Connection Error",
+  "@networkError": {
+    "description": "Network error"
+  },
+
+  "serverError": "Server Error",
+  "@serverError": {
+    "description": "Server error"
+  },
+
+  "requestTimeoutError": "The request took too long. Please try again.",
+  "@requestTimeoutError": {
+    "description": "Request timeout error"
+  },
+
+  "requestCancelledError": "The request was cancelled before it completed.",
+  "@requestCancelledError": {
+    "description": "Request cancelled error"
+  },
+
+  "invalidDataError": "Some entered data is incorrect. Please review it.",
+  "@invalidDataError": {
+    "description": "Invalid input or validation error"
+  },
+
+  "paymentError": "There was a problem with the payment. Please try again.",
+  "@paymentError": {
+    "description": "Payment error"
+  },
+
+  "rateLimitedError": "Too many attempts. Please wait {duration} and try again.",
+  "@rateLimitedError": {
+    "description": "Rate limit error with duration",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+
+  "noInternetConnection": "No Internet Connection",
+  "@noInternetConnection": {
+    "description": "No internet connection"
+  },
+
+  "connectionRestored": "Internet connection restored",
+  "@connectionRestored": {
+    "description": "Shown when internet connection is restored"
+  },
+
+  "tryAgain": "Try Again",
+  "@tryAgain": {
+    "description": "Try again"
+  },
+
+  "noData": "No Data",
+  "@noData": {
+    "description": "No data"
+  },
+
+  "noSchedules": "No Schedules",
+  "@noSchedules": {
+    "description": "No schedules"
+  },
+
+  "noComplaints": "No Complaints",
+  "@noComplaints": {
+    "description": "No complaints"
+  },
+
+  "noSchedulesMessage": "No pumping schedules at the moment",
+  "@noSchedulesMessage": {
+    "description": "No schedules message"
+  },
+
+  "noComplaintsMessage": "You haven't submitted any complaints yet",
+  "@noComplaintsMessage": {
+    "description": "No complaints message"
+  },
+
+  "pullToRefresh": "Pull to Refresh",
+  "@pullToRefresh": {
+    "description": "Pull to refresh"
+  },
+
+  "releaseToRefresh": "Release to Refresh",
+  "@releaseToRefresh": {
+    "description": "Release to refresh"
+  },
+
+  "loadMore": "Load More",
+  "@loadMore": {
+    "description": "Load more"
+  },
+
+  "quickActions": "Quick Actions",
+  "@quickActions": {
+    "description": "Quick actions"
+  },
+
+  "viewSchedules": "View Schedules",
+  "@viewSchedules": {
+    "description": "View schedules"
+  },
+
+  "counterAppBarTitle": "Counter",
+  "@counterAppBarTitle": {
+    "description": "Text shown in the AppBar of the Counter Page"
+  },
+  "waterFeedbackTitle": "Water Arrival Feedback",
+  "@waterFeedbackTitle": {
+    "description": "Title of water arrival feedback page"
+  },
+
+  "waterReceived": "Water Received",
+  "@waterReceived": {
+    "description": "Option for water received in water arrival feedback"
+  },
+
+  "waterNotReceived": "Water Not Received",
+  "@waterNotReceived": {
+    "description": "Option for water not received in water arrival feedback"
+  },
+
+  "lowWaterLevel": "Low Water Pressure",
+  "@lowWaterLevel": {
+    "description": "Option for low water pressure in water arrival feedback"
+  },
+
+  "noActiveSchedule": "No active pumping schedule to evaluate in your area",
+  "@noActiveSchedule": {
+    "description": "Message when no active pumping schedule is available for evaluation"
+  },
+
+  "alreadySubmittedFeedback": "You have already submitted feedback for this schedule, thank you!",
+  "@alreadySubmittedFeedback": {
+    "description": "Message when attempting to submit duplicate feedback for the same schedule"
+  },
+
+  "feedbackSubmittedSuccessfully": "Feedback submitted successfully, thank you for your cooperation",
+  "@feedbackSubmittedSuccessfully": {
+    "description": "Success message for water arrival feedback submission"
+  },
+
+    "noInternetConnection": "Please check your internet connection",
+    "@noInternetConnection": { "description": "No internet connection error" },
+
+    "unauthorized": "Invalid session, please login again",
+    "@unauthorized": { "description": "Unauthorized error 401" },
+
+    "forbidden": "You don't have permission to access this data",
+    "@forbidden": { "description": "Forbidden error 403" },
+
+    "serviceUnavailable": "Service is currently unavailable",
+    "@serviceUnavailable": { "description": "Service unavailable error 404" },
+
+    "serverError": "Server error, please try again later",
+    "@serverError": { "description": "Server error 500" },
+
+    "myEvaluations": "My Evaluations",
+    "@myEvaluations": { "description": "Title for my evaluations page" },
+
+    "noPreviousEvaluations": "You have no previous evaluations",
+    "@noPreviousEvaluations": { "description": "Empty state for evaluations" },
+
+    "noNotificationsCurrently": "No notifications currently",
+    "@noNotificationsCurrently": { "description": "Empty state for notifications" },
+
+    "noDataAvailable": "No data available",
+    "@noDataAvailable": { "description": "Generic no data message" },
+
+    "employee": "Employee",
+    "@employee": { "description": "Employee role label" },
+
+    "citizen": "Citizen",
+    "@citizen": { "description": "Citizen role label" },
+
+    "watchedLocation": "Watched Location",
+    "@watchedLocation": { "description": "Title for employee watched location card" },
+
+    "notSpecified": "Not specified",
+    "@notSpecified": { "description": "Fallback for unspecified location value" },
+
+    "noWatchedAreaAssigned": "No monitored location specified",
+    "@noWatchedAreaAssigned": { "description": "Message when employee has no watched area" },
+
+    "myDefaultLocation": "My Default Location",
+    "@myDefaultLocation": { "description": "Title for citizen default location card" },
+
+    "personalInformation": "Personal Information",
+    "@personalInformation": { "description": "Section title for personal info" },
+
+    "logoutTile": "Logout",
+    "@logoutTile": { "description": "Logout tile title" },
+
+    "noComplaintsInThisSection": "No complaints in this section",
+    "@noComplaintsInThisSection": { "description": "Empty state for complaints" },
+
+    "waterArrived": "Water arrived",
+    "@waterArrived": { "description": "Feedback option for water arrived" },
+
+    "lowPressure": "Low pressure",
+    "@lowPressure": { "description": "Feedback option for low water pressure" },
+
+    "didNotArrive": "Did not arrive",
+    "@didNotArrive": { "description": "Feedback option for water not arriving" },
+
+    "pumpingStatusActiveNow": "Pumping status: Active now",
+    "@pumpingStatusActiveNow": { "description": "Active pumping status label" },
+
+    "lastPumpingEnded": "Last pumping ended",
+    "@lastPumpingEnded": { "description": "Label for last pumping end time" },
+
+    "startsAt": "Starts at",
+    "@startsAt": { "description": "Label for pumping start time" },
+
+    "noCurrentPumpingStatus": "No current pumping status",
+    "@noCurrentPumpingStatus": { "description": "Message when no active pumping" },
+
+    "yourWatchedArea": "Your watched area:",
+    "@yourWatchedArea": { "description": "Label for watched area on home page" },
+
+    "locationSelectionTitle": "Select Follow-up Location",
+    "@locationSelectionTitle": { "description": "Title for location selection bottom sheet" },
+
+    "confirmLocation": "Confirm Location",
+    "@confirmLocation": { "description": "Button to confirm selected location" },
+
+    "pageNotFound": "Page not found",
+    "@pageNotFound": { "description": "Title for 404 page" },
+
+    "returnToHome": "Return to Home",
+    "@returnToHome": { "description": "Button to go back to home from 404" },
+
+    "schedulesPageTitle": "Schedules",
+    "@schedulesPageTitle": { "description": "Title for schedules placeholder page" },
+
+    "schedulesUnderDevelopment": "Schedules Page - Under development",
+    "@schedulesUnderDevelopment": { "description": "Placeholder text for schedules page" },
+
+    "scheduleDetailsPageTitle": "Schedule Details",
+    "@scheduleDetailsPageTitle": { "description": "Title for schedule details placeholder page" },
+
+    "complaintsPageTitle": "Complaints",
+    "@complaintsPageTitle": { "description": "Title for complaints placeholder page" },
+
+    "complaintsUnderDevelopment": "Complaints Page - Under development",
+    "@complaintsUnderDevelopment": { "description": "Placeholder text for complaints page" },
+
+    "complaintDetailsPageTitle": "Complaint Details",
+    "@complaintDetailsPageTitle": { "description": "Title for complaint details placeholder page" },
+
+    "newComplaintPageTitle": "Add New Complaint",
+    "@newComplaintPageTitle": { "description": "Title for new complaint placeholder page" },
+
+    "newComplaintUnderDevelopment": "New Complaint Page - Under development",
+    "@newComplaintUnderDevelopment": { "description": "Placeholder text for new complaint page" },
+
+    "notificationsPageTitle": "Notifications",
+    "@notificationsPageTitle": { "description": "Title for notifications placeholder page" },
+
+    "notificationsUnderDevelopment": "Notifications Page - Under development",
+    "@notificationsUnderDevelopment": { "description": "Placeholder text for notifications page" },
+
+    "profilePageTitle": "Profile",
+    "@profilePageTitle": { "description": "Title for profile placeholder page" },
+
+    "profileUnderDevelopment": "Profile Page - Under development",
+    "@profileUnderDevelopment": { "description": "Placeholder text for profile page" },
+
+    "editProfilePageTitle": "Edit Profile",
+    "@editProfilePageTitle": { "description": "Title for edit profile placeholder page" },
+
+    "editProfileUnderDevelopment": "Edit Profile Page - Under development",
+    "@editProfileUnderDevelopment": { "description": "Placeholder text for edit profile page" },
+
+    "deepLinkReceived": "Deep Link received!",
+    "@deepLinkReceived": { "description": "Debug message for deep link" },
+
+    "receivedId": "Received ID: $id",
+    "@receivedId": {
+      "description": "Debug message showing received ID",
+      "placeholders": { "id": { "type": "String" } }
+    },
+
+    "editData": "Edit Data",
+    "@editData": { "description": "Edit data button text" },
+
+    "regionLabelWithColon": "Region:",
+    "@regionLabelWithColon": { "description": "Region label with colon" },
+
+    "unitLabelWithColon": "Unit:",
+    "@unitLabelWithColon": { "description": "Unit label with colon" },
+
+    "neighborhoodLabelWithColon": "Neighborhood:",
+    "@neighborhoodLabelWithColon": { "description": "Neighborhood label" },
+
+    "zoneLabelWithColon": "Sub-area:",
+    "@zoneLabelWithColon": { "description": "Zone/Sub-area label with colon" },
+
+    "profileUpdatedSuccessfully": "Profile updated successfully",
+    "@profileUpdatedSuccessfully": { "description": "Success message for profile update" },
+
+    "profileCompletedSuccessfully": "Your profile has been completed successfully",
+    "@profileCompletedSuccessfully": { "description": "Success message for profile completion" },
+
+    "scheduleCreatedSuccessfully": "Schedule created successfully",
+    "@scheduleCreatedSuccessfully": { "description": "Success message for schedule creation" },
+
+    "otpVerifiedSuccessfully": "Verified successfully",
+    "@otpVerifiedSuccessfully": { "description": "OTP verification success message" },
+    "otpBlockedTitle": "Too Many Attempts",
+    "@otpBlockedTitle": { "description": "Title for the OTP temporary block screen" },
+    "otpBlockedMessage": "You have exceeded the allowed number of attempts. Please wait before trying again.",
+    "@otpBlockedMessage": { "description": "Message for the OTP temporary block screen" },
+    "otpBlockedWait": "Time Remaining",
+    "@otpBlockedWait": { "description": "Countdown label on the OTP block screen" },
+
+    "otpSentSuccessfully": "Verification code sent successfully",
+    "@otpSentSuccessfully": { "description": "OTP sent success message" },
+
+    "loginTemporarilyDisabledLockout": "Login temporarily disabled",
+    "@loginTemporarilyDisabledLockout": { "description": "Login disabled due to lockout" },
+
+    "timeRemaining": "Time remaining: $countdown",
+    "@timeRemaining": {
+      "description": "Countdown timer label",
+      "placeholders": { "countdown": { "type": "String" } }
+    },
+
+    "blocked": "Blocked",
+    "@blocked": { "description": "Blocked status label" },
+
+    "secondsRemaining": "seconds ",
+    "@secondsRemaining": {
+      "description": "Seconds remaining in timer"
+    },
+
+    "cannotOpenLink": "Sorry, the requested link cannot be opened.",
+    "@cannotOpenLink": { "description": "Error message when link cannot be opened" },
+
+    "confirmLogoutTitle": "Confirm Logout",
+    "@confirmLogoutTitle": { "description": "Title for logout confirmation dialog" },
+
+    "confirmLogoutMessage": "Are you sure you want to logout?",
+    "@confirmLogoutMessage": { "description": "Message for logout confirmation" },
+
+    "confirmTitle": "Confirm",
+    "@confirmTitle": { "description": "Generic confirm dialog title" },
+
+    "cancel": "Cancel",
+    "@cancel": { "description": "Cancel button text" },
+
+    "confirm": "Confirm",
+    "@confirm": { "description": "Confirm button text" },
+
+    "leave": "Leave",
+    "@leave": { "description": "Leave button text for sensitive pages" },
+
+    "stay": "Stay",
+    "@stay": { "description": "Stay button text" },
+
+    "confirmLeaveTitle": "Confirm Leave",
+    "@confirmLeaveTitle": { "description": "Title for leave confirmation" },
+
+    "confirmLeaveMessage": "Do you want to leave? Changes may not be saved.",
+    "@confirmLeaveMessage": { "description": "Message for leave confirmation" },
+
+    "securityWarning": "Security Warning",
+    "@securityWarning": { "description": "Title for security warning dialog" },
+
+    "securityWarningMessage": "This page contains sensitive information. Do you want to leave?",
+    "@securityWarningMessage": { "description": "Message for security warning" },
+
+    "userLeftSensitivePage": "User left a sensitive page",
+    "@userLeftSensitivePage": { "description": "Log message for user leaving sensitive page" },
+
+    "startPumpingLabel": "Start pumping",
+    "@startPumpingLabel": { "description": "Label for start pumping in dashboard" },
+
+    "endPumpingLabel": "End pumping",
+    "@endPumpingLabel": { "description": "Label for end pumping in dashboard" },
+
+    "errorFetchingWatchedAreas": "Failed to fetch watched areas",
+    "@errorFetchingWatchedAreas": { "description": "Error when fetching watched areas fails" },
+
+    "errorFetchingAllAreas": "Failed to fetch all areas",
+    "@errorFetchingAllAreas": { "description": "Error when fetching all areas fails" },
+
+    "errorFetchingAvailableAreas": "Failed to fetch available areas",
+    "@errorFetchingAvailableAreas": { "description": "Error when fetching available areas fails" },
+
+    "errorUpdatingWatchStatus": "Failed to update watch status",
+    "@errorUpdatingWatchStatus": { "description": "Error when updating watch status fails" },
+
+    "errorFetchingPumpingStatus": "Failed to fetch pumping status",
+    "@errorFetchingPumpingStatus": { "description": "Error when fetching pumping status fails" },
+
+    "errorFetchingSchedules": "Failed to fetch upcoming schedules",
+    "@errorFetchingSchedules": { "description": "Error when fetching schedules fails" },
+
+    "errorFetchingScheduleForEvaluation": "Failed to fetch schedule for evaluation",
+    "@errorFetchingScheduleForEvaluation": { "description": "Error when fetching schedule for evaluation fails" },
+
+    "errorSendingFeedback": "Failed to send feedback",
+    "@errorSendingFeedback": { "description": "Error when sending feedback fails" },
+
+    "errorFetchingDashboardTables": "Error fetching tables",
+    "@errorFetchingDashboardTables": { "description": "Error when fetching dashboard tables fails" },
+
+    "errorFetchingRegions": "Error fetching regions",
+    "@errorFetchingRegions": { "description": "Error when fetching regions fails" },
+
+    "errorCreatingSchedule": "Failed to create schedule",
+    "@errorCreatingSchedule": { "description": "Error when creating schedule fails" },
+
+    "errorStartingPumping": "Failed to start pumping",
+    "@errorStartingPumping": { "description": "Error when starting pumping fails" },
+
+    "errorEndingPumping": "Failed to end pumping",
+    "@errorEndingPumping": { "description": "Error when ending pumping fails" },
+
+    "errorCancellingSchedule": "Failed to cancel schedule",
+    "@errorCancellingSchedule": { "description": "Error when cancelling schedule fails" },
+
+    "errorFetchingFeedbackHistory": "Failed to fetch feedback history",
+    "@errorFetchingFeedbackHistory": { "description": "Error when fetching feedback history fails" },
+
+    "errorCheckingPumpingStatus": "Failed to check pumping status",
+    "@errorCheckingPumpingStatus": { "description": "Error when checking pumping status fails" },
+
+    "errorSendingFeedbackGeneral": "Failed to send feedback, please try again",
+    "@errorSendingFeedbackGeneral": { "description": "Error when sending feedback fails" },
+
+    "errorFetchingData": "Error fetching data",
+    "@errorFetchingData": { "description": "Generic error when fetching data fails" },
+
+    "errorUpdatingData": "Error updating data",
+    "@errorUpdatingData": { "description": "Generic error when updating data fails" },
+
+    "errorFetchingRegionsGeneral": "Error fetching regions",
+    "@errorFetchingRegionsGeneral": { "description": "Error fetching regions general" },
+
+    "errorFetchingUnitsGeneral": "Error fetching units",
+    "@errorFetchingUnitsGeneral": { "description": "Error fetching units general" },
+
+    "errorFetchingNeighborhoodsGeneral": "Error fetching neighborhoods",
+    "@errorFetchingNeighborhoodsGeneral": { "description": "Error fetching neighborhoods general" },
+
+    "errorFetchingZonesGeneral": "Error fetching zones",
+    "@errorFetchingZonesGeneral": { "description": "Error fetching zones general" },
+
+    "errorFetchingNotifications": "Error fetching notifications",
+    "@errorFetchingNotifications": { "description": "Error fetching notifications" },
+
+    "errorUpdatingNotificationStatus": "Error updating notification status",
+    "@errorUpdatingNotificationStatus": { "description": "Error updating notification status" },
+
+    "errorUpdatingAllNotifications": "Error updating all notifications",
+    "@errorUpdatingAllNotifications": { "description": "Error updating all notifications" },
+
+    "invalidPhoneError": "Invalid phone number",
+    "@invalidPhoneError": { "description": "Error for invalid phone number" },
+
+    "invalidCredentialsError": "Invalid credentials",
+    "@invalidCredentialsError": { "description": "Error for invalid credentials" },
+
+    "errorDuringVerification": "Error during verification",
+    "@errorDuringVerification": { "description": "Error during OTP verification" },
+
+    "completeRequiredFields": "Please complete all required fields",
+    "@completeRequiredFields": { "description": "Validation error for incomplete form" },
+
+    "welcomeMessage": "We offer our services to facilitate your experience",
+    "@welcomeMessage": { "description": "Welcome message on login page" },
+
+    "areaDetailsTitle": "Area Details: $areaName",
+    "@areaDetailsTitle": {
+      "description": "Title for area details dummy page",
+      "placeholders": { "areaName": { "type": "String" } }
+    },
+
+    "areaDetailsSubtitle": "(Will be replaced with your actual page)",
+    "@areaDetailsSubtitle": { "description": "Subtitle for area details dummy page" },
+
+    "arabic": "Arabic",
+    "@arabic": { "description": "Arabic language label" },
+
+    "todayLabel": "Today",
+    "@todayLabel": { "description": "Today label for schedule status" },
+
+    "tomorrowLabel": "Tomorrow",
+    "@tomorrowLabel": { "description": "Tomorrow label for schedule status" },
+
+    "scheduledStatus": "Scheduled",
+    "@scheduledStatus": { "description": "Scheduled status label" },
+
+    "activeStatus": "Active",
+    "@activeStatus": { "description": "Active status label" },
+
+    "completedStatus": "Completed",
+    "@completedStatus": { "description": "Completed status label" },
+
+    "cancelledStatus": "Cancelled",
+    "@cancelledStatus": { "description": "Cancelled status label" },
+
+    "endedStatus": "Ended",
+    "@endedStatus": { "description": "Ended status label" },
+
+    "hoursAndMinutes": "$hours hours $minutes minutes",
+    "@hoursAndMinutes": {
+      "description": "Duration in hours and minutes",
+      "placeholders": {
+        "hours": { "type": "int" },
+        "minutes": { "type": "int" }
+      }
+    },
+
+    "minutesOnly": "$minutes minutes",
+    "@minutesOnly": {
+      "description": "Duration in minutes only",
+      "placeholders": { "minutes": { "type": "int" } }
+    },
+
+    "runningStatus": "Running",
+    "@runningStatus": { "description": "Running status label" },
+
+    "regionPrefix": "Region: $regionName",
+    "@regionPrefix": {
+      "description": "Region prefix for notification location",
+      "placeholders": { "regionName": { "type": "String" } }
+    },
+
+    "unitPrefix": "Center: $unitName",
+    "@unitPrefix": {
+      "description": "Unit/Center prefix for notification location",
+      "placeholders": { "unitName": { "type": "String" } }
+    },
+
+    "neighborhoodPrefix": "Neighborhood: $neighborhoodName",
+    "@neighborhoodPrefix": {
+      "description": "Neighborhood prefix for notification location",
+      "placeholders": { "neighborhoodName": { "type": "String" } }
+    },
+
+    "zonePrefix": "Block: $zoneName",
+    "@zonePrefix": {
+      "description": "Zone/Block prefix for notification location",
+      "placeholders": { "zoneName": { "type": "String" } }
+    },
+
+    "exitAppTitle": "Exit App",
+    "@exitAppTitle": { "description": "Title for exit app confirmation dialog" },
+
+    "exitAppMessage": "Are you sure you want to exit?",
+    "@exitAppMessage": { "description": "Message for exit app confirmation" },
+
+    "exitAppConfirm": "Exit",
+    "@exitAppConfirm": { "description": "Confirm button text for exit app dialog" },
+
+    "startDateMustBeInFuture": "Start date must be today or later",
+    "@startDateMustBeInFuture": { "description": "Validation error when start date is in the past" },
+
+    "endDateMustBeAfterStart": "End date must be after start date",
+    "@endDateMustBeAfterStart": { "description": "Validation error when end date is before or equal to start date" },
+
+    "selectStartTime": "Please select a start date and time",
+    "@selectStartTime": { "description": "Validation error when start time is not selected" },
+
+    "selectEndTime": "Please select an end date and time",
+    "@selectEndTime": { "description": "Validation error when end time is not selected" },
+
+    "upcomingStatus": "Upcoming",
+    "@upcomingStatus": { "description": "Schedule status label for upcoming schedules" },
+
+    "activeStatus": "Active",
+    "@activeStatus": { "description": "Schedule status label for active schedules" },
+
+    "completedStatus": "Completed",
+    "@completedStatus": { "description": "Schedule status label for completed schedules" },
+
+    "cancelledStatus": "Cancelled",
+    "@cancelledStatus": { "description": "Schedule status label for cancelled schedules" },
+
+    "finishedStatus": "Finished",
+    "@finishedStatus": { "description": "Schedule status label for finished schedules" },
+
+    "dateAndTimeFormat": "EEEE, d MMMM | hh:mm a",
+    "@dateAndTimeFormat": { "description": "Arabic date and time format pattern" },
+
+    "errorNoPastDates": "Cannot select a past date. Please choose today or a future date.",
+    "@errorNoPastDates": { "description": "Error when user selects a past date" },
+
+    "noSchedulesFound": "No schedules found",
+    "@noSchedulesFound": { "description": "Empty state message when no schedules exist" },
+
+    "selectDateAndTime": "Select Date & Time",
+    "@selectDateAndTime": { "description": "Hint text for date picker field" },
+     "pressToRate": "Tap to rate",
+      "@pressToRate": {
+        "description": "Text prompting user to tap and rate the content"
+      },
+
+    "notificationSettings": "Notification Settings",
+    "@notificationSettings": {
+      "description": "Title for notification settings section"
+    },
+
+    "soundDroplets": "Sound Droplets",
+    "@soundDroplets": {
+      "description": "Toggle label for enabling/disabling notification sound"
+    },
+
+    "soundDropletsDesc": "Play sound when notifications arrive",
+    "@soundDropletsDesc": {
+      "description": "Description for sound droplets toggle"
+    },
+
+    "waterOverlay": "Water Overlay Effect",
+    "@waterOverlay": {
+      "description": "Toggle label for water overlay effect"
+    },
+
+    "waterOverlayDesc": "Show full-screen water animation when pumping starts",
+    "@waterOverlayDesc": {
+      "description": "Description for water overlay toggle"
+    },
+
+    "vibrationFeedback": "Vibration Feedback",
+    "@vibrationFeedback": {
+      "description": "Toggle label for vibration feedback"
+    },
+
+    "vibrationFeedbackDesc": "Vibrate when notifications arrive",
+    "@vibrationFeedbackDesc": {
+      "description": "Description for vibration feedback toggle"
+    },
+
+    "overlayPermissionRequired": "Overlay Permission Required",
+    "@overlayPermissionRequired": {
+      "description": "Title for overlay permission dialog"
+    },
+
+    "overlayPermissionMessage": "This feature requires 'Display over other apps' permission. Please enable it in settings.",
+    "@overlayPermissionMessage": {
+      "description": "Message explaining overlay permission requirement"
+    },
+
+    "enablePermission": "Enable Permission",
+    "@enablePermission": {
+      "description": "Button text to enable permission"
+    },
+
+    "noAssignedUnitsCannotAddSchedule": "No units are assigned yet, so you cannot add a schedule.",
+    "@noAssignedUnitsCannotAddSchedule": {
+      "description": "Shown when operator has no assigned units and tries to add schedule"
+    },
+
+    "cancelScheduleConfirmationMessage": "Are you sure you want to cancel this schedule?",
+    "@cancelScheduleConfirmationMessage": {
+      "description": "Confirmation message before cancelling a schedule"
+    },
+
+    "notificationPermissionSettingsRequired": "Please enable notification permission from device settings.",
+    "@notificationPermissionSettingsRequired": {
+      "description": "Shown when notification permission is permanently denied"
+    },
+
+    "notificationPermissionDenied": "Notification permission was not granted.",
+    "@notificationPermissionDenied": {
+      "description": "Shown when notification permission is denied"
+    }
+
+,
+    "unsupportedPhonePrefix": "This prefix is not supported in Syria",
+    "@unsupportedPhonePrefix": {
+      "description": "Validation message for blocked phone prefixes"
+    },
+    "sessionExpiredMessage": "Your session has expired. Please sign in again.",
+    "@sessionExpiredMessage": {
+      "description": "Shown when session expires and user is redirected to login"
+    },
+    "pinCodeTitle": "PIN Code",
+    "@pinCodeTitle": {
+      "description": "PIN screen app bar title"
+    },
+    "setPinCode": "Set a 6-digit PIN",
+    "@setPinCode": {
+      "description": "PIN setup headline"
+    },
+    "confirmPinCode": "Confirm your PIN",
+    "@confirmPinCode": {
+      "description": "PIN confirm headline"
+    },
+    "enterPinCode": "Enter your PIN",
+    "@enterPinCode": {
+      "description": "PIN entry headline"
+    },
+    "pinMustBeSixDigits": "PIN must be exactly 6 digits",
+    "@pinMustBeSixDigits": {
+      "description": "Validation message for PIN length"
+    },
+    "pinCodeNotFound": "No PIN is set yet",
+    "@pinCodeNotFound": {
+      "description": "Error when no PIN exists in secure storage"
+    },
+    "invalidPinCode": "Incorrect PIN code",
+    "@invalidPinCode": {
+      "description": "Error for invalid PIN"
+    },
+    "pinCodesDoNotMatch": "PIN codes do not match",
+    "@pinCodesDoNotMatch": {
+      "description": "Error when confirming PIN with different value"
+    },
+    "myAddresses": "My Addresses",
+    "@myAddresses": {
+      "description": "Title for my addresses screen and settings entry"
+    },
+    "addNewAddress": "Add New Address",
+    "@addNewAddress": {
+      "description": "Floating action button label for adding a new saved address"
+    },
+    "addressName": "Address name",
+    "@addressName": {
+      "description": "Address name field label"
+    },
+    "noSavedAddresses": "No saved addresses yet",
+    "@noSavedAddresses": {
+      "description": "Empty state for my addresses page"
+    },
+    "deleteAddressTitle": "Delete Address",
+    "@deleteAddressTitle": { "description": "Delete address confirmation dialog title" },
+    "deleteAddressMessage": "Are you sure you want to delete this address?",
+    "@deleteAddressMessage": { "description": "Delete address confirmation message" },
+    "maintenanceTitle": "System Under Maintenance",
+    "@maintenanceTitle": {
+      "description": "Maintenance page title"
+    },
+    "maintenanceMessage": "The system is currently under maintenance. Please try again later.",
+    "@maintenanceMessage": {
+      "description": "Maintenance page message"
+    },
+    "updateRequiredTitle": "Update Required",
+    "@updateRequiredTitle": {
+      "description": "Force update page title"
+    },
+    "updateRequiredMessage": "A new version is required to continue using the app.",
+    "@updateRequiredMessage": {
+      "description": "Force update page description"
+    },
+    "updateNow": "Update Now",
+    "@updateNow": {
+      "description": "Force update primary button"
+    },
+    "pinWeak": "This PIN is too easy to guess. Choose another.",
+    "@pinWeak": { "description": "Error for weak PIN (sequential, repeating, common)" },
+    "pinDigitsOnly": "PIN must contain numbers only",
+    "@pinDigitsOnly": { "description": "Error shown when PIN input contains non-numeric characters" },
+    "biometricSetupTitle": "Enable biometric unlock",
+    "@biometricSetupTitle": {},
+  "biometricSetupSubtitle": "Use your fingerprint to unlock the app faster.",
+    "@biometricSetupSubtitle": {},
+    "biometricEnable": "Enable",
+    "@biometricEnable": {},
+    "biometricSkip": "Skip",
+    "@biometricSkip": {},
+    "biometricUse": "Login with biometrics",
+    "@biometricUse": {},
+    "biometricReason": "Unlock Qatrah",
+    "@biometricReason": { "description": "Reason shown in OS biometric prompt" },
+    "appLockTitle": "Welcome back",
+    "@appLockTitle": {},
+    "appLockSubtitle": "Enter your PIN to continue",
+    "@appLockSubtitle": {},
+    "forgotPin": "Forgot PIN?",
+    "@forgotPin": {},
+    "forgotPinConfirm": "The saved session will be cleared and you'll need to sign in again.",
+    "@forgotPinConfirm": {},
+    "pinTemporarilyLocked": "Too many attempts. Try again in {seconds}s.",
+    "@pinTemporarilyLocked": {
+      "description": "Lockout countdown shown on lock screen",
+      "placeholders": { "seconds": { "type": "int" } }
+    },
+    "changePinTitle": "Change PIN",
+    "@changePinTitle": {},
+    "changePinCurrent": "Enter current PIN",
+    "@changePinCurrent": {},
+    "changePinNew": "Enter a new PIN",
+    "@changePinNew": {},
+    "changePinSuccess": "PIN updated",
+    "@changePinSuccess": {},
+    "securitySection": "Security",
+    "@securitySection": {},
+    "biometricToggleLabel": "Biometric unlock",
+    "@biometricToggleLabel": {},
+    "defaultAddress": "Default Location",
+    "@defaultAddress": {
+      "description": "Label for the default address derived from the user profile"
+    },
+    "internetRestored": "Internet connection restored",
+    "@internetRestored": {
+      "description": "Toast shown when internet connection is restored"
+    },
+    "internetDisconnected": "Internet connection lost",
+    "@internetDisconnected": {
+      "description": "Toast shown when internet connection is lost"
+    },
+
+    "accountGroup": "Account",
+    "appGroup": "App",
+    "preferencesGroup": "Preferences",
+    "sessionGroup": "Session",
+    "globalAccess": "Global access",
+    "professionalScope": "Professional scope",
+    "personalAddress": "Personal address",
+    "adminGlobalAccessDescription": "You have full access to all regions and units.",
+    "name": "Name",
+    "call": "Call",
+    "complainantInfo": "Complainant info",
+    "officialResponse": "Official response",
+    "shareApp": "Share app",
+    "shareAppMessage": "Download the Daraa Water app to follow water pumping schedules in your area.",
+    "duplicateAddressFound": "This address already exists.",
+    "biometricNotEnrolled": "No biometrics are enrolled on this device. Please set them up in your device settings.",
+    "setPinTitle": "Set PIN",
+    "setPinCodeSubtitle": "Set a PIN to secure the app",
+    "confirmPinCodeSubtitle": "Re-enter your PIN to confirm",
+    "pinMustBeFourDigits": "PIN must be 4 digits",
+    "errorLogin": "Login failed. Please check your credentials and try again.",
+    "errorSendOtp": "Failed to send the verification code. Please try again.",
+    "errorVerifyOtp": "Invalid verification code. Please try again.",
+    "errorFcmUpdate": "Failed to update the notification token.",
+    "filterByPumpingStatus": "Filter by pumping status",
+    "evaluationsRatedTab": "Rated",
+    "evaluationsUnratedTab": "Unrated",
+    "noPendingEvaluations": "No pending evaluations",
+    "justNow": "Just now",
+    "yesterday": "Yesterday",
+    "hourAbbreviation": "hr",
+    "pausedStatus": "Paused",
+    "livePumpingNow": "Pumping now",
+    "pumpingPausedNow": "Pumping paused",
+    "pausedPumping": "Paused",
+    "pausePumping": "Pause pumping",
+    "resumePumping": "Resume pumping",
+    "pauseReasonLabel": "Pause reason",
+    "cancellationReasonLabel": "Cancellation reason",
+    "scheduledForLabel": "Scheduled for",
+    "pumpingEndedLabel": "Pumping ended",
+    "lastPumpingSessionTitle": "Last pumping session",
+    "upcomingScheduledPumpingTitle": "Upcoming scheduled pumping",
+    "pumpingCancelledTitle": "Pumping cancelled",
+    "pumpingCancelledThisPeriod": "Pumping cancelled this period",
+    "pumpingCancelledAt": "Cancelled at",
+    "startPumpingConfirmationMessage": "Are you sure you want to start pumping?",
+    "endPumpingConfirmationMessage": "Are you sure you want to end pumping?",
+    "pausePumpingConfirmationMessage": "Are you sure you want to pause pumping?",
+    "resumePumpingConfirmationMessage": "Are you sure you want to resume pumping?",
+    "cannotStartBeforeScheduledTime": "Pumping cannot start before the scheduled time.",
+    "scheduleStartTimeTooSoon": "The start time is too soon. Please pick a later time.",
+    "scheduleUpdatedSuccessfully": "Schedule updated successfully",
+    "errorUpdatingSchedule": "Failed to update the schedule.",
+    "zoneAlreadyHasActivePlan": "This zone already has an active plan.",
+    "shiftSchedule": "Shift schedule",
+    "shiftScheduleTitle": "Shift schedule",
+    "shiftScheduleDescription": "Shift the schedule by a number of hours",
+    "shiftDurationLabel": "Shift duration",
+    "shiftNewTimingLabel": "New timing",
+    "scheduleShiftedSuccessfully": "Schedule shifted successfully",
+
+    "durationHours": "{count} hours",
+    "@durationHours": { "placeholders": { "count": { "type": "int" } } },
+    "durationMinutes": "{count} minutes",
+    "@durationMinutes": { "placeholders": { "count": { "type": "int" } } },
+    "durationDays": "{count} days",
+    "@durationDays": { "placeholders": { "count": { "type": "int" } } },
+    "durationWeeks": "{count} weeks",
+    "@durationWeeks": { "placeholders": { "count": { "type": "int" } } },
+    "durationMonths": "{count} months",
+    "@durationMonths": { "placeholders": { "count": { "type": "int" } } },
+    "durationYears": "{count} years",
+    "@durationYears": { "placeholders": { "count": { "type": "int" } } },
+    "durationHoursAndMinutes": "{hours} and {minutes}",
+    "@durationHoursAndMinutes": { "placeholders": { "hours": { "type": "String" }, "minutes": { "type": "String" } } },
+    "pumpingTimeRemaining": "{duration} remaining",
+    "@pumpingTimeRemaining": { "placeholders": { "duration": { "type": "String" } } },
+    "timeAgoLabel": "{duration} ago",
+    "@timeAgoLabel": { "placeholders": { "duration": { "type": "String" } } }
+}

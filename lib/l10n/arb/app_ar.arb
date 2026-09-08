@@ -1,0 +1,1937 @@
+﻿{
+  "@@locale": "ar",
+
+  "appTitle": "مديرية مياه درعا",
+  "@appTitle": {
+    "description": "عنوان التطبيق الرئيسي"
+  },
+
+  "appName": "قطرة",
+  "@appName": {
+    "description": "اسم التطبيق"
+  },
+
+  "welcome": "مرحباً",
+  "@welcome": {
+    "description": "رسالة الترحيب"
+  },
+
+  "welcomeBack": "مرحباً بعودتك",
+  "@welcomeBack": {
+    "description": "رسالة الترحيب بالعودة"
+  },
+ "rememberMe": "تذكرني",
+  "@rememberMe": {
+    "description": "نص تذكرني"
+  },
+  "login": "تسجيل الدخول",
+  "@login": {
+    "description": "زر تسجيل الدخول"
+  },
+
+  "login_employee": "تسجيل الدخول كموظف",
+  "@login_employee": {
+    "description": "زر تسجيل الدخول للموظفين"
+  },
+
+  "login_citizens": "تسجيل الدخول كمواطن",
+  "@login_citizens": {
+    "description": "زر تسجيل الدخول للمواطنين"
+  },
+
+  "register": "إنشاء حساب",
+  "@register": {
+    "description": "زر التسجيل"
+  },
+
+  "logout": "تسجيل الخروج",
+  "@logout": {
+    "description": "زر تسجيل الخروج"
+  },
+
+  "username": "اسم المستخدم",
+  "@username": {
+    "description": "حقل اسم المستخدم"
+  },
+
+  "password": "كلمة المرور",
+  "@password": {
+    "description": "حقل كلمة المرور"
+  },
+
+  "currentPassword": "كلمة المرور الحالية",
+  "@currentPassword": {
+    "description": "حقل كلمة المرور الحالية"
+  },
+
+  "newPassword": "كلمة المرور الجديدة",
+  "@newPassword": {
+    "description": "حقل كلمة المرور الجديدة"
+  },
+
+  "confirmPassword": "تأكيد كلمة المرور",
+  "@confirmPassword": {
+    "description": "حقل تأكيد كلمة المرور"
+  },
+
+  "phoneNumber": "رقم الهاتف",
+  "@phoneNumber": {
+    "description": "حقل رقم الهاتف"
+  },
+
+  "fullName": "الاسم الكامل",
+  "@fullName": {
+    "description": "حقل الاسم الكامل"
+  },
+
+  "email": "البريد الإلكتروني",
+  "@email": {
+    "description": "حقل البريد الإلكتروني"
+  },
+
+  "submit": "إرسال",
+  "@submit": {
+    "description": "زر الإرسال"
+  },
+
+  "cancel": "إلغاء",
+  "@cancel": {
+    "description": "زر الإلغاء"
+  },
+
+  "save": "حفظ",
+  "@save": {
+    "description": "زر الحفظ"
+  },
+
+  "edit": "تعديل",
+  "@edit": {
+    "description": "زر التعديل"
+  },
+
+  "delete": "حذف",
+  "@delete": {
+    "description": "زر الحذف"
+  },
+
+  "close": "إغلاق",
+  "@close": {
+    "description": "زر الإغلاق"
+  },
+
+  "back": "رجوع",
+  "@back": {
+    "description": "زر الرجوع"
+  },
+
+  "next": "التالي",
+  "@next": {
+    "description": "زر التالي"
+  },
+
+  "done": "تم",
+  "@done": {
+    "description": "زر تم"
+  },
+
+  "retry": "إعادة المحاولة",
+  "@retry": {
+    "description": "زر إعادة المحاولة"
+  },
+
+  "refresh": "تحديث",
+  "@refresh": {
+    "description": "زر التحديث"
+  },
+
+  "search": "بحث",
+  "@search": {
+    "description": "زر البحث"
+  },
+
+  "filter": "تصفية",
+  "@filter": {
+    "description": "زر التصفية"
+  },
+
+  "forgotPassword": "نسيت كلمة المرور؟",
+  "@forgotPassword": {
+    "description": "رابط نسيت كلمة المرور"
+  },
+
+  "forgotPasswordDesc": "أدخل رقم هاتفك المسجل لدينا وسنقوم بإرسال رمز التحقق (OTP) لإعادة تعيين كلمة المرور.",
+  "@forgotPasswordDesc": {
+    "description": "وصف صفحة نسيت كلمة المرور"
+  },
+
+  "alreadyHaveAccount": "لديك حساب بالفعل؟",
+  "@alreadyHaveAccount": {
+    "description": "نص لديك حساب بالفعل"
+  },
+
+  "dontHaveAccount": "ليس لديك حساب؟",
+  "@dontHaveAccount": {
+    "description": "نص ليس لديك حساب"
+  },
+
+  "createAccount": "إنشاء حساب جديد",
+  "@createAccount": {
+    "description": "زر إنشاء حساب جديد"
+  },
+
+  "otpVerification": "التحقق من رمز OTP",
+  "@otpVerification": {
+    "description": "عنوان صفحة التحقق من OTP"
+  },
+
+  "enterOtp": "أدخل رمز التحقق",
+  "@enterOtp": {
+    "description": "رسالة إدخال رمز التحقق"
+  },
+
+  "otpSent": "تم إرسال رمز التحقق إلى",
+  "@otpSent": {
+    "description": "رسالة إرسال رمز التحقق"
+  },
+
+  "resendOtp": "إعادة إرسال الرمز",
+  "@resendOtp": {
+    "description": "زر إعادة إرسال الرمز"
+  },
+
+  "resendOtpIn": "إعادة الإرسال بعد",
+  "@resendOtpIn": {
+    "description": "رسالة إعادة الإرسال بعد"
+  },
+
+  "verify": "تحقق",
+  "@verify": {
+    "description": "زر التحقق"
+  },
+
+  "verifyNow": "تحقق الآن",
+  "@verifyNow": {
+    "description": "زر أو نص للتحقق الآن"
+  },
+
+  "home": "الرئيسية",
+  "@home": {
+    "description": "صفحة الرئيسية"
+  },
+
+  "schedules": "جداول الضخ",
+  "@schedules": {
+    "description": "صفحة جداول الضخ"
+  },
+
+  "complaints": "الشكاوى",
+  "@complaints": {
+    "description": "صفحة الشكاوى"
+  },
+
+  "profile": "الملف الشخصي",
+  "@profile": {
+    "description": "صفحة الملف الشخصي"
+  },
+
+  "notificationsTab": "الإشعارات",
+  "@notificationsTab": {
+    "description": "تبويب الإشعارات"
+  },
+
+  "moreTab": "المزيد",
+  "@moreTab": {
+    "description": "تبويب المزيد"
+  },
+
+  "dashboard": "لوحة التحكم",
+  "@dashboard": {
+    "description": "عنوان لوحة التحكم"
+  },
+
+  "settings": "الإعدادات",
+  "@settings": {
+    "description": "عنوان صفحة الإعدادات"
+  },
+
+  "myProfile": "ملفي الشخصي",
+  "@myProfile": {
+    "description": "ملفي الشخصي"
+  },
+
+  "editProfile": "تعديل الملف الشخصي",
+  "@editProfile": {
+    "description": "زر تعديل الملف الشخصي"
+  },
+
+  "profileUpdated": "تم تحديث الملف الشخصي بنجاح",
+  "@profileUpdated": {
+    "description": "رسالة نجاح تحديث الملف الشخصي"
+  },
+
+  "profileSaved": "تم حفظ الملف الشخصي بنجاح",
+  "@profileSaved": {
+    "description": "رسالة حفظ الملف الشخصي"
+  },
+
+  "chooseFromGallery": "اختيار من المعرض",
+  "@chooseFromGallery": {
+    "description": "خيار اختيار صورة من المعرض"
+  },
+
+  "takeFromCamera": "التقاط من الكاميرا",
+  "@takeFromCamera": {
+    "description": "خيار التقاط صورة من الكاميرا"
+  },
+
+  "removePicture": "حذف الصورة الحالية",
+  "@removePicture": {
+    "description": "خيار حذف الصورة الحالية"
+  },
+
+  "imageSource": "مصدر الصورة",
+  "@imageSource": {
+    "description": "عنوان مربع حوار مصدر الصورة"
+  },
+
+  "completeProfileTitle": "إكمال الملف الشخصي",
+  "@completeProfileTitle": {
+    "description": "عنوان شاشة إكمال البيانات بعد تسجيل الدخول"
+  },
+
+  "changePassword": "تغيير كلمة المرور",
+  "@changePassword": {
+    "description": "زر تغيير كلمة المرور"
+  },
+
+  "changePasswordDesc": "اختر كلمة مرور قوية لحماية حسابك. يجب أن تكون كلمة المرور الجديدة مختلفة عن الحالية.",
+  "@changePasswordDesc": {
+    "description": "وصف تحت الآفاتار في صفحة تغيير كلمة المرور"
+  },
+
+  "currentPasswordLabel": "كلمة المرور الحالية",
+  "@currentPasswordLabel": {
+    "description": "تسمية حقل كلمة المرور الحالية"
+  },
+
+  "newPasswordLabel": "كلمة المرور الجديدة",
+  "@newPasswordLabel": {
+    "description": "تسمية حقل كلمة المرور الجديدة"
+  },
+
+  "confirmPasswordLabel": "تأكيد كلمة المرور الجديدة",
+  "@confirmPasswordLabel": {
+    "description": "تسمية حقل تأكيد كلمة المرور"
+  },
+
+  "fieldRequired": "هذا الحقل مطلوب",
+  "@fieldRequired": {
+    "description": "خطأ تحقق للحقول المطلوبة"
+  },
+
+  "requiredField": "هذا الحقل مطلوب",
+  "@requiredField": {
+    "description": "رسالة الحقل المطلوب"
+  },
+
+  "passwordTooShort": "يجب أن تكون كلمة المرور {length} أحرف على الأقل",
+  "@passwordTooShort": {
+    "description": "خطأ تحقق لكلمة المرور القصيرة",
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+
+  "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+  "@passwordsDoNotMatch": {
+    "description": "خطأ تحقق عندما تختلف كلمات المرور"
+  },
+
+  "newPasswordSameAsCurrent": "لا يمكن أن تكون كلمة المرور الجديدة متطابقة مع الحالية",
+  "@newPasswordSameAsCurrent": {
+    "description": "خطأ تحقق عندما تطابق الجديدة القديمة"
+  },
+
+  "invalidPhoneNumber": "رقم الهاتف غير صحيح",
+  "@invalidPhoneNumber": {
+    "description": "رسالة رقم الهاتف غير صحيح"
+  },
+
+  "invalidEmail": "البريد الإلكتروني غير صحيح",
+  "@invalidEmail": {
+    "description": "رسالة البريد الإلكتروني غير صحيح"
+  },
+
+  "invalidEmployeeCredential": "اسم المستخدم غير صحيحة",
+  "@invalidEmployeeCredential": {
+    "description": "رسالة خطأ عند إدخال بيانات موظف غير صحيحة"
+  },
+
+  "maxCharacters": "الحد الأقصى {max} حرف",
+  "@maxCharacters": {
+    "description": "رسالة الحد الأقصى للأحرف",
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+
+  "charactersRemaining": "متبقي {count} حرف",
+  "@charactersRemaining": {
+    "description": "رسالة الأحرف المتبقية",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "loginSuccess": "تم تسجيل الدخول بنجاح",
+  "@loginSuccess": {
+    "description": "رسالة نجاح تسجيل الدخول"
+  },
+
+  "registrationSuccess": "تم إنشاء الحساب بنجاح",
+  "@registrationSuccess": {
+    "description": "رسالة نجاح التسجيل"
+  },
+
+  "complaintSubmitted": "تم تقديم الشكوى بنجاح",
+  "@complaintSubmitted": {
+    "description": "رسالة نجاح تقديم الشكوى"
+  },
+
+  "loginTemporarilyDisabled": "تم إيقاف تسجيل الدخول مؤقتًا.",
+  "@loginTemporarilyDisabled": {
+    "description": "رسالة عند إيقاف تسجيل الدخول مؤقتًا"
+  },
+
+  "logoutConfirmation": "هل أنت متأكد من تسجيل الخروج؟",
+  "@logoutConfirmation": {
+    "description": "رسالة تأكيد تسجيل الخروج"
+  },
+
+  "logoutConfirmationMessage": "هل أنت متأكد من رغبتك في تسجيل الخروج من التطبيق؟",
+  "@logoutConfirmationMessage": {
+    "description": "رسالة تأكيد تسجيل الخروج"
+  },
+
+  "confirmation": "تأكيد",
+  "@confirmation": {
+    "description": "عنوان ديالوغ التأكيد العام"
+  },
+
+  "yes": "نعم",
+  "@yes": {
+    "description": "نعم"
+  },
+
+  "no": "لا",
+  "@no": {
+    "description": "لا"
+  },
+
+  "confirm": "تأكيد",
+  "@confirm": {
+    "description": "تأكيد"
+  },
+
+  "language": "اللغة",
+  "@language": {
+    "description": "اللغة"
+  },
+
+  "changeLanguage": "تغيير اللغة",
+  "@changeLanguage": {
+    "description": "تغيير اللغة"
+  },
+
+  "arabic": "العربية",
+  "@arabic": {
+    "description": "اللغة العربية"
+  },
+
+  "english": "English",
+  "@english": {
+    "description": "اللغة الإنجليزية"
+  },
+
+  "darkMode": "الوضع الليلي",
+  "@darkMode": {
+    "description": "خيار الوضع الليلي"
+  },
+
+  "application": "التطبيق",
+  "@application": {
+    "description": "عنوان قسم التطبيق"
+  },
+
+  "account": "الحساب",
+  "@account": {
+    "description": "عنوان قسم الحساب"
+  },
+
+  "about": "حول التطبيق",
+  "@about": {
+    "description": "حول التطبيق"
+  },
+
+  "aboutQatrahDescription": "منصة خدمية لإدارة المواعيد والبلاغات وعرض الإشعارات. هذه صفحة تعريفية تجريبية قابلة للتحديث لاحقاً.",
+  "@aboutQatrahDescription": {
+    "description": "وصف صفحة حول التطبيق"
+  },
+
+  "version": "الإصدار",
+  "@version": {
+    "description": "الإصدار"
+  },
+
+  "contactUs": "اتصل بنا",
+  "@contactUs": {
+    "description": "اتصل بنا"
+  },
+
+  "contactOfficeAddress": "درعا - مركز خدمة المواطنين",
+  "@contactOfficeAddress": {
+    "description": "عنوان مكتب التواصل"
+  },
+
+  "region": "المنطقة",
+  "@region": {
+    "description": "المنطقة"
+  },
+
+  "zone": "المنطقة الفرعية",
+  "@zone": {
+    "description": "المنطقة الفرعية"
+  },
+
+  "unit": "الوحدة",
+  "@unit": {
+    "description": "الوحدة"
+  },
+
+  "neighborhood": "الحي",
+  "@neighborhood": {
+    "description": "الحي"
+  },
+
+  "selectRegion": "اختر المنطقة",
+  "@selectRegion": {
+    "description": "اختر المنطقة"
+  },
+
+  "selectZone": "اختر المنطقة الفرعية",
+  "@selectZone": {
+    "description": "اختر المنطقة الفرعية"
+  },
+
+  "selectUnit": "اختر الوحدة",
+  "@selectUnit": {
+    "description": "اختر الوحدة"
+  },
+
+  "selectNeighborhood": "اختر الحي",
+  "@selectNeighborhood": {
+    "description": "اختر الحي"
+  },
+
+  "selectLocation": "اختر الموقع",
+  "@selectLocation": {
+    "description": "اختر الموقع"
+  },
+
+  "location": "الموقع",
+  "@location": {
+    "description": "الموقع"
+  },
+
+  "clearSelection": "مسح الاختيار",
+  "@clearSelection": {
+    "description": "مسح الاختيار"
+  },
+
+  "defaultLocation": "الموقع الافتراضي",
+  "@defaultLocation": {
+    "description": "الموقع الافتراضي"
+  },
+
+  "watchedLocation": "الموقع المراقب",
+  "@watchedLocation": {
+    "description": "الموقع المراقب"
+  },
+
+  "chooseAreasToWatch": "اختر المناطق التي تريد متابعتها",
+  "@chooseAreasToWatch": {
+    "description": "نص اختيار المناطق"
+  },
+
+  "addWatch": "إضافة متابعة",
+  "@addWatch": {
+    "description": "زر إضافة متابعة"
+  },
+
+  "watchedAreasCount": "{count} منطقة متابعة",
+  "@watchedAreasCount": {
+    "description": "عدد المناطق المتابعة",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "selectRegionToWatchInfo": "اختر منطقة \"وأكثر\" لمتابعة جداول الضخ والمستجدات الخاصة بها",
+  "@selectRegionToWatchInfo": {
+    "description": "رسالة المعلومات في القائمة المنسدلة"
+  },
+
+  "currentPumpingStatus": "حالة الضخ الحالية",
+  "@currentPumpingStatus": {
+    "description": "عنوان حالة الضخ"
+  },
+
+  "mySchedules": "جداول الضخ الخاصة بي",
+  "@mySchedules": {
+    "description": "جداول الضخ الخاصة بي"
+  },
+
+  "upcomingSchedules": "جداول الضخ القادمة",
+  "@upcomingSchedules": {
+    "description": "جداول الضخ القادمة"
+  },
+
+  "nextPumpingSchedule": "جدول الضخ القادم",
+  "@nextPumpingSchedule": {
+    "description": "جدول الضخ القادم"
+  },
+
+  "scheduleDetails": "تفاصيل جدول الضخ",
+  "@scheduleDetails": {
+    "description": "تفاصيل جدول الضخ"
+  },
+
+  "viewAllSchedules": "عرض جميع الجداول",
+  "@viewAllSchedules": {
+    "description": "زر عرض جميع الجداول"
+  },
+
+  "addNewSchedule": "إضافة جدول جديد",
+  "@addNewSchedule": {
+    "description": "زر إضافة جدول"
+  },
+
+  "totalSchedules": "إجمالي الجداول",
+  "@totalSchedules": {
+    "description": "إحصائية إجمالي الجداول"
+  },
+
+  "activePumping": "الضخ النشط",
+  "@activePumping": {
+    "description": "إحصائية الضخ النشط"
+  },
+
+  "regionsCount": "المناطق",
+  "@regionsCount": {
+    "description": "إحصائية المناطق"
+  },
+
+  "startTime": "وقت البدء",
+  "@startTime": {
+    "description": "وقت البدء"
+  },
+
+  "endTime": "وقت الانتهاء",
+  "@endTime": {
+    "description": "وقت الانتهاء"
+  },
+
+  "actualStartTime": "وقت البدء الفعلي",
+  "@actualStartTime": {
+    "description": "وقت البدء الفعلي"
+  },
+
+  "actualEndTime": "وقت الانتهاء الفعلي",
+  "@actualEndTime": {
+    "description": "وقت الانتهاء الفعلي"
+  },
+
+  "startedFrom": "بدأ من",
+  "@startedFrom": {
+    "description": "وقت البدء"
+  },
+
+  "status": "الحالة",
+  "@status": {
+    "description": "الحالة"
+  },
+
+  "scheduled": "مجدول",
+  "@scheduled": {
+    "description": "حالة: مجدول"
+  },
+
+  "active": "نشط",
+  "@active": {
+    "description": "حالة: نشط"
+  },
+
+  "activeNow": "نشط الآن",
+  "@activeNow": {
+    "description": "نشط الآن"
+  },
+
+  "completed": "مكتمل",
+  "@completed": {
+    "description": "حالة: مكتمل"
+  },
+
+  "cancelled": "ملغى",
+  "@cancelled": {
+    "description": "حالة: ملغى"
+  },
+
+  "startsIn": "يبدأ خلال",
+  "@startsIn": {
+    "description": "يبدأ خلال"
+  },
+
+  "endedAgo": "انتهى منذ",
+  "@endedAgo": {
+    "description": "انتهى منذ"
+  },
+
+  "remainingTimeLabel": "الوقت المتبقي:",
+  "@remainingTimeLabel": {
+    "description": "نص ثابت لعرض الوقت المتبقي بدون متغير"
+  },
+
+  "notes": "ملاحظات",
+  "@notes": {
+    "description": "ملاحظات"
+  },
+
+  "createdBy": "أنشئ بواسطة",
+  "@createdBy": {
+    "description": "أنشئ بواسطة"
+  },
+
+  "filterByRegion": "تصفية حسب المنطقة",
+  "@filterByRegion": {
+    "description": "فلتر المنطقة"
+  },
+
+  "fromDate": "من تاريخ",
+  "@fromDate": {
+    "description": "فلتر من تاريخ"
+  },
+
+  "toDate": "إلى تاريخ",
+  "@toDate": {
+    "description": "فلتر إلى تاريخ"
+  },
+
+  "allRegions": "جميع المناطق",
+  "@allRegions": {
+    "description": "خيار جميع المناطق في الفلاتر"
+  },
+
+  "dateRange": "نطاق التاريخ",
+  "@dateRange": {
+    "description": "نطاق التاريخ"
+  },
+
+  "selectDateRange": "اختر نطاق التاريخ",
+  "@selectDateRange": {
+    "description": "اختر نطاق التاريخ"
+  },
+
+  "today": "اليوم",
+  "@today": {
+    "description": "اليوم"
+  },
+
+  "thisWeek": "هذا الأسبوع",
+  "@thisWeek": {
+    "description": "هذا الأسبوع"
+  },
+
+  "thisMonth": "هذا الشهر",
+  "@thisMonth": {
+    "description": "هذا الشهر"
+  },
+
+  "myComplaints": "الشكاوي الخاصة بك",
+  "@myComplaints": {
+    "description": "نص الشكاوي على المياه"
+  },
+
+  "submitComplaint": "تقديم",
+  "@submitComplaint": {
+    "description": "زر تقديم شكوى"
+  },
+
+  "createComplaintTitle": "تقديم شكوى جديدة",
+  "@createComplaintTitle": {
+    "description": "عنوان شاشة تقديم الشكاوى"
+  },
+
+  "complaintDetails": "تفاصيل الشكوى",
+  "@complaintDetails": {
+    "description": "تفاصيل الشكوى"
+  },
+
+  "complaintTitle": "عنوان الشكوى",
+  "@complaintTitle": {
+    "description": "عنوان الشكوى"
+  },
+
+  "complaintTitleHint": "مثال: انقطاع مياه مستمر في الحي...",
+  "@complaintTitleHint": {
+    "description": "تلميح لحقل عنوان الشكوى"
+  },
+
+  "complaintDescription": "وصف الشكوى",
+  "@complaintDescription": {
+    "description": "وصف الشكوى"
+  },
+
+  "complaintDescLabel": "تفاصيل الشكوى",
+  "@complaintDescLabel": {
+    "description": "تسمية حقل تفاصيل الشكوى"
+  },
+
+  "complaintCategory": "فئة الشكوى",
+  "@complaintCategory": {
+    "description": "فئة الشكوى"
+  },
+
+  "complaintCategoryLabel": "نوع الشكوى",
+  "@complaintCategoryLabel": {
+    "description": "تسمية نوع الشكوى"
+  },
+
+  "selectCategory": "اختر الفئة",
+  "@selectCategory": {
+    "description": "اختر الفئة"
+  },
+
+  "categoryNoWater": "انقطاع المياه",
+  "@categoryNoWater": {
+    "description": "فئة الشكوى: انقطاع المياه"
+  },
+
+  "categoryWaterQuality": "سوء جودة المياه",
+  "@categoryWaterQuality": {
+    "description": "فئة الشكوى: جودة المياه"
+  },
+
+  "categoryLowPressure": "ضغط مياه ضعيف",
+  "@categoryLowPressure": {
+    "description": "فئة الشكوى: ضغط منخفض"
+  },
+
+  "categoryScheduleIssue": "مشكلة في جدول الضخ",
+  "@categoryScheduleIssue": {
+    "description": "فئة الشكوى: مشكلة في الجدول"
+  },
+
+  "categoryOther": "أخرى",
+  "@categoryOther": {
+    "description": "فئة الشكوى: أخرى"
+  },
+
+  "pending": "قيد الانتظار",
+  "@pending": {
+    "description": "حالة الشكوى: قيد الانتظار"
+  },
+
+  "inProgress": "قيد المعالجة",
+  "@inProgress": {
+    "description": "حالة الشكوى: قيد المعالجة"
+  },
+
+  "resolved": "تم الحل",
+  "@resolved": {
+    "description": "حالة الشكوى: تم الحل"
+  },
+
+  "rejected": "مرفوضة",
+  "@rejected": {
+    "description": "حالة الشكوى: مرفوضة"
+  },
+
+  "statusPending": "قيد الانتظار",
+  "@statusPending": {
+    "description": "حالة الشكوى: قيد الانتظار"
+  },
+
+  "statusInProgress": "قيد المعالجة",
+  "@statusInProgress": {
+    "description": "حالة الشكوى: قيد المعالجة"
+  },
+
+  "statusResolved": "تم الحل",
+  "@statusResolved": {
+    "description": "حالة الشكوى: تم الحل"
+  },
+
+  "statusRejected": "مرفوضة",
+  "@statusRejected": {
+    "description": "حالة الشكوى: مرفوضة"
+  },
+
+  "adminResponse": "رد الإدارة",
+  "@adminResponse": {
+    "description": "رد الإدارة"
+  },
+
+  "respondToComplaint": "رد على الشكوى",
+  "@respondToComplaint": {
+    "description": "زر الرد على الشكوى للمدير"
+  },
+
+  "complaintResponseHint": "اكتب ردك هنا...",
+  "@complaintResponseHint": {
+    "description": "تلميح حقل الرد على الشكوى"
+  },
+
+  "sendResponse": "إرسال الرد",
+  "@sendResponse": {
+    "description": "زر إرسال الرد"
+  },
+
+  "complaintRespondSuccess": "تم إرسال الرد بنجاح",
+  "@complaintRespondSuccess": {
+    "description": "رسالة نجاح إرسال الرد على الشكوى"
+  },
+
+  "handledBy": "تمت المعالجة بواسطة",
+  "@handledBy": {
+    "description": "تمت المعالجة بواسطة"
+  },
+
+  "handledAt": "تاريخ المعالجة",
+  "@handledAt": {
+    "description": "تاريخ المعالجة"
+  },
+
+  "createdAt": "تاريخ الإنشاء",
+  "@createdAt": {
+    "description": "تاريخ الإنشاء"
+  },
+
+  "updatedAt": "تاريخ التحديث",
+  "@updatedAt": {
+    "description": "تاريخ التحديث"
+  },
+
+  "role": "الدور",
+  "@role": {
+    "description": "الدور"
+  },
+
+  "admin": "مدير",
+  "@admin": {
+    "description": "دور: مدير"
+  },
+
+  "operator": "مشغّل",
+  "@operator": {
+    "description": "دور: مشغّل"
+  },
+
+  "citizen": "مواطن",
+  "@citizen": {
+    "description": "دور: مواطن"
+  },
+
+  "employeeRegisterTitle": "تسجيل موظف جديد",
+  "@employeeRegisterTitle": {
+    "description": "عنوان شاشة تسجيل الموظفين"
+  },
+
+  "usernameLabel": "اسم المستخدم",
+  "@usernameLabel": {
+    "description": "تسمية حقل اسم المستخدم"
+  },
+
+  "passwordLabel": "كلمة المرور",
+  "@passwordLabel": {
+    "description": "تسمية حقل كلمة المرور"
+  },
+
+  "phoneNumberLabel": "رقم الهاتف",
+  "@phoneNumberLabel": {
+    "description": "تسمية حقل رقم الهاتف"
+  },
+
+  "createAccountBtn": "إنشاء الحساب",
+  "@createAccountBtn": {
+    "description": "زر إنشاء الحساب"
+  },
+
+  "saveAndContinue": "حفظ ومتابعة",
+  "@saveAndContinue": {
+    "description": "زر حفظ ومتابعة"
+  },
+
+  "fullNameLabel": "الاسم الكامل",
+  "@fullNameLabel": {
+    "description": "تسمية حقل الاسم الكامل"
+  },
+
+  "regionLabel": "المنطقة",
+  "@regionLabel": {
+    "description": "تسمية حقل المنطقة"
+  },
+
+  "unitLabel": "الوحدة",
+  "@unitLabel": {
+    "description": "تسمية حقل الوحدة"
+  },
+
+  "neighborhoodLabel": "الحي",
+  "@neighborhoodLabel": {
+    "description": "تسمية حقل الحي"
+  },
+
+  "zoneLabel": "القطاع",
+  "@zoneLabel": {
+    "description": "تسمية حقل القطاع"
+  },
+
+  "loading": "جاري التحميل...",
+  "@loading": {
+    "description": "رسالة التحميل"
+  },
+
+  "resetFilter": "إعادة ضبط",
+  "@resetFilter": {
+    "description": "زر إعادة ضبط الفلاتر"
+  },
+  "startPumping": "بدء الضخ",
+  "@startPumping": {
+    "description": "زر بدء الضخ"
+  },
+  "endPumping": "إنهاء الضخ",
+  "@endPumping": {
+    "description": "زر إنهاء الضخ"
+  },
+  "actions": "الإجراءات",
+  "@actions": {
+    "description": "عمود الإجراءات"
+  },
+  "filterByStatus": "تصفية حسب الحالة",
+  "@filterByStatus": {
+    "description": "فلتر الحالة"
+  },
+  "all": "الكل",
+  "@all": {
+    "description": "خيار الكل"
+  },
+  "finished": "منتهي",
+  "@finished": {
+    "description": "حالة منتهي"
+  },
+  "error": "خطأ",
+  "@error": {
+    "description": "خطأ"
+  },
+
+  "errorOccurred": "حدث خطأ",
+  "@errorOccurred": {
+    "description": "رسالة حدوث خطأ"
+  },
+
+  "networkError": "خطأ في الاتصال بالشبكة",
+  "@networkError": {
+    "description": "خطأ في الاتصال بالشبكة"
+  },
+
+  "serverError": "خطأ في الخادم",
+  "@serverError": {
+    "description": "خطأ في الخادم"
+  },
+
+  "requestTimeoutError": "استغرق الطلب وقتاً طويلاً. يرجى المحاولة مرة أخرى.",
+  "@requestTimeoutError": {
+    "description": "خطأ انتهاء مهلة الطلب"
+  },
+
+  "requestCancelledError": "تم إلغاء الطلب قبل اكتماله.",
+  "@requestCancelledError": {
+    "description": "خطأ إلغاء الطلب"
+  },
+
+  "invalidDataError": "بعض البيانات المدخلة غير صحيحة. يرجى مراجعتها.",
+  "@invalidDataError": {
+    "description": "خطأ بيانات غير صحيحة"
+  },
+
+  "paymentError": "حدثت مشكلة في عملية الدفع. يرجى المحاولة مرة أخرى.",
+  "@paymentError": {
+    "description": "خطأ الدفع"
+  },
+
+  "rateLimitedError": "تمت المحاولة عدة مرات. يرجى الانتظار {duration} ثم المحاولة مجدداً.",
+  "@rateLimitedError": {
+    "description": "خطأ كثرة المحاولات مع مدة الانتظار",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+
+  "noInternetConnection": "لا يوجد اتصال بالإنترنت",
+  "@noInternetConnection": {
+    "description": "لا يوجد اتصال بالإنترنت"
+  },
+
+  "connectionRestored": "عاد الاتصال بالإنترنت",
+  "@connectionRestored": {
+    "description": "Shown when internet connection is restored"
+  },
+
+  "tryAgain": "حاول مرة أخرى",
+  "@tryAgain": {
+    "description": "حاول مرة أخرى"
+  },
+
+  "noData": "لا توجد بيانات",
+  "@noData": {
+    "description": "لا توجد بيانات"
+  },
+
+  "noSchedules": "لا توجد جداول ضخ",
+  "@noSchedules": {
+    "description": "لا توجد جداول ضخ"
+  },
+
+  "noComplaints": "لا توجد شكاوى",
+  "@noComplaints": {
+    "description": "لا توجد شكاوى"
+  },
+
+  "noSchedulesMessage": "لا توجد جداول ضخ في الوقت الحالي",
+  "@noSchedulesMessage": {
+    "description": "رسالة عدم وجود جداول ضخ"
+  },
+
+  "noComplaintsMessage": "لم تقم بتقديم أي شكاوى بعد",
+  "@noComplaintsMessage": {
+    "description": "رسالة عدم وجود شكاوى"
+  },
+
+  "pullToRefresh": "اسحب للتحديث",
+  "@pullToRefresh": {
+    "description": "اسحب للتحديث"
+  },
+
+  "releaseToRefresh": "اترك للتحديث",
+  "@releaseToRefresh": {
+    "description": "اترك للتحديث"
+  },
+
+  "loadMore": "تحميل المزيد",
+  "@loadMore": {
+    "description": "تحميل المزيد"
+  },
+
+  "quickActions": "إجراءات سريعة",
+  "@quickActions": {
+    "description": "إجراءات سريعة"
+  },
+
+  "viewSchedules": "عرض جداول الضخ",
+  "@viewSchedules": {
+    "description": "عرض جداول الضخ"
+  },
+
+  "counterAppBarTitle": "العداد",
+  "@counterAppBarTitle": {
+    "description": "النص المعروض في شريط التطبيق لصفحة العداد"
+  },
+  "waterFeedbackTitle": "تقييم وصول المياه",
+  "@waterFeedbackTitle": {
+    "description": "عنوان صفحة تقييم وصول المياه"
+  },
+
+  "waterReceived": "وصلت المياه",
+  "@waterReceived": {
+    "description": "خيار وصلت المياه في تقييم وصول المياه"
+  },
+
+  "waterNotReceived": "لم تصل المياه",
+  "@waterNotReceived": {
+    "description": "خيار لم تصل المياه في تقييم وصول المياه"
+  },
+
+  "lowWaterLevel": "ضغط المياه ضعيف",
+  "@lowWaterLevel": {
+    "description": "خيار ضغط المياه ضعيف في تقييم وصول المياه"
+  },
+
+  "noActiveSchedule": "لا يوجد ضخ فعال حالياً لتقييمه في منطقتك",
+  "@noActiveSchedule": {
+    "description": "رسالة عند عدم وجود جدول ضخ نشط لتقييمه"
+  },
+
+  "alreadySubmittedFeedback": "لقد قمت بإرسال تقييمك لهذا الجدول مسبقاً، شكراً لك!",
+  "@alreadySubmittedFeedback": {
+    "description": "رسالة عند محاولة إرسال تقييم مكرر لنفس الجدول"
+  },
+
+  "feedbackSubmittedSuccessfully": "تم إرسال التقييم بنجاح، شكراً لتعاونك",
+  "@feedbackSubmittedSuccessfully": {
+    "description": "رسالة نجاح إرسال تقييم وصول المياه"
+  },
+
+    "noInternetConnection": "الرجاء التحقق من اتصال الإنترنت",
+    "@noInternetConnection": { "description": "No internet connection error" },
+
+    "unauthorized": "جلسة غير صالحة، الرجاء تسجيل الدخول مرة أخرى",
+    "@unauthorized": { "description": "Unauthorized error 401" },
+
+    "forbidden": "ليس لديك صلاحية للوصول إلى هذه البيانات",
+    "@forbidden": { "description": "Forbidden error 403" },
+
+    "serviceUnavailable": "الخدمة غير متوفرة حالياً",
+    "@serviceUnavailable": { "description": "Service unavailable error 404" },
+
+    "serverError": "خطأ في الخادم، الرجاء المحاولة لاحقاً",
+    "@serverError": { "description": "Server error 500" },
+
+    "myEvaluations": "تقييماتي",
+    "@myEvaluations": { "description": "عنوان صفحة تقييماتي" },
+
+    "noPreviousEvaluations": "لا يوجد لديك تقييمات سابقة حالياً",
+    "@noPreviousEvaluations": { "description": "رسالة عند عدم وجود تقييمات سابقة" },
+
+    "noNotificationsCurrently": "لا توجد إشعارات حالياً",
+    "@noNotificationsCurrently": { "description": "رسالة عند عدم وجود إشعارات" },
+
+    "noDataAvailable": "لا توجد بيانات",
+    "@noDataAvailable": { "description": "رسالة عامة عند عدم وجود بيانات" },
+
+    "employee": "موظف",
+    "@employee": { "description": "تسمية دور الموظف" },
+
+    "citizen": "مواطن",
+    "@citizen": { "description": "تسمية دور المواطن" },
+
+    "watchedLocation": "الموقع المراقب",
+    "@watchedLocation": { "description": "عنوان بطاقة الموقع المراقب للموظف" },
+
+    "notSpecified": "غير محدد",
+    "@notSpecified": { "description": "نص بديل عند عدم تحديد موقع" },
+
+    "noWatchedAreaAssigned": "لا يوجد موقع مراقب محدد",
+    "@noWatchedAreaAssigned": { "description": "رسالة عند عدم وجود منطقة مراقبة" },
+
+    "myDefaultLocation": "موقعي الافتراضي",
+    "@myDefaultLocation": { "description": "عنوان بطاقة الموقع الافتراضي للمواطن" },
+
+    "personalInformation": "المعلومات الشخصية",
+    "@personalInformation": { "description": "عنوان قسم المعلومات الشخصية" },
+
+    "logoutTile": "تسجيل الخروج",
+    "@logoutTile": { "description": "عنوان زر تسجيل الخروج" },
+
+    "noComplaintsInThisSection": "لا توجد شكاوى في هذا القسم",
+    "@noComplaintsInThisSection": { "description": "رسالة عند عدم وجود شكاوى" },
+
+    "waterArrived": "وصلت المياه",
+    "@waterArrived": { "description": "خيار وصول المياه" },
+
+    "lowPressure": "الضغط ضعيف",
+    "@lowPressure": { "description": "خيار ضغط المياه ضعيف" },
+
+    "didNotArrive": "لم تصل",
+    "@didNotArrive": { "description": "خيار عدم وصول المياه" },
+
+    "pumpingStatusActiveNow": "حالة الضخ: نشط الآن",
+    "@pumpingStatusActiveNow": { "description": "تسمية حالة الضخ النشط" },
+
+    "lastPumpingEnded": "آخر ضخ انتهى",
+    "@lastPumpingEnded": { "description": "تسمية وقت انتهاء آخر ضخ" },
+
+    "startsAt": "يبدأ",
+    "@startsAt": { "description": "تسمية وقت بدء الضخ" },
+
+    "noCurrentPumpingStatus": "لا توجد حالة ضخ حالية",
+    "@noCurrentPumpingStatus": { "description": "رسالة عند عدم وجود ضخ حالي" },
+
+    "yourWatchedArea": "منطقتك المتابعة:",
+    "@yourWatchedArea": { "description": "تسمية المنطقة المتابعة في الرئيسية" },
+
+    "locationSelectionTitle": "اختيار موقع المتابعة",
+    "@locationSelectionTitle": { "description": "عنوان اختيار الموقع" },
+
+    "confirmLocation": "تأكيد الموقع",
+    "@confirmLocation": { "description": "نص زر تأكيد الموقع" },
+
+    "pageNotFound": "الصفحة غير موجودة",
+    "@pageNotFound": { "description": "عنوان صفحة 404" },
+
+    "returnToHome": "العودة للرئيسية",
+    "@returnToHome": { "description": "نص زر العودة للرئيسية" },
+
+    "schedulesPageTitle": "الجداول",
+    "@schedulesPageTitle": { "description": "عنوان صفحة الجداول" },
+
+    "schedulesUnderDevelopment": "صفحة الجداول - قيد التطوير",
+    "@schedulesUnderDevelopment": { "description": "نص بديل لصفحة الجداول" },
+
+    "scheduleDetailsPageTitle": "تفاصيل الجدول",
+    "@scheduleDetailsPageTitle": { "description": "عنوان صفحة تفاصيل الجدول" },
+
+    "complaintsPageTitle": "الشكاوى",
+    "@complaintsPageTitle": { "description": "عنوان صفحة الشكاوى" },
+
+    "complaintsUnderDevelopment": "صفحة الشكاوى - قيد التطوير",
+    "@complaintsUnderDevelopment": { "description": "نص بديل لصفحة الشكاوى" },
+
+    "complaintDetailsPageTitle": "تفاصيل الشكوى",
+    "@complaintDetailsPageTitle": { "description": "عنوان صفحة تفاصيل الشكوى" },
+
+    "newComplaintPageTitle": "إضافة شكوى جديدة",
+    "@newComplaintPageTitle": { "description": "عنوان صفحة إضافة شكوى" },
+
+    "newComplaintUnderDevelopment": "صفحة إضافة شكوى - قيد التطوير",
+    "@newComplaintUnderDevelopment": { "description": "نص بديل لصفحة إضافة شكوى" },
+
+    "notificationsPageTitle": "الإشعارات",
+    "@notificationsPageTitle": { "description": "عنوان صفحة الإشعارات" },
+
+    "notificationsUnderDevelopment": "صفحة الإشعارات - قيد التطوير",
+    "@notificationsUnderDevelopment": { "description": "نص بديل لصفحة الإشعارات" },
+
+    "profilePageTitle": "الملف الشخصي",
+    "@profilePageTitle": { "description": "عنوان صفحة الملف الشخصي" },
+
+    "profileUnderDevelopment": "صفحة الملف الشخصي - قيد التطوير",
+    "@profileUnderDevelopment": { "description": "نص بديل لصفحة الملف الشخصي" },
+
+    "editProfilePageTitle": "تعديل الملف الشخصي",
+    "@editProfilePageTitle": { "description": "عنوان صفحة تعديل الملف الشخصي" },
+
+    "editProfileUnderDevelopment": "صفحة تعديل الملف الشخصي - قيد التطوير",
+    "@editProfileUnderDevelopment": { "description": "نص بديل لصفحة تعديل الملف الشخصي" },
+
+    "deepLinkReceived": "تم استلام الرابط!",
+    "@deepLinkReceived": { "description": "رسالة استلام الرابط" },
+
+    "receivedId": "المعرف المستلم: $id",
+    "@receivedId": {
+      "description": "رسالة المعرف المستلم",
+      "placeholders": { "id": { "type": "String" } }
+    },
+
+    "editData": "تعديل البيانات",
+    "@editData": { "description": "نص زر تعديل البيانات" },
+
+    "regionLabelWithColon": "المنطقة:",
+    "@regionLabelWithColon": { "description": "تسمية المنطقة مع نقطتين" },
+
+    "unitLabelWithColon": "الوحدة:",
+    "@unitLabelWithColon": { "description": "تسمية الوحدة مع نقطتين" },
+
+    "neighborhoodLabelWithColon": "الحي:",
+    "@neighborhoodLabelWithColon": { "description": "تسمية الحي" },
+
+    "zoneLabelWithColon": "المنطقة الفرعية:",
+    "@zoneLabelWithColon": { "description": "تسمية المنطقة الفرعية" },
+
+    "profileUpdatedSuccessfully": "تم تحديث البروفايل بنجاح",
+    "@profileUpdatedSuccessfully": { "description": "رسالة نجاح تحديث البروفايل" },
+
+    "profileCompletedSuccessfully": "تم إكمال ملفك الشخصي بنجاح",
+    "@profileCompletedSuccessfully": { "description": "رسالة نجاح إكمال البروفايل" },
+
+    "scheduleCreatedSuccessfully": "تم إنشاء الجدول بنجاح",
+    "@scheduleCreatedSuccessfully": { "description": "رسالة نجاح إنشاء الجدول" },
+
+    "otpVerifiedSuccessfully": "تم التحقق بنجاح",
+    "@otpVerifiedSuccessfully": { "description": "رسالة نجاح التحقق من OTP" },
+    "otpBlockedTitle": "محاولات تجاوزت الحد",
+    "@otpBlockedTitle": { "description": "عنوان شاشة الحظر المؤقت للرمز" },
+    "otpBlockedMessage": "تجاوزت الحد المسموح به من المحاولات. يرجى الانتظار قبل المحاولة مرة أخرى.",
+    "@otpBlockedMessage": { "description": "رسالة شاشة الحظر المؤقت للرمز" },
+    "otpBlockedWait": "الوقت المتبقي",
+    "@otpBlockedWait": { "description": "تسمية العد التنازلي في شاشة الحظر" },
+
+    "otpSentSuccessfully": "تم إرسال رمز التحقق بنجاح",
+    "@otpSentSuccessfully": { "description": "رسالة نجاح إرسال OTP" },
+
+    "loginTemporarilyDisabledLockout": "تم إيقاف تسجيل الدخول مؤقتاً",
+    "@loginTemporarilyDisabledLockout": { "description": "رسالة إيقاف تسجيل الدخول" },
+
+    "timeRemaining": "الوقت المتبقي: $countdown",
+    "@timeRemaining": {
+      "description": "تسمية العد التنازلي",
+      "placeholders": { "countdown": { "type": "String" } }
+    },
+
+    "blocked": "محظور",
+    "@blocked": { "description": "تسمية الحالة المحظورة" },
+
+    "secondsRemaining": " ثانية",
+    "@secondsRemaining": {
+      "description": "الثواني المتبقية"
+    },
+
+    "cannotOpenLink": "عذراً، لا يمكن فتح الرابط المطلوب.",
+    "@cannotOpenLink": { "description": "رسالة خطأ عند عدم فتح الرابط" },
+
+    "confirmLogoutTitle": "تأكيد تسجيل الخروج",
+    "@confirmLogoutTitle": { "description": "عنوان تأكيد تسجيل الخروج" },
+
+    "confirmLogoutMessage": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "@confirmLogoutMessage": { "description": "رسالة تأكيد تسجيل الخروج" },
+
+    "confirmTitle": "تأكيد",
+    "@confirmTitle": { "description": "عنوان التأكيد العام" },
+
+    "cancel": "إلغاء",
+    "@cancel": { "description": "نص زر الإلغاء" },
+
+    "confirm": "تأكيد",
+    "@confirm": { "description": "نص زر التأكيد" },
+
+    "leave": "مغادرة",
+    "@leave": { "description": "نص زر المغادرة" },
+
+    "stay": "البقاء",
+    "@stay": { "description": "نص زر البقاء" },
+
+    "confirmLeaveTitle": "تأكيد المغادرة",
+    "@confirmLeaveTitle": { "description": "عنوان تأكيد المغادرة" },
+
+    "confirmLeaveMessage": "هل تريد المغادرة؟ قد لا يتم حفظ التغييرات.",
+    "@confirmLeaveMessage": { "description": "رسالة تأكيد المغادرة" },
+
+    "securityWarning": "تحذير أمني",
+    "@securityWarning": { "description": "عنوان التحذير الأمني" },
+
+    "securityWarningMessage": "هذه الصفحة تحتوي على معلومات حساسة. هل تريد المغادرة؟",
+    "@securityWarningMessage": { "description": "رسالة التحذير الأمني" },
+
+    "userLeftSensitivePage": "المستخدم غادر صفحة حساسة",
+    "@userLeftSensitivePage": { "description": "رسالة تسجيل مغادرة صفحة حساسة" },
+
+    "startPumpingLabel": "بداية الضخ",
+    "@startPumpingLabel": { "description": "تسمية بداية الضخ" },
+
+    "endPumpingLabel": "نهاية الضخ",
+    "@endPumpingLabel": { "description": "تسمية نهاية الضخ" },
+
+    "errorFetchingWatchedAreas": "فشل جلب المناطق المتابعة",
+    "@errorFetchingWatchedAreas": { "description": "خطأ في جلب المناطق المتابعة" },
+
+    "errorFetchingAllAreas": "فشل جلب كل المناطق",
+    "@errorFetchingAllAreas": { "description": "خطأ في جلب كل المناطق" },
+
+    "errorFetchingAvailableAreas": "فشل جلب المناطق المتاحة",
+    "@errorFetchingAvailableAreas": { "description": "خطأ في جلب المناطق المتاحة" },
+
+    "errorUpdatingWatchStatus": "فشل تحديث حالة المتابعة",
+    "@errorUpdatingWatchStatus": { "description": "خطأ في تحديث حالة المتابعة" },
+
+    "errorFetchingPumpingStatus": "فشل جلب حالة الضخ",
+    "@errorFetchingPumpingStatus": { "description": "خطأ في جلب حالة الضخ" },
+
+    "errorFetchingSchedules": "فشل جلب الجداول القادمة",
+    "@errorFetchingSchedules": { "description": "خطأ في جلب الجداول" },
+
+    "errorFetchingScheduleForEvaluation": "فشل جلب الجدول للتقييم",
+    "@errorFetchingScheduleForEvaluation": { "description": "خطأ في جلب الجدول للتقييم" },
+
+    "errorSendingFeedback": "فشل إرسال التقييم",
+    "@errorSendingFeedback": { "description": "خطأ في إرسال التقييم" },
+
+    "errorFetchingDashboardTables": "خطأ في جلب الجداول",
+    "@errorFetchingDashboardTables": { "description": "خطأ في جلب جداول لوحة التحكم" },
+
+    "errorFetchingRegions": "خطأ في جلب المناطق",
+    "@errorFetchingRegions": { "description": "خطأ في جلب المناطق" },
+
+    "errorCreatingSchedule": "فشل إنشاء الجدول",
+    "@errorCreatingSchedule": { "description": "خطأ في إنشاء الجدول" },
+
+    "errorStartingPumping": "فشل بدء الضخ",
+    "@errorStartingPumping": { "description": "خطأ في بدء الضخ" },
+
+    "errorEndingPumping": "فشل إنهاء الضخ",
+    "@errorEndingPumping": { "description": "خطأ في إنهاء الضخ" },
+
+    "errorCancellingSchedule": "فشل إلغاء الجدول",
+    "@errorCancellingSchedule": { "description": "خطأ في إلغاء الجدول" },
+
+    "errorFetchingFeedbackHistory": "فشل جلب سجل التقييمات",
+    "@errorFetchingFeedbackHistory": { "description": "خطأ في جلب سجل التقييمات" },
+
+    "errorCheckingPumpingStatus": "فشل التحقق من حالة الضخ",
+    "@errorCheckingPumpingStatus": { "description": "خطأ في التحقق من حالة الضخ" },
+
+    "errorSendingFeedbackGeneral": "فشل إرسال التقييم، حاول لاحقاً",
+    "@errorSendingFeedbackGeneral": { "description": "خطأ في إرسال التقييم" },
+
+    "errorFetchingData": "حدث خطأ في جلب البيانات",
+    "@errorFetchingData": { "description": "خطأ عام في جلب البيانات" },
+
+    "errorUpdatingData": "حدث خطأ في تحديث البيانات",
+    "@errorUpdatingData": { "description": "خطأ عام في تحديث البيانات" },
+
+    "errorFetchingRegionsGeneral": "حدث خطأ أثناء جلب المناطق",
+    "@errorFetchingRegionsGeneral": { "description": "خطأ في جلب المناطق" },
+
+    "errorFetchingUnitsGeneral": "حدث خطأ أثناء جلب الوحدات",
+    "@errorFetchingUnitsGeneral": { "description": "خطأ في جلب الوحدات" },
+
+    "errorFetchingNeighborhoodsGeneral": "حدث خطأ أثناء جلب الأحياء",
+    "@errorFetchingNeighborhoodsGeneral": { "description": "خطأ في جلب الأحياء" },
+
+    "errorFetchingZonesGeneral": "حدث خطأ أثناء جلب القطاعات",
+    "@errorFetchingZonesGeneral": { "description": "خطأ في جلب القطاعات" },
+
+    "errorFetchingNotifications": "حدث خطأ في جلب الإشعارات",
+    "@errorFetchingNotifications": { "description": "خطأ في جلب الإشعارات" },
+
+    "errorUpdatingNotificationStatus": "خطأ في تحديث حالة الإشعار",
+    "@errorUpdatingNotificationStatus": { "description": "خطأ في تحديث حالة الإشعار" },
+
+    "errorUpdatingAllNotifications": "خطأ في تحديث الإشعارات",
+    "@errorUpdatingAllNotifications": { "description": "خطأ في تحديث الإشعارات" },
+
+    "invalidPhoneError": "رقم الهاتف غير صالح",
+    "@invalidPhoneError": { "description": "خطأ رقم هاتف غير صالح" },
+
+    "invalidCredentialsError": "البيانات المدخلة غير صحيحة",
+    "@invalidCredentialsError": { "description": "خطأ بيانات غير صحيحة" },
+
+    "errorDuringVerification": "حدث خطأ أثناء حفظ البيانات",
+    "@errorDuringVerification": { "description": "خطأ أثناء التحقق" },
+
+    "completeRequiredFields": "يرجى إكمال جميع الحقول المطلوبة",
+    "@completeRequiredFields": { "description": "خطأ حقول غير مكتملة" },
+
+    "welcomeMessage": "نقدم خدماتنا لك لتسهيل العناء",
+    "@welcomeMessage": { "description": "رسالة الترحيب" },
+
+    "areaDetailsTitle": "تفاصيل منطقة: $areaName",
+    "@areaDetailsTitle": {
+      "description": "عنوان تفاصيل المنطقة",
+      "placeholders": { "areaName": { "type": "String" } }
+    },
+
+    "areaDetailsSubtitle": "(سيتم استبدالها بصفحتك الحقيقية)",
+    "@areaDetailsSubtitle": { "description": "وصف صفحة تفاصيل المنطقة" },
+
+    "arabic": "العربية",
+    "@arabic": { "description": "تسمية اللغة العربية" },
+
+    "todayLabel": "اليوم",
+    "@todayLabel": { "description": "تسمية اليوم" },
+
+    "tomorrowLabel": "غداً",
+    "@tomorrowLabel": { "description": "تسمية الغد" },
+
+    "scheduledStatus": "مجدول",
+    "@scheduledStatus": { "description": "تسمية الحالة المجدولة" },
+
+    "activeStatus": "نشط",
+    "@activeStatus": { "description": "تسمية الحالة النشطة" },
+
+    "completedStatus": "مكتمل",
+    "@completedStatus": { "description": "تسمية الحالة المكتملة" },
+
+    "cancelledStatus": "ملغي",
+    "@cancelledStatus": { "description": "تسمية الحالة الملغاة" },
+
+    "endedStatus": "انتهى",
+    "@endedStatus": { "description": "تسمية الحالة المنتهية" },
+
+    "hoursAndMinutes": "$hours ساعة $minutes دقيقة",
+    "@hoursAndMinutes": {
+      "description": "المدة بالساعات والدقائق",
+      "placeholders": {
+        "hours": { "type": "int" },
+        "minutes": { "type": "int" }
+      }
+    },
+
+    "minutesOnly": "$minutes دقيقة",
+    "@minutesOnly": {
+      "description": "المدة بالدقائق فقط",
+      "placeholders": { "minutes": { "type": "int" } }
+    },
+
+    "runningStatus": "قيد التشغيل",
+    "@runningStatus": { "description": "تسمية الحالة قيد التشغيل" },
+
+    "regionPrefix": "المنطقة: $regionName",
+    "@regionPrefix": {
+      "description": "بادئة المنطقة",
+      "placeholders": { "regionName": { "type": "String" } }
+    },
+
+    "unitPrefix": "المركز: $unitName",
+    "@unitPrefix": {
+      "description": "بادئة المركز",
+      "placeholders": { "unitName": { "type": "String" } }
+    },
+
+    "neighborhoodPrefix": "الحي: $neighborhoodName",
+    "@neighborhoodPrefix": {
+      "description": "بادئة الحي",
+      "placeholders": { "neighborhoodName": { "type": "String" } }
+    },
+
+    "zonePrefix": "المربع: $zoneName",
+    "@zonePrefix": {
+      "description": "بادئة المربع",
+      "placeholders": { "zoneName": { "type": "String" } }
+    },
+
+    "exitAppTitle": "الخروج من التطبيق",
+    "@exitAppTitle": { "description": "عنوان تأكيد الخروج من التطبيق" },
+
+    "exitAppMessage": "هل أنت متأكد أنك تريد الخروج؟",
+    "@exitAppMessage": { "description": "رسالة تأكيد الخروج" },
+
+    "exitAppConfirm": "خروج",
+    "@exitAppConfirm": { "description": "نص زر تأكيد الخروج" },
+
+    "startDateMustBeInFuture": "يجب أن يكون تاريخ البدء اليوم أو لاحقاً",
+    "@startDateMustBeInFuture": { "description": "خطأ التحقق عندما يكون تاريخ البدء في الماضي" },
+
+    "endDateMustBeAfterStart": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء",
+    "@endDateMustBeAfterStart": { "description": "خطأ التحقق عندما يكون تاريخ الانتهاء قبل تاريخ البدء" },
+
+    "selectStartTime": "يرجى اختيار تاريخ ووقت البدء",
+    "@selectStartTime": { "description": "خطأ التحقق عندما لا يتم تحديد وقت البدء" },
+
+    "selectEndTime": "يرجى اختيار تاريخ ووقت الانتهاء",
+    "@selectEndTime": { "description": "خطأ التحقق عندما لا يتم تحديد وقت الانتهاء" },
+
+    "upcomingStatus": "قادم",
+    "@upcomingStatus": { "description": "تسمية الحالة القادمة للجداول" },
+
+    "activeStatus": "نشط",
+    "@activeStatus": { "description": "تسمية الحالة النشطة للجداول" },
+
+    "completedStatus": "مكتمل",
+    "@completedStatus": { "description": "تسمية الحالة المكتملة للجداول" },
+
+    "cancelledStatus": "ملغي",
+    "@cancelledStatus": { "description": "تسمية الحالة الملغاة للجداول" },
+
+    "finishedStatus": "انتهى",
+    "@finishedStatus": { "description": "تسمية الحالة المنتهية للجداول" },
+
+    "dateAndTimeFormat": "EEEE، d MMMM | hh:mm a",
+    "@dateAndTimeFormat": { "description": "نمط تنسيق التاريخ والوقت بالعربية" },
+
+    "errorNoPastDates": "لا يمكن تحديد تاريخ في الماضي. يرجى اختيار اليوم أو تاريخ مستقبلي.",
+    "@errorNoPastDates": { "description": "خطأ عند اختيار تاريخ في الماضي" },
+
+    "noSchedulesFound": "لا توجد جداول",
+    "@noSchedulesFound": { "description": "رسالة عند عدم وجود جداول" },
+
+    "selectDateAndTime": "اختر التاريخ والوقت",
+    "@selectDateAndTime": { "description": "نص تلميح لحقل اختيار التاريخ" },
+      "pressToRate": "اضغط للتقيم",
+      "@pressToRate": {
+        "description": "نص يظهر للمستخدم لحثه على الضغط لتقييم المحتوى"
+      },
+
+    "notificationSettings": "إعدادات الإشعارات",
+    "@notificationSettings": {
+      "description": "عنوان قسم إعدادات الإشعارات"
+    },
+
+    "soundDroplets": "صوت القطرات",
+    "@soundDroplets": {
+      "description": "تسمية تفعيل/تعطيل صوت الإشعارات"
+    },
+
+    "soundDropletsDesc": "تشغيل الصوت عند وصول الإشعارات",
+    "@soundDropletsDesc": {
+      "description": "وصف تفعيل صوت القطرات"
+    },
+
+    "waterOverlay": "تأثير تغطية الماء",
+    "@waterOverlay": {
+      "description": "تسمية تفعيل تأثير تغطية الماء"
+    },
+
+    "waterOverlayDesc": "عرض حركة الماء عند بدء الضخ",
+    "@waterOverlayDesc": {
+      "description": "وصف تفعيل تأثير تغطية الماء"
+    },
+
+    "vibrationFeedback": "الاهتزاز",
+    "@vibrationFeedback": {
+      "description": "تسمية تفعيل الاهتزاز"
+    },
+
+    "vibrationFeedbackDesc": "الاهتزاز عند وصول الإشعارات",
+    "@vibrationFeedbackDesc": {
+      "description": "وصف تفعيل الاهتزاز"
+    },
+
+    "overlayPermissionRequired": "مطلوب إذن التغطية",
+    "@overlayPermissionRequired": {
+      "description": "عنوان حوار إذن التغطية"
+    },
+
+    "overlayPermissionMessage": "تتطلب هذه الميزة إذن 'العرض فوق التطبيقات الأخرى'. يرجى تفعيله من الإعدادات.",
+    "@overlayPermissionMessage": {
+      "description": "رسالة توضيح ضرورة إذن التغطية"
+    },
+
+    "enablePermission": "تفعيل الإذن",
+    "@enablePermission": {
+      "description": "نص زر تفعيل الإذن"
+    }
+
+,
+    "noAssignedUnitsCannotAddSchedule": "لا توجد وحدات مكلف بها حالياً، لذلك لا يمكنك إضافة جدول.",
+    "@noAssignedUnitsCannotAddSchedule": {
+      "description": "تظهر عندما يحاول المشغل إضافة جدول بدون وحدات مكلف بها"
+    },
+
+    "cancelScheduleConfirmationMessage": "هل أنت متأكد من إلغاء هذا الجدول؟",
+    "@cancelScheduleConfirmationMessage": {
+      "description": "رسالة تأكيد قبل إلغاء الجدول"
+    },
+
+    "notificationPermissionSettingsRequired": "يرجى تفعيل إذن الإشعارات من إعدادات الجهاز.",
+    "@notificationPermissionSettingsRequired": {
+      "description": "تظهر عند رفض إذن الإشعارات بشكل دائم"
+    },
+
+    "notificationPermissionDenied": "لم يتم الموافقة على إذن الإشعارات.",
+    "@notificationPermissionDenied": {
+      "description": "تظهر عند رفض إذن الإشعارات"
+    }
+,
+    "unsupportedPhonePrefix": "هذه البادئة غير مدعومة في سوريا",
+    "@unsupportedPhonePrefix": {
+      "description": "رسالة التحقق عند إدخال بادئة هاتف محظورة"
+    },
+    "sessionExpiredMessage": "انتهت صلاحية الجلسة، يرجى تسجيل الدخول مرة أخرى.",
+    "@sessionExpiredMessage": {
+      "description": "رسالة انتهاء الجلسة"
+    },
+    "pinCodeTitle": "الرمز السري",
+    "@pinCodeTitle": {
+      "description": "عنوان شاشة PIN"
+    },
+    "setPinCode": "قم بتعيين رمز سري من 6 أرقام",
+    "@setPinCode": {
+      "description": "عنوان إعداد PIN"
+    },
+    "confirmPinCode": "تأكيد الرمز السري",
+    "@confirmPinCode": {
+      "description": "عنوان تأكيد PIN"
+    },
+    "enterPinCode": "أدخل الرمز السري",
+    "@enterPinCode": {
+      "description": "عنوان إدخال PIN"
+    },
+    "pinMustBeSixDigits": "يجب أن يتكون الرمز السري من 6 أرقام",
+    "@pinMustBeSixDigits": {
+      "description": "رسالة تحقق لطول PIN"
+    },
+    "pinCodeNotFound": "لا يوجد رمز سري محفوظ",
+    "@pinCodeNotFound": {
+      "description": "خطأ عند عدم وجود PIN محفوظ"
+    },
+    "invalidPinCode": "الرمز السري غير صحيح",
+    "@invalidPinCode": {
+      "description": "رسالة خطأ للرمز السري غير الصحيح"
+    },
+    "pinCodesDoNotMatch": "الرمزان غير متطابقين",
+    "@pinCodesDoNotMatch": {
+      "description": "رسالة عدم تطابق PIN عند التأكيد"
+    },
+    "myAddresses": "عناويني",
+    "@myAddresses": {
+      "description": "عنوان شاشة عناويني وعنصر الإعدادات"
+    },
+    "addNewAddress": "إضافة عنوان جديد",
+    "@addNewAddress": {
+      "description": "نص زر إضافة عنوان جديد في شاشة عناويني"
+    },
+    "addressName": "اسم العنوان",
+    "@addressName": {
+      "description": "تسمية حقل اسم العنوان"
+    },
+    "noSavedAddresses": "لا توجد عناوين محفوظة بعد",
+    "@noSavedAddresses": {
+      "description": "حالة فارغة لشاشة عناويني"
+    },
+    "deleteAddressTitle": "حذف العنوان",
+    "@deleteAddressTitle": { "description": "عنوان حوار تأكيد حذف العنوان" },
+    "deleteAddressMessage": "هل أنت متأكد من حذف هذا العنوان؟",
+    "@deleteAddressMessage": { "description": "رسالة تأكيد حذف العنوان" },
+    "maintenanceTitle": "النظام تحت الصيانة",
+    "@maintenanceTitle": {
+      "description": "عنوان شاشة الصيانة"
+    },
+    "maintenanceMessage": "النظام قيد الصيانة حالياً. يرجى المحاولة لاحقاً.",
+    "@maintenanceMessage": {
+      "description": "نص شاشة الصيانة"
+    },
+    "updateRequiredTitle": "يتطلب تحديث",
+    "@updateRequiredTitle": {
+      "description": "عنوان شاشة التحديث الإجباري"
+    },
+    "updateRequiredMessage": "يتوفر إصدار جديد ويجب التحديث للمتابعة.",
+    "@updateRequiredMessage": {
+      "description": "وصف شاشة التحديث الإجباري"
+    },
+    "updateNow": "تحديث الآن",
+    "@updateNow": {
+      "description": "زر التحديث الإجباري"
+    },
+    "pinWeak": "هذا الرمز يسهل تخمينه. اختر رمزاً آخر.",
+    "@pinWeak": {},
+    "pinDigitsOnly": "يجب أن يحتوي رمز الدخول على أرقام فقط",
+    "@pinDigitsOnly": {},
+    "biometricSetupTitle": "تفعيل البصمة",
+    "@biometricSetupTitle": {},
+  "biometricSetupSubtitle": "استخدم بصمة الإصبع لفتح التطبيق بسرعة أكبر.",
+    "@biometricSetupSubtitle": {},
+    "biometricEnable": "تفعيل",
+    "@biometricEnable": {},
+    "biometricSkip": "تخطي",
+    "@biometricSkip": {},
+    "biometricUse": "دخول بالبصمة",
+    "@biometricUse": {},
+    "biometricReason": "فتح قطرة",
+    "@biometricReason": {},
+    "appLockTitle": "أهلاً بعودتك",
+    "@appLockTitle": {},
+    "appLockSubtitle": "أدخل رمز الدخول للمتابعة",
+    "@appLockSubtitle": {},
+    "forgotPin": "نسيت رمز الدخول؟",
+    "@forgotPin": {},
+    "forgotPinConfirm": "سيتم حذف الجلسة المحفوظة وستحتاج إلى تسجيل الدخول من جديد.",
+    "@forgotPinConfirm": {},
+    "pinTemporarilyLocked": "تم إيقاف المحاولة مؤقتاً. حاول بعد {seconds} ثانية.",
+    "@pinTemporarilyLocked": {
+      "placeholders": { "seconds": { "type": "int" } }
+    },
+    "changePinTitle": "تغيير رمز الدخول",
+    "@changePinTitle": {},
+    "changePinCurrent": "أدخل رمز الدخول الحالي",
+    "@changePinCurrent": {},
+    "changePinNew": "أدخل رمز دخول جديد",
+    "@changePinNew": {},
+    "changePinSuccess": "تم تحديث رمز الدخول",
+    "@changePinSuccess": {},
+    "securitySection": "الأمان",
+    "@securitySection": {},
+    "biometricToggleLabel": "فتح بالبصمة",
+    "@biometricToggleLabel": {},
+    "defaultAddress": "الموقع الافتراضي",
+    "@defaultAddress": {
+      "description": "تسمية العنوان الافتراضي المشتق من ملف المستخدم"
+    },
+    "internetRestored": "تم استعادة الاتصال بالإنترنت",
+    "@internetRestored": {
+      "description": "إشعار عند استعادة الاتصال بالإنترنت"
+    },
+    "internetDisconnected": "انقطع الاتصال بالإنترنت",
+    "@internetDisconnected": {
+      "description": "إشعار عند انقطاع الاتصال بالإنترنت"
+    },
+
+    "accountGroup": "الحساب",
+    "appGroup": "التطبيق",
+    "preferencesGroup": "التفضيلات",
+    "sessionGroup": "الجلسة",
+    "globalAccess": "وصول شامل",
+    "professionalScope": "النطاق المهني",
+    "personalAddress": "العنوان الشخصي",
+    "adminGlobalAccessDescription": "لديك صلاحية وصول كاملة لجميع المناطق والوحدات.",
+    "name": "الاسم",
+    "call": "اتصال",
+    "complainantInfo": "معلومات مقدّم الشكوى",
+    "officialResponse": "الرد الرسمي",
+    "shareApp": "مشاركة التطبيق",
+    "shareAppMessage": "حمّل تطبيق مياه درعا لمتابعة مواعيد ضخ المياه في منطقتك.",
+    "duplicateAddressFound": "هذا العنوان موجود مسبقاً.",
+    "biometricNotEnrolled": "لا توجد بيانات حيوية مسجّلة على هذا الجهاز. يرجى إعدادها من إعدادات الجهاز.",
+    "setPinTitle": "تعيين رمز الدخول",
+    "setPinCodeSubtitle": "عيّن رمزاً لتأمين التطبيق",
+    "confirmPinCodeSubtitle": "أعد إدخال الرمز للتأكيد",
+    "pinMustBeFourDigits": "يجب أن يتكوّن الرمز من 4 أرقام",
+    "errorLogin": "فشل تسجيل الدخول. يرجى التحقق من بياناتك والمحاولة مرة أخرى.",
+    "errorSendOtp": "فشل إرسال رمز التحقق. يرجى المحاولة مرة أخرى.",
+    "errorVerifyOtp": "رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.",
+    "errorFcmUpdate": "فشل تحديث رمز الإشعارات.",
+    "filterByPumpingStatus": "تصفية حسب حالة الضخ",
+    "evaluationsRatedTab": "مُقيَّمة",
+    "evaluationsUnratedTab": "غير مُقيَّمة",
+    "noPendingEvaluations": "لا توجد تقييمات معلّقة",
+    "justNow": "الآن",
+    "yesterday": "أمس",
+    "hourAbbreviation": "ساعة",
+    "pausedStatus": "متوقف مؤقتاً",
+    "livePumpingNow": "يتم الضخ الآن",
+    "pumpingPausedNow": "الضخ متوقف مؤقتاً",
+    "pausedPumping": "متوقف مؤقتاً",
+    "pausePumping": "إيقاف الضخ مؤقتاً",
+    "resumePumping": "استئناف الضخ",
+    "pauseReasonLabel": "سبب الإيقاف المؤقت",
+    "cancellationReasonLabel": "سبب الإلغاء",
+    "scheduledForLabel": "مجدول لـ",
+    "pumpingEndedLabel": "انتهى الضخ",
+    "lastPumpingSessionTitle": "آخر جلسة ضخ",
+    "upcomingScheduledPumpingTitle": "الضخ المجدول القادم",
+    "pumpingCancelledTitle": "تم إلغاء الضخ",
+    "pumpingCancelledThisPeriod": "أُلغي الضخ لهذه الفترة",
+    "pumpingCancelledAt": "أُلغي في",
+    "startPumpingConfirmationMessage": "هل أنت متأكد من بدء الضخ؟",
+    "endPumpingConfirmationMessage": "هل أنت متأكد من إنهاء الضخ؟",
+    "pausePumpingConfirmationMessage": "هل أنت متأكد من إيقاف الضخ مؤقتاً؟",
+    "resumePumpingConfirmationMessage": "هل أنت متأكد من استئناف الضخ؟",
+    "cannotStartBeforeScheduledTime": "لا يمكن بدء الضخ قبل الوقت المجدول.",
+    "scheduleStartTimeTooSoon": "وقت البدء قريب جداً. يرجى اختيار وقت لاحق.",
+    "scheduleUpdatedSuccessfully": "تم تحديث الجدول بنجاح",
+    "errorUpdatingSchedule": "فشل تحديث الجدول.",
+    "zoneAlreadyHasActivePlan": "هذا المربع لديه خطة نشطة بالفعل.",
+    "shiftSchedule": "تأجيل الجدول",
+    "shiftScheduleTitle": "تأجيل الجدول",
+    "shiftScheduleDescription": "أجّل الجدول بعدد من الساعات",
+    "shiftDurationLabel": "مدة التأجيل",
+    "shiftNewTimingLabel": "التوقيت الجديد",
+    "scheduleShiftedSuccessfully": "تم تأجيل الجدول بنجاح",
+
+    "durationHours": "{count} ساعة",
+    "@durationHours": { "placeholders": { "count": { "type": "int" } } },
+    "durationMinutes": "{count} دقيقة",
+    "@durationMinutes": { "placeholders": { "count": { "type": "int" } } },
+    "durationDays": "{count} يوم",
+    "@durationDays": { "placeholders": { "count": { "type": "int" } } },
+    "durationWeeks": "{count} أسبوع",
+    "@durationWeeks": { "placeholders": { "count": { "type": "int" } } },
+    "durationMonths": "{count} شهر",
+    "@durationMonths": { "placeholders": { "count": { "type": "int" } } },
+    "durationYears": "{count} سنة",
+    "@durationYears": { "placeholders": { "count": { "type": "int" } } },
+    "durationHoursAndMinutes": "{hours} و {minutes}",
+    "@durationHoursAndMinutes": { "placeholders": { "hours": { "type": "String" }, "minutes": { "type": "String" } } },
+    "pumpingTimeRemaining": "باقٍ {duration} على الانتهاء",
+    "@pumpingTimeRemaining": { "placeholders": { "duration": { "type": "String" } } },
+    "timeAgoLabel": "منذ {duration}",
+    "@timeAgoLabel": { "placeholders": { "duration": { "type": "String" } } }
+}

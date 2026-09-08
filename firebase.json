@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"qatrah-app","appId":"1:330522970784:android:937ea84ae6da06155597c5","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"qatrah-app","configurations":{"android":"1:330522970784:android:937ea84ae6da06155597c5","ios":"1:330522970784:ios:4d68e9360232e18e5597c5"}}}}}}
