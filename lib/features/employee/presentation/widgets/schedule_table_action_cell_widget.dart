@@ -29,8 +29,10 @@ class ScheduleTableActionCellWidget extends StatelessWidget {
     final l10n = context.l10n;
     final upperStatus = status.toUpperCase();
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
+      alignment: WrapAlignment.end,
+      spacing: 8,
+      runSpacing: 8,
       children: [
         if (upperStatus == 'SCHEDULED') ...[
           _ActionTextButton(
@@ -42,21 +44,18 @@ class ScheduleTableActionCellWidget extends StatelessWidget {
               scheduleId: scheduleId,
             ),
           ),
-          4.horizontalSpace,
           _ActionTextButton(
             label: l10n.edit,
             icon: HugeIcons.strokeRoundedPencilEdit01,
             color: const Color(0xFF1565C0),
             onPressed: () => _showEditDialog(context),
           ),
-          4.horizontalSpace,
           _ActionTextButton(
             label: l10n.shiftSchedule,
             icon: HugeIcons.strokeRoundedClock01,
             color: const Color(0xFF6A1B9A),
             onPressed: () => _showShiftDialog(context),
           ),
-          4.horizontalSpace,
           _ActionTextButton(
             label: l10n.cancel,
             icon: HugeIcons.strokeRoundedCancel01,
@@ -76,7 +75,6 @@ class ScheduleTableActionCellWidget extends StatelessWidget {
               scheduleId: scheduleId,
             ),
           ),
-          4.horizontalSpace,
           _ActionTextButton(
             label: l10n.endPumping,
             icon: HugeIcons.strokeRoundedStop,
@@ -96,14 +94,12 @@ class ScheduleTableActionCellWidget extends StatelessWidget {
               scheduleId: scheduleId,
             ),
           ),
-          4.horizontalSpace,
           _ActionTextButton(
             label: l10n.shiftSchedule,
             icon: HugeIcons.strokeRoundedClock01,
             color: const Color(0xFF6A1B9A),
             onPressed: () => _showShiftDialog(context),
           ),
-          4.horizontalSpace,
           _ActionTextButton(
             label: l10n.endPumping,
             icon: HugeIcons.strokeRoundedStop,
@@ -113,8 +109,6 @@ class ScheduleTableActionCellWidget extends StatelessWidget {
               scheduleId: scheduleId,
             ),
           ),
-        ] else ...[
-          const Text('-'),
         ],
       ],
     );
@@ -159,33 +153,35 @@ class _ActionTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final baseStyle = theme.textTheme.labelSmall;
+    final baseStyle = theme.textTheme.labelSmall?.copyWith(
+      color: color,
+      fontSize: 11.sp,
+      fontWeight: FontWeight.w600,
+    );
     return TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
         foregroundColor: color,
-        padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 4.h),
+        backgroundColor: color.withValues(alpha: 0.08),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
         minimumSize: Size.zero,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        textStyle: baseStyle?.copyWith(
-          fontSize: 11.sp,
-          fontWeight: FontWeight.w500,
-          color: color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.r),
         ),
+        textStyle: baseStyle,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AppIconWidget(icon: icon, color: color, size: 14),
-          4.horizontalSpace,
-          Text(
-            label,
-            style: baseStyle?.copyWith(
-              color: color,
-              fontSize: 11.sp,
-              fontWeight: FontWeight.w500,
-            ),
+          AppIconWidget(
+            icon: icon,
+            color: color,
+            size: 14,
+            applyPadding: false,
           ),
+          4.horizontalSpace,
+          Text(label, style: baseStyle),
         ],
       ),
     );
