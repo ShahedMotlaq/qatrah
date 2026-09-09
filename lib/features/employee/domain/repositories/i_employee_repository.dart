@@ -44,5 +44,9 @@ abstract class IDashboardRepository {
 
   /// Delay the entire schedule by [hours] hours. The backend shifts both the
   /// start and end times against the same persistent schedule id.
-  Future<Either<Failure, void>> shiftSchedule(int id, {required int hours});
+  Future<Either<Failure, void>> shiftSchedule(
+    int id, {
+    required int hours,
+    String? postponeReason,
+  });
 }

@@ -81,12 +81,15 @@ class CancelScheduleEvent extends DashboardEvent {
 
 /// Delay the entire persistent schedule by [hours] hours.
 class ShiftScheduleEvent extends DashboardEvent {
-  const ShiftScheduleEvent(this.id, {required this.hours});
+  const ShiftScheduleEvent(this.id, {required this.hours, this.postponeReason});
   final int id;
   final int hours;
 
+  /// Free-text reason the operator gave for postponing.
+  final String? postponeReason;
+
   @override
-  List<Object?> get props => [id, hours];
+  List<Object?> get props => [id, hours, postponeReason];
 }
 
 class CreateScheduleSubmitted extends DashboardEvent {

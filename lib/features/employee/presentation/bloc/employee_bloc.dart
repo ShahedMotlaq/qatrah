@@ -542,7 +542,11 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     }
 
     emit(state.copyWith(isLoading: true, isSuccess: false));
-    final res = await _repository.shiftSchedule(event.id, hours: event.hours);
+    final res = await _repository.shiftSchedule(
+      event.id,
+      hours: event.hours,
+      postponeReason: event.postponeReason,
+    );
     res.fold(
       (f) => emit(state.copyWith(isLoading: false, errorMessage: f.errMessage)),
       (_) {

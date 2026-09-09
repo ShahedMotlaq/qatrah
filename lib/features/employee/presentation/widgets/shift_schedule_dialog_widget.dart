@@ -5,6 +5,7 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:qatrah/core/extensions/context_l10n.dart';
 import 'package:qatrah/core/utils/app_date_formatter.dart';
 import 'package:qatrah/core/widgets/app_icon_widget.dart';
+import 'package:qatrah/core/widgets/app_text_field_widget.dart';
 import 'package:qatrah/core/widgets/app_toast.dart';
 import 'package:qatrah/core/widgets/buttons/app_button_widget.dart';
 import 'package:qatrah/features/employee/domain/entities/schedule_entity.dart';
@@ -34,14 +35,26 @@ class _ShiftScheduleDialogWidgetState extends State<ShiftScheduleDialogWidget> {
   static const _maxHours = 168; // one week
 
   int _hours = 2;
+  final _reasonController = TextEditingController();
+
+  @override
+  void dispose() {
+    _reasonController.dispose();
+    super.dispose();
+  }
 
   void _setHours(int value) {
     setState(() => _hours = value.clamp(_minHours, _maxHours));
   }
 
   void _submit(BuildContext context) {
+    final reason = _reasonController.text.trim();
     context.read<DashboardBloc>().add(
-      ShiftScheduleEvent(widget.schedule.id, hours: _hours),
+      ShiftScheduleEvent(
+        widget.schedule.id,
+        hours: _hours,
+        postponeReason: reason.isEmpty ? null : reason,
+      ),
     );
   }
 
@@ -165,6 +178,20 @@ class _ShiftScheduleDialogWidgetState extends State<ShiftScheduleDialogWidget> {
                     ),
                   ],
                 ),
+              ),
+              16.verticalSpace,
+              Text(
+                l10n.postponeReasonLabel,
+                style: theme.textTheme.labelLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              10.verticalSpace,
+              AppTextField(
+                controller: _reasonController,
+                hintText: l10n.postponeReasonLabel,
+                minLines: 2,
+                maxLines: 3,
               ),
               16.verticalSpace,
               Row(

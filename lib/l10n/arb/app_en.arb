@@ -1917,6 +1917,9 @@
     "shiftDurationLabel": "Shift duration",
     "shiftNewTimingLabel": "New timing",
     "scheduleShiftedSuccessfully": "Schedule shifted successfully",
+    "postpone": "Postpone",
+    "postponeReasonLabel": "Postponement reason",
+    "durationIndicatorLabel": "Duration indicator",
 
     "durationHours": "{count} hours",
     "@durationHours": { "placeholders": { "count": { "type": "int" } } },

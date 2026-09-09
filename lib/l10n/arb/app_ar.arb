@@ -1915,6 +1915,9 @@
     "shiftDurationLabel": "مدة التأجيل",
     "shiftNewTimingLabel": "التوقيت الجديد",
     "scheduleShiftedSuccessfully": "تم تأجيل الجدول بنجاح",
+    "postpone": "تأجيل",
+    "postponeReasonLabel": "سبب التأجيل",
+    "durationIndicatorLabel": "مؤشر مدة الوقت",
 
     "durationHours": "{count} ساعة",
     "@durationHours": { "placeholders": { "count": { "type": "int" } } },

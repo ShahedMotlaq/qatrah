@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -122,6 +124,14 @@ class _ScheduleCard extends StatelessWidget {
     final statusColor = _statusColor(status, theme);
     final note = _note(context);
 
+    // Main line is the most specific place name; the path below carries the
+    // rest (region • unit • neighborhood ...).
+    final title = [
+      schedule.neighborhoodName,
+      schedule.zoneName,
+      schedule.unitName,
+    ].whereType<String>().firstWhere((e) => e.isNotEmpty, orElse: () => '');
+
     final subtitle = [
       schedule.regionName,
       schedule.unitName,
@@ -144,30 +154,15 @@ class _ScheduleCard extends StatelessWidget {
         children: [
           // ---------- Header ----------
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      schedule.zoneName?.isNotEmpty ?? false
-                          ? schedule.zoneName!
-                          : schedule.regionName,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    if (subtitle.isNotEmpty) ...[
-                      4.verticalSpace,
-                      Text(
-                        subtitle,
-                        style: theme.textTheme.labelSmall?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant,
-                        ),
-                      ),
-                    ],
-                  ],
+                child: Text(
+                  title.isNotEmpty ? title : schedule.regionName,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               8.horizontalSpace,
@@ -177,6 +172,15 @@ class _ScheduleCard extends StatelessWidget {
               ),
             ],
           ),
+          if (subtitle.isNotEmpty) ...[
+            4.verticalSpace,
+            Text(
+              subtitle,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ],
 
           // ---------- Body: start / end time ----------
           16.verticalSpace,
@@ -201,6 +205,10 @@ class _ScheduleCard extends StatelessWidget {
               ),
             ],
           ),
+
+          // ---------- Duration indicator ----------
+          12.verticalSpace,
+          _DurationIndicator(schedule: schedule, status: status),
 
           // ---------- Notes (hidden when empty) ----------
           if (note != null) ...[
@@ -255,6 +263,136 @@ class _ScheduleCard extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Fraction (0..1) of the scheduled window that has elapsed at [now].
+/// Terminal statuses read as full, not-yet-started ones as empty.
+double scheduleElapsedFraction(
+  ScheduleEntity schedule,
+  String status,
+  DateTime now,
+) {
+  final upper = status.toUpperCase();
+  if (upper == 'COMPLETED' || upper == 'CANCELLED') return 1;
+  if (upper == 'SCHEDULED') return 0;
+  final total = schedule.endTime.difference(schedule.startTime).inSeconds;
+  if (total <= 0) return 1;
+  return (now.difference(schedule.startTime).inSeconds / total).clamp(0.0, 1.0);
+}
+
+/// Pie chart showing how much of the scheduled window has elapsed.
+///
+/// ponytail: snapshot, not a ticking clock — it repaints when the bloc emits.
+/// Add a Timer.periodic here if operators need a live-advancing slice.
+class _DurationIndicator extends StatelessWidget {
+  const _DurationIndicator({required this.schedule, required this.status});
+
+  final ScheduleEntity schedule;
+  final String status;
+
+  String _durationText(BuildContext context) {
+    final l10n = context.l10n;
+    final total = schedule.endTime.difference(schedule.startTime);
+    final hours = total.inHours;
+    final minutes = total.inMinutes.remainder(60);
+    if (hours <= 0) return l10n.durationMinutes(minutes);
+    if (minutes == 0) return l10n.durationHours(hours);
+    return l10n.durationHoursAndMinutes(
+      l10n.durationHours(hours),
+      l10n.durationMinutes(minutes),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = context.l10n;
+    final progress = scheduleElapsedFraction(schedule, status, DateTime.now());
+
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        borderRadius: BorderRadius.circular(12.r),
+      ),
+      child: Row(
+        children: [
+          CustomPaint(
+            size: Size(36.w, 36.w),
+            painter: _PiePainter(
+              progress: progress,
+              color: theme.colorScheme.primary,
+              trackColor: theme.colorScheme.primary.withValues(alpha: 0.15),
+            ),
+          ),
+          12.horizontalSpace,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.durationIndicatorLabel,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                2.verticalSpace,
+                Text(
+                  _durationText(context),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+          Text(
+            '${(progress * 100).round()}%',
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: theme.colorScheme.primary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PiePainter extends CustomPainter {
+  const _PiePainter({
+    required this.progress,
+    required this.color,
+    required this.trackColor,
+  });
+
+  final double progress;
+  final Color color;
+  final Color trackColor;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+    canvas
+      ..drawCircle(
+        rect.center,
+        size.shortestSide / 2,
+        Paint()..color = trackColor,
+      )
+      ..drawArc(
+        rect,
+        -math.pi / 2,
+        2 * math.pi * progress,
+        true,
+        Paint()..color = color,
+      );
+  }
+
+  @override
+  bool shouldRepaint(_PiePainter old) =>
+      old.progress != progress || old.color != color;
 }
 
 class _TimeInfo extends StatelessWidget {

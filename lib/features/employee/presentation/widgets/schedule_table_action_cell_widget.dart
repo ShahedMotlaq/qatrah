@@ -7,7 +7,6 @@ import 'package:qatrah/core/widgets/app_icon_widget.dart';
 import 'package:qatrah/core/widgets/appdialog/showApp_bottom_sheet_widget.dart';
 import 'package:qatrah/features/employee/domain/entities/schedule_entity.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_bloc.dart';
-import 'package:qatrah/features/employee/presentation/widgets/edit_schedule_dialog_widget.dart';
 import 'package:qatrah/features/employee/presentation/widgets/schedule_confirmation_dialogs.dart';
 import 'package:qatrah/features/employee/presentation/widgets/shift_schedule_dialog_widget.dart';
 
@@ -29,99 +28,66 @@ class ScheduleTableActionCellWidget extends StatelessWidget {
     final l10n = context.l10n;
     final upperStatus = status.toUpperCase();
 
-    return Wrap(
-      alignment: WrapAlignment.end,
-      spacing: 8,
-      runSpacing: 8,
-      children: [
-        if (upperStatus == 'SCHEDULED') ...[
-          _ActionTextButton(
-            label: l10n.startPumping,
-            icon: HugeIcons.strokeRoundedPlay,
-            color: const Color(0xFF1B4D3E),
-            onPressed: () => ScheduleConfirmationDialogs.showStartConfirmation(
-              context,
-              scheduleId: scheduleId,
-            ),
+    // Edit and end/stop pumping are deliberately absent: editing was dropped,
+    // and ending a run is driven from the active pumping card on the dashboard.
+    final actions = <Widget>[
+      if (upperStatus == 'SCHEDULED') ...[
+        _ActionTextButton(
+          label: l10n.startPumping,
+          icon: HugeIcons.strokeRoundedPlay,
+          color: const Color(0xFF1B4D3E),
+          onPressed: () => ScheduleConfirmationDialogs.showStartConfirmation(
+            context,
+            scheduleId: scheduleId,
           ),
-          _ActionTextButton(
-            label: l10n.edit,
-            icon: HugeIcons.strokeRoundedPencilEdit01,
-            color: const Color(0xFF1565C0),
-            onPressed: () => _showEditDialog(context),
+        ),
+        _ActionTextButton(
+          label: l10n.postpone,
+          icon: HugeIcons.strokeRoundedClock01,
+          color: const Color(0xFF6A1B9A),
+          onPressed: () => _showShiftDialog(context),
+        ),
+        _ActionTextButton(
+          label: l10n.cancel,
+          icon: HugeIcons.strokeRoundedCancel01,
+          color: theme.colorScheme.error,
+          onPressed: () => ScheduleConfirmationDialogs.showCancelConfirmation(
+            context,
+            scheduleId: scheduleId,
           ),
-          _ActionTextButton(
-            label: l10n.shiftSchedule,
-            icon: HugeIcons.strokeRoundedClock01,
-            color: const Color(0xFF6A1B9A),
-            onPressed: () => _showShiftDialog(context),
+        ),
+      ] else if (upperStatus == 'ACTIVE') ...[
+        _ActionTextButton(
+          label: l10n.pausePumping,
+          icon: HugeIcons.strokeRoundedPause,
+          color: const Color(0xFFF5A623),
+          onPressed: () => ScheduleConfirmationDialogs.showPauseConfirmation(
+            context,
+            scheduleId: scheduleId,
           ),
-          _ActionTextButton(
-            label: l10n.cancel,
-            icon: HugeIcons.strokeRoundedCancel01,
-            color: theme.colorScheme.error,
-            onPressed: () => ScheduleConfirmationDialogs.showCancelConfirmation(
-              context,
-              scheduleId: scheduleId,
-            ),
+        ),
+      ] else if (upperStatus == 'PAUSED') ...[
+        _ActionTextButton(
+          label: l10n.resumePumping,
+          icon: HugeIcons.strokeRoundedPlay,
+          color: const Color(0xFF1B4D3E),
+          onPressed: () => ScheduleConfirmationDialogs.showResumeConfirmation(
+            context,
+            scheduleId: scheduleId,
           ),
-        ] else if (upperStatus == 'ACTIVE') ...[
-          _ActionTextButton(
-            label: l10n.pausePumping,
-            icon: HugeIcons.strokeRoundedPause,
-            color: const Color(0xFFF5A623),
-            onPressed: () => ScheduleConfirmationDialogs.showPauseConfirmation(
-              context,
-              scheduleId: scheduleId,
-            ),
-          ),
-          _ActionTextButton(
-            label: l10n.endPumping,
-            icon: HugeIcons.strokeRoundedStop,
-            color: const Color(0xFFE65100),
-            onPressed: () => ScheduleConfirmationDialogs.showEndConfirmation(
-              context,
-              scheduleId: scheduleId,
-            ),
-          ),
-        ] else if (upperStatus == 'PAUSED') ...[
-          _ActionTextButton(
-            label: l10n.resumePumping,
-            icon: HugeIcons.strokeRoundedPlay,
-            color: const Color(0xFF1B4D3E),
-            onPressed: () => ScheduleConfirmationDialogs.showResumeConfirmation(
-              context,
-              scheduleId: scheduleId,
-            ),
-          ),
-          _ActionTextButton(
-            label: l10n.shiftSchedule,
-            icon: HugeIcons.strokeRoundedClock01,
-            color: const Color(0xFF6A1B9A),
-            onPressed: () => _showShiftDialog(context),
-          ),
-          _ActionTextButton(
-            label: l10n.endPumping,
-            icon: HugeIcons.strokeRoundedStop,
-            color: const Color(0xFFE65100),
-            onPressed: () => ScheduleConfirmationDialogs.showEndConfirmation(
-              context,
-              scheduleId: scheduleId,
-            ),
-          ),
-        ],
+        ),
+        _ActionTextButton(
+          label: l10n.postpone,
+          icon: HugeIcons.strokeRoundedClock01,
+          color: const Color(0xFF6A1B9A),
+          onPressed: () => _showShiftDialog(context),
+        ),
       ],
-    );
-  }
+    ];
 
-  void _showEditDialog(BuildContext context) {
-    final bloc = context.read<DashboardBloc>();
-    showAppBottomSheet(
-      context: context,
-      content: BlocProvider.value(
-        value: bloc,
-        child: EditScheduleDialogWidget(schedule: schedule),
-      ),
+    return Row(
+      spacing: 8.w,
+      children: [for (final action in actions) Expanded(child: action)],
     );
   }
 
@@ -163,12 +129,10 @@ class _ActionTextButton extends StatelessWidget {
       style: TextButton.styleFrom(
         foregroundColor: color,
         backgroundColor: color.withValues(alpha: 0.08),
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         minimumSize: Size.zero,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.r),
-        ),
+        shape: const StadiumBorder(),
         textStyle: baseStyle,
       ),
       child: Row(
@@ -181,7 +145,14 @@ class _ActionTextButton extends StatelessWidget {
             applyPadding: false,
           ),
           4.horizontalSpace,
-          Text(label, style: baseStyle),
+          Flexible(
+            child: Text(
+              label,
+              style: baseStyle,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ],
       ),
     );

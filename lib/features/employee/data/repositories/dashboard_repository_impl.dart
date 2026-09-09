@@ -292,6 +292,7 @@ class DashboardRepositoryImpl implements IDashboardRepository {
   Future<Either<Failure, void>> shiftSchedule(
     int id, {
     required int hours,
+    String? postponeReason,
   }) async {
     try {
       final isOperator = await UserHelper.isOperator();
@@ -309,9 +310,16 @@ class DashboardRepositoryImpl implements IDashboardRepository {
         return Left(ServerFailure('errorShiftingSchedule'));
       }
 
+      final sanitizedReason = postponeReason != null
+          ? InputSanitizer.sanitizeInput(postponeReason)
+          : null;
       await _apiService.post(
         endPoint: ApiEndpoints.shiftSchedule(id),
-        data: {'hours': hours},
+        data: {
+          'hours': hours,
+          if (sanitizedReason != null && sanitizedReason.isNotEmpty)
+            'reason': sanitizedReason,
+        },
       );
       return const Right(null);
     } on Failure catch (f) {
