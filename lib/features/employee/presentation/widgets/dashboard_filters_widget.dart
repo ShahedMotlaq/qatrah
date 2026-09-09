@@ -33,6 +33,9 @@ class _DashboardFiltersWidgetState extends State<DashboardFiltersWidget> {
   late final TextEditingController _searchController;
   Timer? _debounce;
 
+  /// True between tapping apply and the reload finishing.
+  bool _applying = false;
+
   @override
   void initState() {
     super.initState();
@@ -67,6 +70,17 @@ class _DashboardFiltersWidgetState extends State<DashboardFiltersWidget> {
     _debounce?.cancel();
     _searchController.clear();
     context.read<DashboardBloc>().add(ResetFilters());
+  }
+
+  /// Applies the filters against the API and closes once the response lands.
+  void _apply() {
+    final bloc = context.read<DashboardBloc>();
+    // A keystroke may still be sitting in the debounce; send it now so the
+    // reload runs with the query the operator can actually see.
+    _debounce?.cancel();
+    bloc.add(FilterSearchChanged(_searchController.text.trim()));
+    setState(() => _applying = true);
+    bloc.add(LoadDashboardData());
   }
 
   @override
@@ -118,23 +132,35 @@ class _DashboardFiltersWidgetState extends State<DashboardFiltersWidget> {
             ),
           ),
           16.verticalSpace,
-          BlocBuilder<DashboardBloc, DashboardState>(
-            buildWhen: (p, c) => p.activeFilterCount != c.activeFilterCount,
+          BlocConsumer<DashboardBloc, DashboardState>(
+            // The reload has come back: the list behind the sheet is already
+            // rebuilt, so close.
+            listenWhen: (p, c) => p.isLoading && !c.isLoading,
+            listener: (context, state) {
+              if (_applying) Navigator.of(context).pop();
+            },
+            buildWhen: (p, c) =>
+                p.activeFilterCount != c.activeFilterCount ||
+                p.isLoading != c.isLoading,
             builder: (context, state) {
+              final isApplying = _applying && state.isLoading;
               return Row(
                 children: [
                   Expanded(
                     child: AppButton(
                       text: l10n.resetFilter,
                       isOutline: true,
-                      onPressed: state.activeFilterCount > 0 ? _reset : null,
+                      onPressed: state.activeFilterCount > 0 && !isApplying
+                          ? _reset
+                          : null,
                     ),
                   ),
                   12.horizontalSpace,
                   Expanded(
                     child: AppButton(
                       text: l10n.applyFilters,
-                      onPressed: () => Navigator.of(context).pop(),
+                      isLoading: isApplying,
+                      onPressed: isApplying ? null : _apply,
                     ),
                   ),
                 ],

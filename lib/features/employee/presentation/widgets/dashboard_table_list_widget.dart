@@ -124,20 +124,17 @@ class _ScheduleCard extends StatelessWidget {
     final statusColor = _statusColor(status, theme);
     final note = _note(context);
 
-    // Main line is the most specific place name; the path below carries the
-    // rest (region • unit • neighborhood ...).
-    final title = [
-      schedule.neighborhoodName,
-      schedule.zoneName,
-      schedule.unitName,
-    ].whereType<String>().firstWhere((e) => e.isNotEmpty, orElse: () => '');
-
-    final subtitle = [
-      schedule.regionName,
-      schedule.unitName,
-      schedule.neighborhoodName,
-      schedule.zoneName,
-    ].whereType<String>().where((e) => e.isNotEmpty).join(' • ');
+    // Only the last segment of the location chain — the deepest name the
+    // schedule carries. The rest of the path adds nothing on a phone card.
+    final location =
+        [
+          schedule.zoneName,
+          schedule.neighborhoodName,
+          schedule.unitName,
+        ].whereType<String>().firstWhere(
+          (e) => e.isNotEmpty,
+          orElse: () => schedule.regionName,
+        );
 
     return Container(
       margin: EdgeInsets.fromLTRB(12.w, 0, 12.w, 12.h),
@@ -157,7 +154,7 @@ class _ScheduleCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  title.isNotEmpty ? title : schedule.regionName,
+                  location,
                   style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -172,16 +169,6 @@ class _ScheduleCard extends StatelessWidget {
               ),
             ],
           ),
-          if (subtitle.isNotEmpty) ...[
-            4.verticalSpace,
-            Text(
-              subtitle,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-          ],
-
           // ---------- Body: start / end time ----------
           16.verticalSpace,
           Row(

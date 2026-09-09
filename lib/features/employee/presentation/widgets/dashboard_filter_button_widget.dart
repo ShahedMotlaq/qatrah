@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:qatrah/core/extensions/context_l10n.dart';
 import 'package:qatrah/core/widgets/app_icon_widget.dart';
@@ -38,15 +39,26 @@ class DashboardFilterButtonWidget extends StatelessWidget {
       buildWhen: (p, c) => p.activeFilterCount != c.activeFilterCount,
       builder: (context, state) {
         final count = state.activeFilterCount;
-        return Badge.count(
-          count: count,
-          isLabelVisible: count > 0,
-          child: IconButton(
-            onPressed: () => _openFilters(context),
-            tooltip: l10n.filter,
-            icon: AppIconWidget(
-              icon: HugeIcons.strokeRoundedFilter,
-              color: theme.colorScheme.secondary,
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
+          child: Badge.count(
+            count: count,
+            isLabelVisible: count > 0,
+            child: TextButton.icon(
+              onPressed: () => _openFilters(context),
+              icon: AppIconWidget(
+                icon: HugeIcons.strokeRoundedFilter,
+                color: theme.colorScheme.secondary,
+                size: 20,
+                applyPadding: false,
+              ),
+              label: Text(l10n.filter),
+              style: TextButton.styleFrom(
+                foregroundColor: theme.colorScheme.secondary,
+                textStyle: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ),
         );
