@@ -44,21 +44,15 @@ class DashboardFilterButtonWidget extends StatelessWidget {
           child: Badge.count(
             count: count,
             isLabelVisible: count > 0,
-            child: TextButton.icon(
+            child: TextButton(
               onPressed: () => _openFilters(context),
-              icon: AppIconWidget(
-                icon: HugeIcons.strokeRoundedFilter,
-                color: theme.colorScheme.secondary,
-                size: 20,
-                applyPadding: false,
-              ),
-              label: Text(l10n.filter),
               style: TextButton.styleFrom(
                 foregroundColor: theme.colorScheme.secondary,
                 textStyle: theme.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
               ),
+              child: Text(l10n.filter),
             ),
           ),
         );

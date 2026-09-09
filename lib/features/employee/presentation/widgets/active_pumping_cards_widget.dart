@@ -166,49 +166,49 @@ class ActiveAndNextPumpingCardsWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              12.verticalSpace,
 
-              // 2. البطاقة الحمراء (الحالة التالية)
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(16.w),
-                decoration: BoxDecoration(
-                  color: AppColors.deepUmber, // الأحمر الرسمي للتطبيق
-                  borderRadius: BorderRadius.circular(16.r),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'الحالة التالية',
-                            style: theme.textTheme.labelSmall?.copyWith(
-                              color: Colors.white.withValues(alpha: 0.8),
+              // 2. البطاقة الحمراء (الحالة التالية) — تظهر فقط عند وجود جدول قادم
+              if (nextSchedule != null) ...[
+                12.verticalSpace,
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(16.w),
+                  decoration: BoxDecoration(
+                    color: AppColors.deepUmber, // الأحمر الرسمي للتطبيق
+                    borderRadius: BorderRadius.circular(16.r),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'الحالة التالية',
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: Colors.white.withValues(alpha: 0.8),
+                              ),
                             ),
-                          ),
-                          4.verticalSpace,
-                          Text(
-                            nextSchedule != null
-                                ? '${nextSchedule.regionName} - ${nextSchedule.unitName ?? ''}'
-                                : 'لا توجد جداول مجدولة قادمة',
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                            4.verticalSpace,
+                            Text(
+                              '${nextSchedule.regionName} - ${nextSchedule.unitName ?? ''}',
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    const AppIconWidget(
-                      icon: HugeIcons.strokeRoundedClock01,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                  ],
+                      const AppIconWidget(
+                        icon: HugeIcons.strokeRoundedClock01,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
         );
