@@ -32,6 +32,7 @@ class DashboardState extends Equatable {
     this.selectedStatus,
     this.fromDate,
     this.toDate,
+    this.searchQuery = '',
     this.errorMessage,
   });
   final bool isLoading;
@@ -71,7 +72,22 @@ class DashboardState extends Equatable {
   final DateTime? fromDate;
   final DateTime? toDate;
 
+  /// Free-text filter matched against notes, reasons and location names.
+  final String searchQuery;
+
   final String? errorMessage;
+
+  /// Filters the operator can see and clear, used to label the filter panel.
+  int get activeFilterCount => [
+    selectedRegion,
+    selectedUnit,
+    selectedNeighborhood,
+    selectedZone,
+    if (selectedStatus != 'ALL') selectedStatus,
+    fromDate,
+    toDate,
+    if (searchQuery.isNotEmpty) searchQuery,
+  ].nonNulls.length;
 
   DashboardState copyWith({
     bool? isLoading,
@@ -102,6 +118,7 @@ class DashboardState extends Equatable {
     String? selectedStatus,
     DateTime? fromDate,
     DateTime? toDate,
+    String? searchQuery,
     String? errorMessage,
     bool clearFilters = false,
   }) {
@@ -144,6 +161,7 @@ class DashboardState extends Equatable {
           : (selectedStatus ?? this.selectedStatus),
       fromDate: clearFilters ? null : (fromDate ?? this.fromDate),
       toDate: clearFilters ? null : (toDate ?? this.toDate),
+      searchQuery: clearFilters ? '' : (searchQuery ?? this.searchQuery),
       errorMessage: errorMessage,
     );
   }
@@ -178,6 +196,7 @@ class DashboardState extends Equatable {
     selectedStatus,
     fromDate,
     toDate,
+    searchQuery,
     errorMessage,
   ];
 }

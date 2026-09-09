@@ -3,10 +3,47 @@ import 'dart:async';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qatrah/core/notification/notification_service.dart';
+import 'package:qatrah/features/employee/domain/entities/schedule_entity.dart';
 import 'package:qatrah/features/employee/domain/repositories/i_employee_repository.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_event.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_state.dart';
 import 'package:qatrah/features/profile/domain/repositories/i_hierarchy_repository.dart';
+
+/// Case-insensitive keyword match over the operator-visible text of a
+/// schedule: notes, pause/cancellation reasons and location names.
+bool scheduleMatchesQuery(ScheduleEntity schedule, String query) {
+  final needle = query.trim().toLowerCase();
+  if (needle.isEmpty) return true;
+  return [
+    schedule.notes,
+    schedule.cancellationReason,
+    schedule.pauseReason,
+    schedule.regionName,
+    schedule.unitName,
+    schedule.neighborhoodName,
+    schedule.zoneName,
+    schedule.fullLocationPath,
+  ].nonNulls.any((field) => field.toLowerCase().contains(needle));
+}
+
+/// Whether a schedule starts inside the picked day range. The date pickers
+/// hand back midnight, so both bounds are widened to whole days — a schedule
+/// on the "to" day itself stays in range.
+bool scheduleInDateRange(
+  ScheduleEntity schedule,
+  DateTime? from,
+  DateTime? to,
+) {
+  if (from != null) {
+    final start = DateTime(from.year, from.month, from.day);
+    if (schedule.startTime.isBefore(start)) return false;
+  }
+  if (to != null) {
+    final end = DateTime(to.year, to.month, to.day, 23, 59, 59);
+    if (schedule.startTime.isAfter(end)) return false;
+  }
+  return true;
+}
 
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   DashboardBloc(this._repository, this._hierarchyRepository)
@@ -24,6 +61,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     on<FilterStatusChanged>(_onFilterStatus);
     on<FilterFromDateChanged>(_onFromDateChanged);
     on<FilterToDateChanged>(_onToDateChanged);
+    on<FilterSearchChanged>(_onFilterSearch);
     on<ResetFilters>(_onResetFilters);
     on<StartScheduleEvent>(_onStartSchedule);
     on<EndScheduleEvent>(_onEndSchedule);
@@ -184,15 +222,21 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
           .toList();
     }
 
-    if (currentState.fromDate != null) {
+    if (currentState.fromDate != null || currentState.toDate != null) {
       filtered = filtered
-          .where((s) => s.startTime.isAfter(currentState.fromDate!))
+          .where(
+            (s) => scheduleInDateRange(
+              s,
+              currentState.fromDate,
+              currentState.toDate,
+            ),
+          )
           .toList();
     }
 
-    if (currentState.toDate != null) {
+    if (currentState.searchQuery.trim().isNotEmpty) {
       filtered = filtered
-          .where((s) => s.endTime.isBefore(currentState.toDate!))
+          .where((s) => scheduleMatchesQuery(s, currentState.searchQuery))
           .toList();
     }
 
@@ -343,6 +387,14 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   ) {
     final newState = state.copyWith(toDate: event.date);
     emit(_applyFiltersLocally(newState));
+  }
+
+  void _onFilterSearch(
+    FilterSearchChanged event,
+    Emitter<DashboardState> emit,
+  ) {
+    if (event.query == state.searchQuery) return;
+    emit(_applyFiltersLocally(state.copyWith(searchQuery: event.query)));
   }
 
   Future<void> _onResetFilters(

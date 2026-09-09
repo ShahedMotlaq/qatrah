@@ -1920,6 +1920,7 @@
     "postpone": "Postpone",
     "postponeReasonLabel": "Postponement reason",
     "durationIndicatorLabel": "Duration indicator",
+    "searchSchedulesHint": "Search by notes or location",
 
     "durationHours": "{count} hours",
     "@durationHours": { "placeholders": { "count": { "type": "int" } } },

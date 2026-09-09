@@ -1918,6 +1918,7 @@
     "postpone": "تأجيل",
     "postponeReasonLabel": "سبب التأجيل",
     "durationIndicatorLabel": "مؤشر مدة الوقت",
+    "searchSchedulesHint": "ابحث بالملاحظات أو اسم الموقع",
 
     "durationHours": "{count} ساعة",
     "@durationHours": { "placeholders": { "count": { "type": "int" } } },

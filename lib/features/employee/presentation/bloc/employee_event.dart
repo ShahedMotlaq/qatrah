@@ -44,6 +44,15 @@ class FilterToDateChanged extends DashboardEvent {
   final DateTime? date;
 }
 
+/// Free-text search over notes, reasons and location names.
+class FilterSearchChanged extends DashboardEvent {
+  const FilterSearchChanged(this.query);
+  final String query;
+
+  @override
+  List<Object?> get props => [query];
+}
+
 class ResetFilters extends DashboardEvent {}
 
 class StartScheduleEvent extends DashboardEvent {
