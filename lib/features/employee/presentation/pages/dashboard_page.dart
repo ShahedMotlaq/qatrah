@@ -10,12 +10,13 @@ import 'package:qatrah/core/widgets/appbar/qatrah_appbar_widget.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_bloc.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_event.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_state.dart';
+import 'package:qatrah/features/employee/presentation/widgets/active_pumping_cards_widget.dart';
 import 'package:qatrah/features/employee/presentation/widgets/dashboard_filter_button_widget.dart';
+import 'package:qatrah/features/employee/presentation/widgets/dashboard_reset_filters_fab_widget.dart';
 import 'package:qatrah/features/employee/presentation/widgets/dashboard_section_header_widget.dart';
-import 'package:qatrah/features/employee/presentation/widgets/dashboard_stats_grid_widget.dart';
 import 'package:qatrah/features/employee/presentation/widgets/dashboard_table_list_widget.dart';
 import 'package:qatrah/l10n/gen/app_localizations.dart';
-import 'package:qatrah/features/employee/presentation/widgets/active_pumping_cards_widget.dart';
+
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
 
@@ -44,6 +45,12 @@ class DashboardPage extends StatelessWidget {
             appBar: QatrahAppBarWidget(
               title: Text(l10n.dashboard),
               actions: const [DashboardFilterButtonWidget()],
+            ),
+            // The navbar shell extends its body behind the bottom bar, so lift
+            // the FAB clear of it (bar 80.h + 8 margin top and bottom).
+            floatingActionButton: Padding(
+              padding: EdgeInsets.only(bottom: 96.h),
+              child: const DashboardResetFiltersFabWidget(),
             ),
             body: AppBackground(
               child: Stack(

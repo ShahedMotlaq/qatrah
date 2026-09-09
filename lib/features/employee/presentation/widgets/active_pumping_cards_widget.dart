@@ -38,7 +38,7 @@ class ActiveAndNextPumpingCardsWidget extends StatelessWidget {
                 width: double.infinity,
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF2E7D32), // الأخضر الداكن الأنيق
+                  color: theme.colorScheme.primary, // أخضر الهوية الأساسي
                   borderRadius: BorderRadius.circular(16.r),
                 ),
                 child: Column(
@@ -48,7 +48,10 @@ class ActiveAndNextPumpingCardsWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10.w,
+                            vertical: 4.h,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(20.r),
@@ -102,14 +105,17 @@ class ActiveAndNextPumpingCardsWidget extends StatelessWidget {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: activeSchedule != null
-                                ? () => ScheduleConfirmationDialogs.showEndConfirmation(
-                              context,
-                              scheduleId: activeSchedule.id,
-                            )
+                                ? () =>
+                                      ScheduleConfirmationDialogs.showEndConfirmation(
+                                        context,
+                                        scheduleId: activeSchedule.id,
+                                      )
                                 : null,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFC62828), // أحمر زر الإيقاف
-                              foregroundColor: Colors.white,
+                              // زر الإيقاف: أبيض بنص أخضر الهوية بدل الأحمر
+                              backgroundColor: Colors.white,
+                              foregroundColor: theme.colorScheme.primary,
+                              disabledBackgroundColor: Colors.white70,
                               elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.r),
@@ -121,26 +127,38 @@ class ActiveAndNextPumpingCardsWidget extends StatelessWidget {
                         12.horizontalSpace,
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: activeSchedule != null && activeSchedule.status.toUpperCase() == 'PAUSED'
-                                ? () => ScheduleConfirmationDialogs.showResumeConfirmation(
-                              context,
-                              scheduleId: activeSchedule.id,
-                            )
+                            onPressed:
+                                activeSchedule != null &&
+                                    activeSchedule.status.toUpperCase() ==
+                                        'PAUSED'
+                                ? () =>
+                                      ScheduleConfirmationDialogs.showResumeConfirmation(
+                                        context,
+                                        scheduleId: activeSchedule.id,
+                                      )
                                 : activeSchedule != null
-                                ? () => ScheduleConfirmationDialogs.showPauseConfirmation(
-                              context,
-                              scheduleId: activeSchedule.id,
-                            )
+                                ? () =>
+                                      ScheduleConfirmationDialogs.showPauseConfirmation(
+                                        context,
+                                        scheduleId: activeSchedule.id,
+                                      )
                                 : null,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              foregroundColor: const Color(0xFF2E7D32),
+                              // الإيقاف المؤقت ثانوي: مفرّغ بحدود بيضاء
+                              backgroundColor: Colors.transparent,
+                              foregroundColor: Colors.white,
+                              disabledForegroundColor: Colors.white54,
                               elevation: 0,
+                              side: const BorderSide(color: Colors.white),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.r),
                               ),
                             ),
-                            child: Text(activeSchedule?.status.toUpperCase() == 'PAUSED' ? 'استئناف' : 'إيقاف مؤقت'),
+                            child: Text(
+                              activeSchedule?.status.toUpperCase() == 'PAUSED'
+                                  ? 'استئناف'
+                                  : 'إيقاف مؤقت',
+                            ),
                           ),
                         ),
                       ],
