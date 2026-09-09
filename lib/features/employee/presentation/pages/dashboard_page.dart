@@ -15,7 +15,7 @@ import 'package:qatrah/features/employee/presentation/widgets/dashboard_section_
 import 'package:qatrah/features/employee/presentation/widgets/dashboard_stats_grid_widget.dart';
 import 'package:qatrah/features/employee/presentation/widgets/dashboard_table_list_widget.dart';
 import 'package:qatrah/l10n/gen/app_localizations.dart';
-
+import 'package:qatrah/features/employee/presentation/widgets/active_pumping_cards_widget.dart';
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
 
@@ -59,7 +59,9 @@ class DashboardPage extends StatelessWidget {
                         SliverList(
                           delegate: SliverChildListDelegate.fixed([
                             14.verticalSpace,
-                            const DashboardStatsGridWidget(),
+                            // البطاقات الجديدة (الخضراء والبرتقالية) في الأعلى
+                            const ActiveAndNextPumpingCardsWidget(),
+                            // const DashboardStatsGridWidget(),
                             14.verticalSpace,
                             Padding(
                               padding: const EdgeInsets.symmetric(

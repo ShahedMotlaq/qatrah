@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qatrah/core/extensions/theme_extension.dart';
-import 'package:qatrah/core/widgets/appbar/curved_appbar_shape_widget.dart';
 
 class QatrahAppBarWidget extends StatelessWidget
     implements PreferredSizeWidget {
@@ -34,12 +33,11 @@ class QatrahAppBarWidget extends StatelessWidget
       actions: actions,
       centerTitle: centerTitle,
       backgroundColor: backgroundColor ?? theme.primaryColor,
-      shape: CurvedAppBarShape(),
       elevation: elevation,
       shadowColor: theme.shadowColor.withValues(alpha: .2),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 6);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
