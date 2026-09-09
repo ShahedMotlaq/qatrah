@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:qatrah/core/extensions/context_l10n.dart';
 import 'package:qatrah/core/widgets/app_icon_widget.dart';
-import 'package:qatrah/core/widgets/buttons/app_button_widget.dart';
 import 'package:qatrah/core/widgets/formField_wrappers/app_data_picker_widget.dart';
 import 'package:qatrah/core/widgets/formField_wrappers/app_dropdown_widget.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_bloc.dart';
@@ -46,7 +45,6 @@ class DashboardStatusDateFiltersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final theme = Theme.of(context);
 
     return BlocBuilder<DashboardBloc, DashboardState>(
       builder: (context, state) {
@@ -93,17 +91,6 @@ class DashboardStatusDateFiltersWidget extends StatelessWidget {
                 ),
               ],
             ),
-            if (state.activeFilterCount > 0) ...[
-              12.verticalSpace,
-              AppButton(
-                onPressed: () => bloc.add(ResetFilters()),
-                text: l10n.resetFilter,
-                backgroundColor: theme.colorScheme.surface,
-                icon: const AppIconWidget(
-                  icon: HugeIcons.strokeRoundedConfiguration02,
-                ),
-              ),
-            ],
           ],
         );
       },

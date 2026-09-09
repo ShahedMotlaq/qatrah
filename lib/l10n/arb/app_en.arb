@@ -1921,6 +1921,7 @@
     "postponeReasonLabel": "Postponement reason",
     "durationIndicatorLabel": "Duration indicator",
     "searchSchedulesHint": "Search by notes or location",
+    "applyFilters": "Apply",
 
     "durationHours": "{count} hours",
     "@durationHours": { "placeholders": { "count": { "type": "int" } } },

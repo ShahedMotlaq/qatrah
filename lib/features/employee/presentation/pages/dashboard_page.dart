@@ -10,7 +10,7 @@ import 'package:qatrah/core/widgets/appbar/qatrah_appbar_widget.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_bloc.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_event.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_state.dart';
-import 'package:qatrah/features/employee/presentation/widgets/dashboard_filters_widget.dart';
+import 'package:qatrah/features/employee/presentation/widgets/dashboard_filter_button_widget.dart';
 import 'package:qatrah/features/employee/presentation/widgets/dashboard_section_header_widget.dart';
 import 'package:qatrah/features/employee/presentation/widgets/dashboard_stats_grid_widget.dart';
 import 'package:qatrah/features/employee/presentation/widgets/dashboard_table_list_widget.dart';
@@ -41,7 +41,10 @@ class DashboardPage extends StatelessWidget {
         },
         child: Builder(
           builder: (innerContext) => Scaffold(
-            appBar: QatrahAppBarWidget(title: Text(l10n.dashboard)),
+            appBar: QatrahAppBarWidget(
+              title: Text(l10n.dashboard),
+              actions: const [DashboardFilterButtonWidget()],
+            ),
             body: AppBackground(
               child: Stack(
                 children: [
@@ -67,15 +70,8 @@ class DashboardPage extends StatelessWidget {
                                   color: theme.colorScheme.onPrimary,
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: const Column(
-                                  children: [
-                                    DashboardSectionHeaderWidget(),
-                                    Padding(
-                                      padding: EdgeInsets.all(16),
-                                      child: DashboardFiltersWidget(),
-                                    ),
-                                  ],
-                                ),
+                                // Filters moved into the AppBar sheet.
+                                child: const DashboardSectionHeaderWidget(),
                               ),
                             ),
                             14.verticalSpace,

@@ -33,7 +33,9 @@ class DashboardSectionHeaderWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: theme.colorScheme.primary,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+        // Full radius: the filter panel that used to sit under this header
+        // now lives in the AppBar sheet, so the header is the whole card.
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

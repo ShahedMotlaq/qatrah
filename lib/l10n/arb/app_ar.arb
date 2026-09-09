@@ -1919,6 +1919,7 @@
     "postponeReasonLabel": "سبب التأجيل",
     "durationIndicatorLabel": "مؤشر مدة الوقت",
     "searchSchedulesHint": "ابحث بالملاحظات أو اسم الموقع",
+    "applyFilters": "تطبيق",
 
     "durationHours": "{count} ساعة",
     "@durationHours": { "placeholders": { "count": { "type": "int" } } },
