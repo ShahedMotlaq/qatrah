@@ -178,19 +178,4 @@ class ApiService {
     if (errObj is Failure) return errObj;
     return ServerFailure.fromDioError(error);
   }
-
-  /// get absolute url
-  Future<Response<dynamic>> getAbsoluteUrl(String url) async {
-    final dio = Dio(
-      BaseOptions(
-        followRedirects: true,
-        validateStatus: (_) => true,
-        headers: const {
-          'Accept': 'application/json',
-        },
-      ),
-    );
-
-    return dio.get(url);
-  }
 }

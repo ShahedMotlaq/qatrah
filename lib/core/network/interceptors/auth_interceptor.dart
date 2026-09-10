@@ -52,7 +52,7 @@ class AuthInterceptor extends Interceptor {
   // Single-flight slot. While a refresh is running, every other caller — a
   // concurrent 401 in [onError] OR ensureValidSession via [refreshSession] —
   // awaits this *same* future instead of starting its own. This is the fix for
-  // Keycloak refresh-token rotation: two parallel refreshes would each spend
+  // refresh-token rotation: two parallel refreshes would each spend
   // the same refresh token, and the loser receives a 401 on an already-rotated
   // token, wrongly tearing down a perfectly good session.
   Future<_RefreshOutcomeResult>? _inFlightRefresh;
@@ -187,7 +187,6 @@ class AuthInterceptor extends Interceptor {
       ApiEndpoints.register,
       ApiEndpoints.sendOtp,
       ApiEndpoints.verifyOtp,
-      ApiEndpoints.keycloakLogoutUrl,
     ];
 
     return authPaths.any((p) => path.contains(p));
@@ -353,7 +352,7 @@ class AuthInterceptor extends Interceptor {
     try {
       // Funnel through the shared single flight. Concurrent 401s — and any
       // ensureValidSession refresh racing from the router/splash — all await
-      // this one refresh, so the rotating Keycloak refresh token is spent
+      // this one refresh, so the rotating refresh token is spent
       // exactly once. Each caller then retries its OWN original request with
       // the shared new token.
       AppLogger.debug('[AUTH INTERCEPTOR] Attempting to refresh token...');

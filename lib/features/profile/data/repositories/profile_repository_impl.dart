@@ -19,13 +19,8 @@ class ProfileRepositoryImpl implements IProfileRepository {
   @override
   Future<Either<Failure, UserEntity>> getProfile() async {
     try {
-      final role = await _secureStorage.getRole();
-      final isEmployee =
-          role == 'OPERATOR' || role == 'ADMIN' || role == 'EMPLOYEE';
       final responseData = await _apiService.get(
-        endPoint: isEmployee
-            ? ApiEndpoints.keycloakCurrentUser
-            : ApiEndpoints.currentUser,
+        endPoint: ApiEndpoints.currentUser,
       );
       final userJson = _unwrapUser(responseData);
       final mergedJson = await _mergeWithStoredData(userJson);

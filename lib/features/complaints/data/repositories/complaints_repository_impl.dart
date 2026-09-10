@@ -60,9 +60,10 @@ class ComplaintsRepositoryImpl implements IComplaintsRepository {
         );
       }
 
-      final profile = await _apiService.get(
-        endPoint: ApiEndpoints.keycloakCurrentUser,
-      );
+      final me = await _apiService.get(endPoint: ApiEndpoints.currentUser);
+      final profile = me['data'] is Map<String, dynamic>
+          ? me['data'] as Map<String, dynamic>
+          : me;
 
       final complaintsMap = <int, ComplaintEntity>{};
       // ponytail: client-side merge of N region queries on one cursor. We page

@@ -99,27 +99,9 @@ class AuthRemoteDataSource {
     );
   }
 
-  /// Legacy Keycloak logout URL. Kept for compatibility with old auth flows.
-  Future<dynamic> getLogoutUrl(String redirectUri) async {
-    return _apiService.get(
-      endPoint: ApiEndpoints.keycloakLogoutUrl,
-      queryParameters: {'redirectUri': redirectUri},
-    );
-  }
-
-  /// Open logout URL
-  Future<dynamic> openLogoutUrl(String url) async {
-    return _apiService.getAbsoluteUrl(url);
-  }
-
-  /// Fetch current user profile.
-  /// Employees use the Keycloak `/me` endpoint, while citizens use `/users/me`.
-  Future<Map<String, dynamic>> getCurrentUser({bool isEmployee = false}) async {
-    return _apiService.get(
-      endPoint: isEmployee
-          ? ApiEndpoints.keycloakCurrentUser
-          : ApiEndpoints.currentUser,
-    );
+  /// Fetch current user profile (all roles).
+  Future<Map<String, dynamic>> getCurrentUser() async {
+    return _apiService.get(endPoint: ApiEndpoints.currentUser);
   }
 
   /// Update FCM token for push notifications

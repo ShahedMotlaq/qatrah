@@ -283,13 +283,7 @@ class AuthRepositoryImpl implements IAuthRepository {
   Future<Either<Failure, UserEntity>> getCurrentUser() async {
     try {
       final storedRole = await _secureStorage.getRole();
-      final isEmployee =
-          storedRole == 'OPERATOR' ||
-          storedRole == 'ADMIN' ||
-          storedRole == 'EMPLOYEE';
-      final response = await _remoteDataSource.getCurrentUser(
-        isEmployee: isEmployee,
-      );
+      final response = await _remoteDataSource.getCurrentUser();
       AppLogger.debug('GetCurrentUser Response: $response');
 
       final responseRole = response['role']?.toString();

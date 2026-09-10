@@ -10,13 +10,10 @@ class ApiEndpoints {
   static const String employeeLogout = '/auth/staff/logout';
   static const String register = '/auth/citizen/register';
   static const String forgetPassword = '/auth/forget_password';
-  static const keycloakLogoutUrl = '/auth/keycloak/logout-url';
-  static const String validateToken = '/auth/keycloak/validate';
 
   //OTP
   static const String sendOtp = '/auth/otp/send';
   static const String verifyOtp = '/auth/otp/verify';
-  static const String keycloakCurrentUser = '/auth/keycloak/me';
 
   //Location Hierarchy
   static const String getRegions = '/regions';
