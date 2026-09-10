@@ -103,6 +103,12 @@ class CustomBottomNavBarWidget extends StatelessWidget {
         index: 0,
         currentIndex: state.currentTabIndex,
       ),
+      CustomNavItemWidget(
+        icon: HugeIcons.strokeRoundedAnalytics01,
+        label: l10n.statistics,
+        index: 1,
+        currentIndex: state.currentTabIndex,
+      ),
       // Notification tab with badge
       BlocBuilder<NotificationsCubit, notif_state.NotificationsState>(
         buildWhen: (prev, curr) => _unreadCount(prev) != _unreadCount(curr),
@@ -112,7 +118,7 @@ class CustomBottomNavBarWidget extends StatelessWidget {
           return CustomNavItemWidget(
             icon: HugeIcons.strokeRoundedNotification02,
             label: l10n.notificationsTab,
-            index: 1,
+            index: 2,
             currentIndex: state.currentTabIndex,
             badgeCount: unreadCount > 0 ? unreadCount : null,
           );
@@ -125,7 +131,7 @@ class CustomBottomNavBarWidget extends StatelessWidget {
         CustomNavItemWidget(
           icon: HugeIcons.strokeRoundedMailSend02,
           label: l10n.complaints,
-          index: 2,
+          index: 3,
           currentIndex: state.currentTabIndex,
         ),
       );
@@ -135,7 +141,7 @@ class CustomBottomNavBarWidget extends StatelessWidget {
       CustomNavItemWidget(
         icon: HugeIcons.strokeRoundedSettings01,
         label: l10n.settings,
-        index: isAdmin ? 3 : 2,
+        index: isAdmin ? 4 : 3,
         currentIndex: state.currentTabIndex,
       ),
     );

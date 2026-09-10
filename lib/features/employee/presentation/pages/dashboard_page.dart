@@ -68,7 +68,6 @@ class DashboardPage extends StatelessWidget {
                             14.verticalSpace,
                             // البطاقات الجديدة (الخضراء والبرتقالية) في الأعلى
                             const ActiveAndNextPumpingCardsWidget(),
-                            // const DashboardStatsGridWidget(),
                             14.verticalSpace,
                             Padding(
                               padding: const EdgeInsets.symmetric(

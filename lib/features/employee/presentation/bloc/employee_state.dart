@@ -21,10 +21,6 @@ class DashboardState extends Equatable {
     this.isFilterNeighborhoodsLoading = false,
     this.isFilterZonesLoading = false,
     this.isSuccess = false,
-    this.totalSchedules = 0,
-    this.activePumping = 0,
-    this.scheduledPumping = 0,
-    this.pausedPumping = 0,
     this.selectedRegion,
     this.selectedUnit,
     this.selectedNeighborhood,
@@ -57,11 +53,6 @@ class DashboardState extends Equatable {
   final bool isFilterZonesLoading;
 
   final bool isSuccess;
-
-  final int totalSchedules;
-  final int activePumping;
-  final int scheduledPumping;
-  final int pausedPumping;
 
   // Selected Filters
   final LocationLookupEntity? selectedRegion;
@@ -107,10 +98,6 @@ class DashboardState extends Equatable {
     bool? isFilterNeighborhoodsLoading,
     bool? isFilterZonesLoading,
     bool? isSuccess,
-    int? totalSchedules,
-    int? activePumping,
-    int? scheduledPumping,
-    int? pausedPumping,
     LocationLookupEntity? selectedRegion,
     LocationLookupEntity? selectedUnit,
     LocationLookupEntity? selectedNeighborhood,
@@ -144,10 +131,6 @@ class DashboardState extends Equatable {
           isFilterNeighborhoodsLoading ?? this.isFilterNeighborhoodsLoading,
       isFilterZonesLoading: isFilterZonesLoading ?? this.isFilterZonesLoading,
       isSuccess: isSuccess ?? this.isSuccess,
-      totalSchedules: totalSchedules ?? this.totalSchedules,
-      activePumping: activePumping ?? this.activePumping,
-      scheduledPumping: scheduledPumping ?? this.scheduledPumping,
-      pausedPumping: pausedPumping ?? this.pausedPumping,
       selectedRegion: clearFilters
           ? null
           : (selectedRegion ?? this.selectedRegion),
@@ -185,10 +168,6 @@ class DashboardState extends Equatable {
     isFilterNeighborhoodsLoading,
     isFilterZonesLoading,
     isSuccess,
-    totalSchedules,
-    activePumping,
-    scheduledPumping,
-    pausedPumping,
     selectedRegion,
     selectedUnit,
     selectedNeighborhood,

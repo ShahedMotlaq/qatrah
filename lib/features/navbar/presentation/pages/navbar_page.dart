@@ -11,6 +11,7 @@ import 'package:qatrah/core/widgets/app_loading_widget.dart';
 import 'package:qatrah/core/widgets/appdialog/dynamic_confirm_dialog.dart';
 import 'package:qatrah/features/complaints/presentation/pages/complaints_page.dart';
 import 'package:qatrah/features/employee/presentation/pages/dashboard_page.dart';
+import 'package:qatrah/features/employee/presentation/pages/statistics_page.dart';
 import 'package:qatrah/features/home/presentation/pages/home_page.dart';
 import 'package:qatrah/features/navbar/presentation/bloc/navbar_bloc.dart';
 import 'package:qatrah/features/navbar/presentation/bloc/navbar_event.dart';
@@ -174,8 +175,10 @@ class _NavbarPageState extends State<NavbarPage> {
 
   List<Widget> _buildChildren(bool isEmployee) {
     if (isEmployee) {
+      // Order must match CustomBottomNavBarWidget._buildEmployeeNavItems.
       final children = <Widget>[
         const DashboardPage(),
+        const StatisticsPage(tabIndex: 1),
         const NotificationsPage(),
       ];
       if (_isAdmin) {

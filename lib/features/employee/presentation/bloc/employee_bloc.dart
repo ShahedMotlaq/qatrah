@@ -45,6 +45,22 @@ bool scheduleInDateRange(
   return true;
 }
 
+/// Push `type`s that mean a schedule's pumping state changed server-side.
+const pumpingChangeTypes = {
+  'SCHEDULE_CANCELLED',
+  'PUMPING_CANCELLED',
+  'PUMPING_STARTED',
+  'PUMPING_ENDED',
+  'PUMPING_START',
+  'PUMPING_STOP',
+  'PUMPING_PAUSED',
+  'PUMPING_RESUMED',
+  'SCHEDULE_UPDATED',
+  'SCHEDULE_ACTIVATED',
+  'SCHEDULE_SHIFTED',
+  'PUMPING_SHIFTED',
+};
+
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   DashboardBloc(this._repository, this._hierarchyRepository)
     : super(const DashboardState()) {
@@ -82,24 +98,9 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   final IHierarchyRepository _hierarchyRepository;
   StreamSubscription<RemoteMessage>? _notificationSubscription;
 
-  static const _pumpingChangeTypes = {
-    'SCHEDULE_CANCELLED',
-    'PUMPING_CANCELLED',
-    'PUMPING_STARTED',
-    'PUMPING_ENDED',
-    'PUMPING_START',
-    'PUMPING_STOP',
-    'PUMPING_PAUSED',
-    'PUMPING_RESUMED',
-    'SCHEDULE_UPDATED',
-    'SCHEDULE_ACTIVATED',
-    'SCHEDULE_SHIFTED',
-    'PUMPING_SHIFTED',
-  };
-
   void _onPushNotification(RemoteMessage message) {
     final type = (message.data['type'] ?? '').toString().toUpperCase();
-    if (_pumpingChangeTypes.contains(type)) {
+    if (pumpingChangeTypes.contains(type)) {
       final scheduleId = int.tryParse(
         message.data['scheduleId']?.toString() ?? '',
       );
@@ -163,16 +164,6 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
               isLoading: false,
               regions: regionsList,
               allSchedules: schedulesList,
-              totalSchedules: schedulesList.length,
-              activePumping: schedulesList
-                  .where((s) => s.status == 'ACTIVE')
-                  .length,
-              scheduledPumping: schedulesList
-                  .where((s) => s.status == 'SCHEDULED')
-                  .length,
-              pausedPumping: schedulesList
-                  .where((s) => s.status == 'PAUSED')
-                  .length,
             );
             emit(_applyFiltersLocally(newState));
           },
@@ -427,18 +418,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         final updated = state.allSchedules
             .map((s) => s.id == event.id ? s.copyWith(status: 'ACTIVE') : s)
             .toList();
-        emit(
-          _applyFiltersLocally(
-            state.copyWith(
-              allSchedules: updated,
-              activePumping: updated.where((s) => s.status == 'ACTIVE').length,
-              scheduledPumping: updated
-                  .where((s) => s.status == 'SCHEDULED')
-                  .length,
-              pausedPumping: updated.where((s) => s.status == 'PAUSED').length,
-            ),
-          ),
-        );
+        emit(_applyFiltersLocally(state.copyWith(allSchedules: updated)));
         add(LoadDashboardData());
       },
     );
@@ -455,18 +435,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         final updated = state.allSchedules
             .map((s) => s.id == event.id ? s.copyWith(status: 'COMPLETED') : s)
             .toList();
-        emit(
-          _applyFiltersLocally(
-            state.copyWith(
-              allSchedules: updated,
-              activePumping: updated.where((s) => s.status == 'ACTIVE').length,
-              scheduledPumping: updated
-                  .where((s) => s.status == 'SCHEDULED')
-                  .length,
-              pausedPumping: updated.where((s) => s.status == 'PAUSED').length,
-            ),
-          ),
-        );
+        emit(_applyFiltersLocally(state.copyWith(allSchedules: updated)));
         add(LoadDashboardData());
       },
     );
@@ -494,15 +463,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
                   : s,
             )
             .toList();
-        emit(
-          _applyFiltersLocally(
-            state.copyWith(
-              allSchedules: updated,
-              activePumping: updated.where((s) => s.status == 'ACTIVE').length,
-              pausedPumping: updated.where((s) => s.status == 'PAUSED').length,
-            ),
-          ),
-        );
+        emit(_applyFiltersLocally(state.copyWith(allSchedules: updated)));
         add(LoadDashboardData());
       },
     );
@@ -526,15 +487,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
                   : s,
             )
             .toList();
-        emit(
-          _applyFiltersLocally(
-            state.copyWith(
-              allSchedules: updated,
-              activePumping: updated.where((s) => s.status == 'ACTIVE').length,
-              pausedPumping: updated.where((s) => s.status == 'PAUSED').length,
-            ),
-          ),
-        );
+        emit(_applyFiltersLocally(state.copyWith(allSchedules: updated)));
         add(LoadDashboardData());
       },
     );
@@ -561,18 +514,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
                   : s,
             )
             .toList();
-        emit(
-          _applyFiltersLocally(
-            state.copyWith(
-              allSchedules: updated,
-              activePumping: updated.where((s) => s.status == 'ACTIVE').length,
-              scheduledPumping: updated
-                  .where((s) => s.status == 'SCHEDULED')
-                  .length,
-              pausedPumping: updated.where((s) => s.status == 'PAUSED').length,
-            ),
-          ),
-        );
+        emit(_applyFiltersLocally(state.copyWith(allSchedules: updated)));
         add(LoadDashboardData());
       },
     );
