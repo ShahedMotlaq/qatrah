@@ -1862,6 +1862,8 @@
     "professionalScope": "النطاق المهني",
     "personalAddress": "العنوان الشخصي",
     "adminGlobalAccessDescription": "لديك صلاحية وصول كاملة لجميع المناطق والوحدات.",
+    "inactive": "غير نشط",
+    "assignedUnits": "الوحدات المسندة",
     "name": "الاسم",
     "call": "اتصال",
     "complainantInfo": "معلومات مقدّم الشكوى",

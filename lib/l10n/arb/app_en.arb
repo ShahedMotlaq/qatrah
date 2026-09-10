@@ -1864,6 +1864,8 @@
     "professionalScope": "Professional scope",
     "personalAddress": "Personal address",
     "adminGlobalAccessDescription": "You have full access to all regions and units.",
+    "inactive": "Inactive",
+    "assignedUnits": "Assigned units",
     "name": "Name",
     "call": "Call",
     "complainantInfo": "Complainant info",

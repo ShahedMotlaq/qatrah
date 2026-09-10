@@ -11,6 +11,7 @@ import 'package:qatrah/core/widgets/app_icon_widget.dart';
 import 'package:qatrah/core/widgets/appbar/qatrah_appbar_widget.dart';
 import 'package:qatrah/core/widgets/appdialog/showApp_bottom_sheet_widget.dart';
 import 'package:qatrah/core/widgets/no_internet_widget.dart';
+import 'package:qatrah/features/auth/domain/entities/assigned_region_entity.dart';
 import 'package:qatrah/features/auth/domain/entities/user_entity.dart';
 import 'package:qatrah/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:qatrah/features/profile/presentation/bloc/profile_event.dart';
@@ -19,6 +20,7 @@ import 'package:qatrah/features/profile/presentation/widgets/edit_location_botto
 import 'package:qatrah/features/profile/presentation/widgets/edit_name_bottom_sheet.dart';
 import 'package:qatrah/features/profile/presentation/widgets/location_card_widget.dart';
 import 'package:qatrah/features/profile/presentation/widgets/profile_error_message.dart';
+import 'package:qatrah/features/profile/presentation/widgets/profile_info_card_widget.dart';
 import 'package:qatrah/features/profile/presentation/widgets/user_card_widget.dart';
 import 'package:qatrah/l10n/gen/app_localizations.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -107,6 +109,16 @@ class ProfilePage extends StatelessWidget {
   ) {
     final user = state.user;
     final isLoading = user == null;
+    final assignedGroups = user != null && user.isEmployee
+        ? _assignedGroups(user)
+        : const <AssignedRegionEntity>[];
+    // Operators without a watched location are fully described by their
+    // assigned units card, so the location section would only say "none".
+    final showRoleSection =
+        !state.isEmployee ||
+        (user?.isAdmin ?? false) ||
+        state.hasWatchedLocation ||
+        assignedGroups.isEmpty;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,12 +129,9 @@ class ProfilePage extends StatelessWidget {
           fullName: isLoading
               ? 'أحمد شحادة الحريري'
               : _valueOrFallback(user.fullName, l10n.fullName),
-          phoneNumber: isLoading
-              ? '0954872922'
-              : _valueOrFallback(user.phoneNumber, ''),
-          assignedUnitsSummary: (user?.isEmployee ?? false)
-              ? (user != null ? _buildAssignedUnitsSummary(user) : null)
-              : null,
+          roleLabel: _roleLabel(user?.role, l10n),
+          username: user?.username ?? '',
+          isActive: user?.active,
           onEditTap: isLoading
               ? () {}
               : user.isCitizen
@@ -144,20 +153,78 @@ class ProfilePage extends StatelessWidget {
                 }
               : null,
         ),
-        16.verticalSpace,
         28.verticalSpace,
-
-        // ── Single info section (header + one white card) ──
-        // Same shape for every role; only the title and the card content
-        // differ (citizen default location / operator watched location /
-        // admin full-access statement).
-        _SectionHeader(title: _sectionTitle(user, l10n)),
+        _SectionHeader(title: l10n.accountGroup),
         10.verticalSpace,
-        _buildRoleSection(context, state, l10n),
+        _buildAccountCard(user, l10n),
+
+        // Role-specific card: citizen default location / operator watched
+        // location / admin full-access statement.
+        if (showRoleSection) ...[
+          24.verticalSpace,
+          _SectionHeader(title: _sectionTitle(user, l10n)),
+          10.verticalSpace,
+          _buildRoleSection(context, state, l10n),
+        ],
+
+        if (assignedGroups.isNotEmpty) ...[
+          24.verticalSpace,
+          _SectionHeader(title: l10n.professionalScope),
+          10.verticalSpace,
+          ProfileInfoCard(
+            title: l10n.assignedUnits,
+            icon: HugeIcons.strokeRoundedBuilding03,
+            child: _AssignedUnitsList(groups: assignedGroups),
+          ),
+        ],
 
         32.verticalSpace,
       ],
     );
+  }
+
+  /// Identity + account state straight from `/users/me`. While loading, the
+  /// placeholder values give the skeleton realistic row widths.
+  Widget _buildAccountCard(UserEntity? user, AppLocalizations l10n) {
+    final isActive = user?.active ?? true;
+    return ProfileInfoCard(
+      title: l10n.personalInformation,
+      icon: HugeIcons.strokeRoundedUserAccount,
+      rows: [
+        if (user == null || user.username.trim().isNotEmpty)
+          (
+            icon: HugeIcons.strokeRoundedUser,
+            label: l10n.username,
+            value: user?.username.trim() ?? 'username',
+          ),
+        if (user == null || user.phoneNumber.trim().isNotEmpty)
+          (
+            icon: HugeIcons.strokeRoundedSmartPhone01,
+            label: l10n.phoneNumber,
+            value: user?.phoneNumber.trim() ?? '0954872922',
+          ),
+        (
+          icon: HugeIcons.strokeRoundedUserShield01,
+          label: l10n.role,
+          value: _roleLabel(user?.role, l10n),
+        ),
+        (
+          icon: isActive
+              ? HugeIcons.strokeRoundedUserCheck01
+              : HugeIcons.strokeRoundedUserBlock01,
+          label: l10n.status,
+          value: isActive ? l10n.active : l10n.inactive,
+        ),
+      ],
+    );
+  }
+
+  String _roleLabel(String? role, AppLocalizations l10n) {
+    return switch (role?.toUpperCase()) {
+      'ADMIN' => l10n.admin,
+      'OPERATOR' => l10n.operator,
+      _ => l10n.citizen,
+    };
   }
 
   /// Title shown above the single white card, per role.
@@ -191,20 +258,6 @@ class ProfilePage extends StatelessWidget {
           neighborhood: state.watchedNeighborhood?.name ?? l10n.notSpecified,
           zone: state.watchedZone?.name ?? l10n.notSpecified,
           onTap: () => _openLocationEditor(context),
-        );
-      }
-      // Operators usually have multiple assigned units, not a single watched
-      // location. Show those instead of "no area assigned".
-      final assignedSummary = user != null
-          ? _buildAssignedUnitsSummary(user)
-          : null;
-      if (assignedSummary != null && assignedSummary.trim().isNotEmpty) {
-        return LocationCardWidget(
-          title: l10n.watchedLocation,
-          region: l10n.notSpecified,
-          unit: assignedSummary,
-          neighborhood: l10n.notSpecified,
-          zone: l10n.notSpecified,
         );
       }
       return _CardEmptyState(
@@ -353,16 +406,22 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  String? _buildAssignedUnitsSummary(UserEntity user) {
-    if (user.assignedUnitNames.isNotEmpty) {
-      return user.assignedUnitNames.join(', ');
+  /// Assigned units grouped by region. Falls back to one untitled group when
+  /// the backend sent units without region info (or only bare unit IDs, as
+  /// restored from storage by the profile repository).
+  List<AssignedRegionEntity> _assignedGroups(UserEntity user) {
+    if (user.assignedRegions.isNotEmpty) return user.assignedRegions;
+    if (user.assignedUnits.isEmpty && user.assignedUnitNames.isEmpty) {
+      return const [];
     }
-
-    if (user.assignedUnits.isEmpty) {
-      return null;
-    }
-
-    return user.assignedUnits.join(', ');
+    return [
+      AssignedRegionEntity(
+        regionId: 0,
+        regionName: '',
+        unitIds: user.assignedUnits,
+        unitNames: user.assignedUnitNames,
+      ),
+    ];
   }
 
   String _valueOrFallback(String? value, String fallback) {
@@ -389,6 +448,83 @@ class _SectionHeader extends StatelessWidget {
           color: theme.colorScheme.onSurfaceVariant,
           letterSpacing: 0.3,
         ),
+      ),
+    );
+  }
+}
+
+class _AssignedUnitsList extends StatelessWidget {
+  const _AssignedUnitsList({required this.groups});
+
+  final List<AssignedRegionEntity> groups;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Padding(
+      padding: EdgeInsets.fromLTRB(14.w, 6.h, 14.w, 6.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (final (i, group) in groups.indexed) ...[
+            if (i > 0) 14.verticalSpace,
+            if (group.regionName.isNotEmpty) ...[
+              Row(
+                children: [
+                  AppIconWidget(
+                    icon: HugeIcons.strokeRoundedMaps,
+                    size: 16.sp,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                  8.horizontalSpace,
+                  Expanded(
+                    child: Text(
+                      group.regionName,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: theme.colorScheme.onSurface,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              8.verticalSpace,
+            ],
+            Wrap(
+              spacing: 8.w,
+              runSpacing: 8.h,
+              children: [
+                for (final unit
+                    in group.unitNames.isNotEmpty
+                        ? group.unitNames
+                        : group.unitIds.map((id) => '#$id'))
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 12.w,
+                      vertical: 6.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primary.withValues(alpha: 0.08),
+                      borderRadius: BorderRadius.circular(20.r),
+                      border: Border.all(
+                        color: theme.colorScheme.primary.withValues(
+                          alpha: 0.2,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      unit,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ],
+        ],
       ),
     );
   }
