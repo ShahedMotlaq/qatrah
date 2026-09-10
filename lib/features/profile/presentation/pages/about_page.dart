@@ -1,13 +1,39 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:qatrah/core/extensions/context_l10n.dart';
 import 'package:qatrah/core/widgets/app_background_widget.dart';
 import 'package:qatrah/core/widgets/app_icon_widget.dart';
 import 'package:qatrah/core/widgets/appbar/qatrah_appbar_widget.dart';
 
-class AboutPage extends StatelessWidget {
+class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
+
+  @override
+  State<AboutPage> createState() => _AboutPageState();
+}
+
+class _AboutPageState extends State<AboutPage> {
+  String _version = '';
+  String _buildNumber = '';
+
+  @override
+  void initState() {
+    super.initState();
+    unawaited(_loadVersion());
+  }
+
+  Future<void> _loadVersion() async {
+    final info = await PackageInfo.fromPlatform();
+    if (!mounted) return;
+    setState(() {
+      _version = info.version;
+      _buildNumber = info.buildNumber;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,18 +101,11 @@ class AboutPage extends StatelessWidget {
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
                     ),
-                    16.verticalSpace,
-                    _InfoRow(
-                      label: l10n.version,
-                      value: '1.0.0',
-                    ),
-                    _InfoRow(
-                      label: l10n.profile,
-                      value: l10n.completed,
-                    ),
                   ],
                 ),
               ),
+              20.verticalSpace,
+              _VersionCard(version: _version, buildNumber: _buildNumber),
             ],
           ),
         ),
@@ -95,34 +114,62 @@ class AboutPage extends StatelessWidget {
   }
 }
 
-class _InfoRow extends StatelessWidget {
-  const _InfoRow({required this.label, required this.value});
+/// The version, given its own card so it is the thing you notice on this
+/// screen — support asks for it constantly.
+class _VersionCard extends StatelessWidget {
+  const _VersionCard({required this.version, required this.buildNumber});
 
-  final String label;
-  final String value;
+  final String version;
+  final String buildNumber;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.l10n;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h),
-      child: Row(
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 16.r),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.primary.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(20.r),
+        border: Border.all(
+          color: theme.colorScheme.primary.withValues(alpha: 0.25),
+        ),
+      ),
+      child: Column(
         children: [
-          Expanded(
-            child: Text(
-              label,
-              style: theme.textTheme.bodyMedium?.copyWith(
+          AppIconWidget(
+            icon: HugeIcons.strokeRoundedInformationCircle,
+            size: 22.sp,
+            color: theme.colorScheme.primary,
+          ),
+          8.verticalSpace,
+          Text(
+            l10n.version,
+            style: theme.textTheme.labelMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+              letterSpacing: 0.5,
+            ),
+          ),
+          6.verticalSpace,
+          // Skeleton dash until PackageInfo resolves, so the card never jumps.
+          Text(
+            version.isEmpty ? '—' : version,
+            style: theme.textTheme.displaySmall?.copyWith(
+              color: theme.colorScheme.primary,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          if (buildNumber.isNotEmpty) ...[
+            4.verticalSpace,
+            Text(
+              '($buildNumber)',
+              style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
-          ),
-          Text(
-            value,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
-          ),
+          ],
         ],
       ),
     );

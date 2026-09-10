@@ -9,11 +9,15 @@ class SettingsOutlineTileWidget extends StatelessWidget {
     required this.icon,
     required this.onTap,
     super.key,
+    this.subtitle,
   });
 
   final String title;
   final List<List> icon;
   final VoidCallback onTap;
+
+  /// Optional second line under [title] — e.g. the signed-in user's role.
+  final String? subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +43,29 @@ class SettingsOutlineTileWidget extends StatelessWidget {
             ),
             16.horizontalSpace,
             Expanded(
-              child: Text(
-                title,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  if (subtitle != null && subtitle!.isNotEmpty) ...[
+                    2.verticalSpace,
+                    Text(
+                      subtitle!,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ],
               ),
             ),
             Icon(

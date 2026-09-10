@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,17 +7,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:qatrah/core/auth/biometric_service.dart';
 import 'package:qatrah/core/auth/secure_auth_storage.dart';
 import 'package:qatrah/core/auth/sign_out.dart';
 import 'package:qatrah/core/constants/app_assets.dart';
 import 'package:qatrah/core/constants/app_constants.dart';
 import 'package:qatrah/core/extensions/context_l10n.dart';
-import 'package:qatrah/core/notification/notification_service.dart';
+import 'package:qatrah/core/local_storage/secure_storage.dart';
 import 'package:qatrah/core/routing/routes.dart';
 import 'package:qatrah/core/service_locator/service_locator.dart';
-import 'package:qatrah/core/services/settings_storage_service.dart';
 import 'package:qatrah/core/widgets/app_background_widget.dart';
 import 'package:qatrah/core/widgets/app_icon_widget.dart';
 import 'package:qatrah/core/widgets/app_identity_widget.dart';
@@ -44,23 +43,57 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage>
     with WidgetsBindingObserver {
-  bool _notificationsEnabled = false;
-  bool _isCheckingNotificationPermission = true;
   bool _biometricSupported = false;
   bool _biometricEnabled = false;
   bool _showSecuritySection = false;
   bool _pinSet = false;
   String _appVersion = '';
-  final SettingsStorageService _settingsStorage =
-      getIt<SettingsStorageService>();
+  String _fullName = '';
+  String _role = '';
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     unawaited(_loadAppVersion());
-    unawaited(_syncNotificationPermission());
+    unawaited(_loadIdentity());
     unawaited(_loadSecurityState());
+  }
+
+  /// Reads the snapshot stored at login rather than calling the profile API —
+  /// the settings card must render offline and must not depend on a request
+  /// that can fail.
+  Future<void> _loadIdentity() async {
+    final storage = getIt<SecureStorage>();
+    final role = await storage.getRole();
+    final rawUser = await storage.getUserData();
+
+    var fullName = '';
+    if (rawUser != null && rawUser.isNotEmpty) {
+      try {
+        final decoded = jsonDecode(rawUser);
+        if (decoded is Map<String, dynamic>) {
+          fullName = (decoded['fullName'] as String? ?? '').trim();
+        }
+      } on FormatException {
+        // Corrupt snapshot: fall back to the static label.
+      }
+    }
+
+    if (!mounted) return;
+    setState(() {
+      _fullName = fullName;
+      _role = role ?? '';
+    });
+  }
+
+  String _roleLabel(AppLocalizations l10n) {
+    return switch (_role.toUpperCase()) {
+      'ADMIN' => l10n.admin,
+      'OPERATOR' => l10n.operator,
+      'CITIZEN' => l10n.citizen,
+      _ => '',
+    };
   }
 
   Future<void> _loadSecurityState() async {
@@ -129,24 +162,11 @@ class _SettingsPageState extends State<SettingsPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      unawaited(_syncNotificationPermission());
       // Re-check biometric enrollment — user may have changed phone settings.
       if (_showSecuritySection && _pinSet) {
         unawaited(_loadBiometricState());
       }
     }
-  }
-
-  Future<void> _syncNotificationPermission() async {
-    final status = await Permission.notification.status;
-    final appEnabled = await _settingsStorage.isNotificationsEnabled();
-    if (!mounted) return;
-
-    setState(() {
-      _notificationsEnabled =
-          appEnabled && (status.isGranted || status.isLimited);
-      _isCheckingNotificationPermission = false;
-    });
   }
 
   Future<void> _loadAppVersion() async {
@@ -155,42 +175,6 @@ class _SettingsPageState extends State<SettingsPage>
 
     setState(() {
       _appVersion = packageInfo.version;
-    });
-  }
-
-  Future<void> _handleNotificationToggle(bool value) async {
-    if (_isCheckingNotificationPermission) return;
-
-    if (value) {
-      final status = await Permission.notification.request();
-      if (!mounted) return;
-
-      final granted = status.isGranted || status.isLimited;
-      setState(() {
-        _notificationsEnabled = granted;
-      });
-
-      if (!granted) {
-        getIt<ToastService>().showError(
-          status.isPermanentlyDenied
-              ? context.l10n.notificationPermissionSettingsRequired
-              : context.l10n.notificationPermissionDenied,
-        );
-
-        if (status.isPermanentlyDenied) {
-          await openAppSettings();
-        }
-        return;
-      }
-
-      await getIt<NotificationService>().setNotificationsEnabled(true);
-      return;
-    }
-
-    await getIt<NotificationService>().setNotificationsEnabled(false);
-    if (!mounted) return;
-    setState(() {
-      _notificationsEnabled = false;
     });
   }
 
@@ -253,7 +237,8 @@ class _SettingsPageState extends State<SettingsPage>
               _GroupLabel(title: l10n.accountGroup),
               10.verticalSpace,
               SettingsOutlineTileWidget(
-                title: l10n.myProfile,
+                title: _fullName.isNotEmpty ? _fullName : l10n.myProfile,
+                subtitle: _roleLabel(l10n),
                 icon: HugeIcons.strokeRoundedUser03,
                 onTap: () => context.pushNamed(Routes.profile),
               ),
@@ -274,36 +259,14 @@ class _SettingsPageState extends State<SettingsPage>
                 ),
               ],
 
-              // ── Preferences ──
-              20.verticalSpace,
-              _GroupLabel(title: l10n.preferencesGroup),
-              10.verticalSpace,
-              _buildNotificationPermissionTile(theme, l10n),
-
               // ── Security ──
-              if (_showSecuritySection) ...[
+              // The notifications toggle and the set/change passcode row were
+              // removed; biometric unlock stays and needs a PIN already set.
+              if (_showSecuritySection && _pinSet && _biometricSupported) ...[
                 20.verticalSpace,
                 _GroupLabel(title: l10n.securitySection),
                 10.verticalSpace,
-                SettingsOutlineTileWidget(
-                  title: _pinSet ? l10n.changePinTitle : l10n.setPinTitle,
-                  icon: HugeIcons.strokeRoundedSquareLock02,
-                  onTap: () async {
-                    if (_pinSet) {
-                      await context.pushNamed(Routes.changePin);
-                    } else {
-                      await context.pushNamed<void>(
-                        Routes.createPin,
-                        extra: {'fromSettings': true},
-                      );
-                    }
-                    if (mounted) unawaited(_loadSecurityState());
-                  },
-                ),
-                if (_pinSet && _biometricSupported) ...[
-                  10.verticalSpace,
-                  _buildBiometricTile(theme, l10n),
-                ],
+                _buildBiometricTile(theme, l10n),
               ],
 
               // ── App ──
@@ -312,6 +275,9 @@ class _SettingsPageState extends State<SettingsPage>
               10.verticalSpace,
               SettingsOutlineTileWidget(
                 title: l10n.about,
+                subtitle: _appVersion.isEmpty
+                    ? null
+                    : '${l10n.version} $_appVersion',
                 icon: HugeIcons.strokeRoundedInformationCircle,
                 onTap: () => context.pushNamed(Routes.about),
               ),
@@ -380,58 +346,6 @@ class _SettingsPageState extends State<SettingsPage>
             activeTrackColor: theme.colorScheme.primary,
             inactiveTrackColor: theme.colorScheme.surfaceContainerHighest,
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNotificationPermissionTile(
-    ThemeData theme,
-    AppLocalizations l10n,
-  ) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.onPrimary,
-        borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(
-          color: theme.colorScheme.outline.withValues(alpha: .5),
-        ),
-      ),
-      child: Row(
-        children: [
-          const AppIconWidget(
-            icon: HugeIcons.strokeRoundedNotification03,
-          ),
-          16.horizontalSpace,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.notificationsTab,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          if (_isCheckingNotificationPermission)
-            SizedBox(
-              width: 24.r,
-              height: 24.r,
-              child: const CircularProgressIndicator(strokeWidth: 2),
-            )
-          else
-            Switch(
-              value: _notificationsEnabled,
-              onChanged: _handleNotificationToggle,
-              thumbColor: WidgetStateProperty.all(Colors.white),
-              trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
-              activeTrackColor: theme.colorScheme.primary,
-              inactiveTrackColor: theme.colorScheme.surfaceContainerHighest,
-            ),
         ],
       ),
     );

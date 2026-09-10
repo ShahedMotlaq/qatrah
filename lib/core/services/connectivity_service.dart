@@ -1,8 +1,22 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:qatrah/core/config/env.dart';
+
+/// Offline means the OS reports no usable network interface.
+///
+/// This used to additionally require reaching Cloudflare/Google DNS or an HTTP
+/// probe, and treated every failure as "no internet". On networks that block
+/// those hosts — or when a bare GET on the API base returned 5xx — the whole
+/// app reported offline while the API was perfectly reachable, which is what
+/// wedged the profile screen behind a permanent no-internet view.
+///
+/// ponytail: the interface flag is the only signal we trust. A connected
+/// network with no real route (captive portal) now surfaces as a normal API
+/// error instead of an offline screen, which is the lesser failure. Probe the
+/// app's own API here if captive portals ever need their own message.
+bool isOnlineFromConnectivity(List<ConnectivityResult> results) {
+  return results.any((result) => result != ConnectivityResult.none);
+}
 
 class ConnectivityService {
   ConnectivityService();
@@ -16,86 +30,26 @@ class ConnectivityService {
 
   Stream<bool> get statusStream => _statusController.stream;
 
-  static const _dnsTargets = [
-    'one.one.one.one',
-    'dns.google',
-    '8.8.8.8',
-  ];
-
-  static const _httpTargets = [
-    'https://www.google.com/generate_204',
-    'https://1.1.1.1/cdn-cgi/trace',
-  ];
-
   Future<void> initialize() async {
     final initialResults = await _connectivity.checkConnectivity();
-    await _emitConnectionStatus(initialResults);
+    _emitConnectionStatus(initialResults);
 
-    _subscription ??= _connectivity.onConnectivityChanged.listen((
-      results,
-    ) async {
-      await _emitConnectionStatus(results);
-    });
+    _subscription ??= _connectivity.onConnectivityChanged.listen(
+      _emitConnectionStatus,
+    );
   }
 
   Future<bool> hasInternetConnection() async {
     final results = await _connectivity.checkConnectivity();
-    return _resolveInternetAccess(results);
+    return isOnlineFromConnectivity(results);
   }
 
-  Future<void> _emitConnectionStatus(List<ConnectivityResult> results) async {
-    final isConnected = await _resolveInternetAccess(results);
+  void _emitConnectionStatus(List<ConnectivityResult> results) {
+    final isConnected = isOnlineFromConnectivity(results);
     if (_lastStatus == isConnected) return;
 
     _lastStatus = isConnected;
     _statusController.add(isConnected);
-  }
-
-  Future<bool> _resolveInternetAccess(List<ConnectivityResult> results) async {
-    final hasNetworkInterface = results.any(
-      (result) => result != ConnectivityResult.none,
-    );
-    if (!hasNetworkInterface) return false;
-
-    for (final target in _dnsTargets) {
-      try {
-        final lookup = await InternetAddress.lookup(target);
-        if (lookup.isNotEmpty && lookup.first.rawAddress.isNotEmpty) {
-          return true;
-        }
-      } on SocketException {
-        continue;
-      }
-    }
-
-    for (final url in _httpTargetsWithApiFirst()) {
-      if (await _canReachHttp(url)) return true;
-    }
-
-    return false;
-  }
-
-  Iterable<String> _httpTargetsWithApiFirst() sync* {
-    try {
-      yield Env.baseUrl;
-    } on Exception {
-      // .env may be unavailable in tests; public probes remain as fallback.
-    }
-    yield* _httpTargets;
-  }
-
-  Future<bool> _canReachHttp(String url) async {
-    final client = HttpClient()..connectionTimeout = const Duration(seconds: 5);
-    try {
-      final request = await client.getUrl(Uri.parse(url));
-      final response = await request.close();
-      await response.drain<void>();
-      return response.statusCode < 500;
-    } on Exception {
-      return false;
-    } finally {
-      client.close(force: true);
-    }
   }
 
   Future<void> dispose() async {
