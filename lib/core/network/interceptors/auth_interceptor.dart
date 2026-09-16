@@ -175,21 +175,31 @@ class AuthInterceptor extends Interceptor {
     return _cachedRefreshToken;
   }
 
-  bool _isAuthEndpoint(String path) {
-    final authPaths = <String>[
-      ApiEndpoints.citizenLogin,
-      ApiEndpoints.citizenRefresh,
-      ApiEndpoints.citizenLogout,
-      ApiEndpoints.employeeLogin,
-      ApiEndpoints.employeeLogout,
-      ApiEndpoints.forgetPassword,
-      ApiEndpoints.refresh,
-      ApiEndpoints.register,
-      ApiEndpoints.sendOtp,
-      ApiEndpoints.verifyOtp,
-    ];
+  /// Public auth routes: they carry no `Authorization` header.
+  /// `/auth/logout` is deliberately absent — it is an authenticated call
+  /// (guide 4.5) and must go out with the access token.
+  static const _publicAuthPaths = <String>[
+    ApiEndpoints.login,
+    ApiEndpoints.refresh,
+    ApiEndpoints.register,
+    ApiEndpoints.sendOtp,
+    ApiEndpoints.verifyOtp,
+  ];
 
-    return authPaths.any((p) => path.contains(p));
+  bool _isPublicAuthEndpoint(String path) =>
+      _publicAuthPaths.any(path.contains);
+
+  /// Logout joins the public auth routes in bypassing the PIN lock gate, so
+  /// signing out never requires unlocking first.
+  bool _bypassesAppLock(String path) =>
+      _isPublicAuthEndpoint(path) || path.contains(ApiEndpoints.logout);
+
+  /// Backend error `code` from the standard error body
+  /// (`{code, message, timestamp, path, details}`). Branch on this, never on
+  /// `message`.
+  static String? _errorCode(DioException err) {
+    final data = err.response?.data;
+    return data is Map ? data['code']?.toString() : null;
   }
 
   @override
@@ -201,7 +211,7 @@ class AuthInterceptor extends Interceptor {
       // Block protected requests while a lockable session is locked.
       // Auth endpoints (login/refresh/logout/OTP) bypass this gate so the
       // unlock flow itself can complete.
-      if (!_isAuthEndpoint(options.path) &&
+      if (!_bypassesAppLock(options.path) &&
           _lockState != null &&
           _authStorage != null &&
           _lockState.isLocked) {
@@ -219,7 +229,7 @@ class AuthInterceptor extends Interceptor {
         }
       }
 
-      if (!_isAuthEndpoint(options.path)) {
+      if (!_isPublicAuthEndpoint(options.path)) {
         final token = await _getToken();
 
         AppLogger.debug(
@@ -280,9 +290,10 @@ class AuthInterceptor extends Interceptor {
     final path = err.requestOptions.path;
     final statusCode = err.response?.statusCode;
 
-    // Login failures are surfaced to the caller as-is.
-    if (path.contains(ApiEndpoints.employeeLogin) ||
-        path.contains(ApiEndpoints.citizenLogin)) {
+    // Login failures (INVALID_CREDENTIALS, ACCOUNT_DISABLED,
+    // LOGIN_CHANNEL_NOT_ALLOWED …) are surfaced to the caller as-is: no
+    // session exists yet, so there is nothing to refresh or clear.
+    if (path.contains(ApiEndpoints.login)) {
       return handler.next(err);
     }
 
@@ -293,6 +304,16 @@ class AuthInterceptor extends Interceptor {
     // are. This is the root fix for employees being kicked out on a
     // role/permission mismatch.
     if (statusCode == 403) {
+      // …with one exception: LOGIN_CHANNEL_NOT_ALLOWED means this account
+      // belongs to the other client (an admin on mobile). The session can
+      // never work here, so end it and let the caller show the server's
+      // message ("Admin accounts sign in on the web dashboard").
+      if (_errorCode(err) == 'LOGIN_CHANNEL_NOT_ALLOWED') {
+        AppLogger.error(
+          '[AUTH INTERCEPTOR] LOGIN_CHANNEL_NOT_ALLOWED — clearing session',
+        );
+        await _clearAuthSession(markSessionExpired: true);
+      }
       return handler.next(err);
     }
 
@@ -321,9 +342,7 @@ class AuthInterceptor extends Interceptor {
     // ---- 401 Unauthorized: token-level problem. Try ONE silent refresh. ----
 
     // The refresh call itself returned 401 → the session is genuinely dead.
-    if (path.contains(_refreshPath) ||
-        path.contains(ApiEndpoints.citizenRefresh) ||
-        path.contains(ApiEndpoints.refresh)) {
+    if (path.contains(_refreshPath)) {
       AppLogger.error(
         '[AUTH INTERCEPTOR] Refresh request 401 — clearing session',
       );
@@ -339,6 +358,18 @@ class AuthInterceptor extends Interceptor {
         '[AUTH INTERCEPTOR] 401 after refresh — treating as authorization, '
         'session preserved',
       );
+      return handler.next(err);
+    }
+
+    // Only UNAUTHENTICATED (missing/expired/revoked access token) is
+    // refreshable. Any other 401 code — ACCOUNT_DISABLED,
+    // INVALID_CREDENTIALS — means a new access token would be rejected too.
+    final errorCode = _errorCode(err);
+    if (errorCode != null && errorCode != 'UNAUTHENTICATED') {
+      AppLogger.error(
+        '[AUTH INTERCEPTOR] 401 $errorCode — not refreshable, clearing session',
+      );
+      await _clearAuthSession(markSessionExpired: true);
       return handler.next(err);
     }
 
@@ -384,23 +415,19 @@ class AuthInterceptor extends Interceptor {
   }
 
   Future<_RefreshOutcomeResult> _refreshAccessToken(String refreshToken) async {
-    final refreshDio = Dio(_dio.options)
-      ..httpClientAdapter = _dio.httpClientAdapter;
+    // copyWith() clones the headers map, so removing the bearer here cannot
+    // touch the shared Dio instance.
+    final refreshDio = Dio(_dio.options.copyWith())
+      ..httpClientAdapter = _dio.httpClientAdapter
+      ..options.headers.remove('Authorization');
 
     try {
-      final role = await _secureStorage.getRole();
-      final refreshPath = role == 'CITIZEN'
-          ? ApiEndpoints.citizenRefresh
-          : _refreshPath;
+      // POST /auth/refresh — public route, one body field. Sending a stale
+      // bearer here would be pointless, so the header is dropped.
       final response = await refreshDio.post<Map<String, dynamic>>(
-        refreshPath,
-        data: {
-          'refreshToken': refreshToken,
-          'refresh_token': refreshToken,
-        },
-        options: Options(
-          headers: {'Content-Type': 'application/json'},
-        ),
+        _refreshPath,
+        data: {'refreshToken': refreshToken},
+        options: Options(headers: {'Content-Type': 'application/json'}),
       );
 
       if (response.statusCode != 200 || response.data is! Map) {
@@ -410,15 +437,10 @@ class AuthInterceptor extends Interceptor {
         return const _RefreshOutcomeResult(RefreshSessionOutcome.authExpired);
       }
 
+      // { "token": "…", "refreshToken": "…", "type": "Bearer" }
       final data = response.data!;
-      final accessToken =
-          (data['accessToken'] as String?) ??
-          (data['access_token'] as String?) ??
-          (data['token'] as String?);
-
-      final newRefreshToken =
-          (data['refreshToken'] as String?) ??
-          (data['refresh_token'] as String?);
+      final accessToken = data['token'] as String?;
+      final newRefreshToken = data['refreshToken'] as String?;
 
       if (accessToken == null || accessToken.isEmpty) {
         AppLogger.error(

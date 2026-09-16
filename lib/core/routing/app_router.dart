@@ -199,7 +199,7 @@ class AppRouter {
         },
       ),
 
-      // ===== App-lock flow (employee/Keycloak only) =====
+      // ===== App-lock flow (PIN/biometric sessions) =====
       GoRoute(
         path: Routes.createPin,
         name: Routes.createPin,

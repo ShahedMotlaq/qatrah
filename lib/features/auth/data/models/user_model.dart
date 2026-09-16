@@ -106,7 +106,10 @@ extension UserModelMapper on UserEntity {
           (json['userId'] as num?)?.toInt() ??
           (json['id'] as num?)?.toInt() ??
           0,
-      username: json['username'] as String? ?? '',
+      // The backend identifies accounts by phone number and returns no
+      // `username`; keep the field populated for the UI that still shows it.
+      username:
+          json['username'] as String? ?? json['phoneNumber'] as String? ?? '',
       fullName: json['fullName'] as String? ?? '',
       phoneNumber: json['phoneNumber'] as String? ?? '',
       role: json['role'] as String? ?? 'CITIZEN',

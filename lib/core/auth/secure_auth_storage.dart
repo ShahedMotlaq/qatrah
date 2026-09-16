@@ -40,21 +40,47 @@ class SecureAuthStorage {
   ];
 
   // ---- Session type ---------------------------------------------------------
-  /// 'keycloak' for employee/operator/admin, 'otp' for citizen.
+  /// [staffSession] for operator/admin, [citizenSession] for citizen.
+  static const String staffSession = 'staff';
+  static const String citizenSession = 'citizen';
+
+  /// Values written by builds that signed staff in through Keycloak and
+  /// citizens through OTP. Both now use `POST /auth/login`, so the labels are
+  /// migrated on read — see [getSessionType].
+  static const Map<String, String> _legacySessionTypes = <String, String>{
+    'keycloak': staffSession,
+    'otp': citizenSession,
+  };
+
+  /// Storage key of the Keycloak role cache that older builds wrote. Nothing
+  /// reads it any more; it is deleted when a legacy session is migrated.
+  static const String _kLegacyKeycloakRoles = 'keycloakRoles';
+
   Future<void> setSessionType(String type) =>
       _storage.setDynamicValue(_kSessionType, type);
 
-  Future<String?> getSessionType() => _storage.getDynamicValue(_kSessionType);
+  /// Reads the session type, rewriting a legacy label in place the first time
+  /// it is seen. Self-healing, so no startup migration hook is needed.
+  Future<String?> getSessionType() async {
+    final raw = await _storage.getDynamicValue(_kSessionType);
+    final migrated = _legacySessionTypes[raw];
+    if (migrated == null) return raw;
 
-  Future<bool> isKeycloakSession() async =>
-      (await getSessionType()) == 'keycloak';
+    await _storage.setDynamicValue(_kSessionType, migrated);
+    await _storage.deleteDynamicValue(_kLegacyKeycloakRoles);
+    return migrated;
+  }
 
-  Future<bool> isOtpSession() async => (await getSessionType()) == 'otp';
+  Future<bool> isStaffSession() async =>
+      (await getSessionType()) == staffSession;
+
+  Future<bool> isCitizenSession() async =>
+      (await getSessionType()) == citizenSession;
 
   /// Sessions that should use the app-lock (PIN/biometric) flow.
   Future<bool> isAppLockSession() async {
     final type = await getSessionType();
-    return type == 'keycloak' || type == 'otp';
+    return type == staffSession || type == citizenSession;
   }
 
   /// Ensure a session type exists for legacy sessions that predate the key.
@@ -64,13 +90,16 @@ class SecureAuthStorage {
     if (current != null && current.isNotEmpty) return current;
     if (role == null || role.isEmpty) return null;
 
+    // A session this old may also carry the dead Keycloak role cache.
+    await _storage.deleteDynamicValue(_kLegacyKeycloakRoles);
+
     if (role == 'EMPLOYEE' || role == 'ADMIN' || role == 'OPERATOR') {
-      await setSessionType('keycloak');
-      return 'keycloak';
+      await setSessionType(staffSession);
+      return staffSession;
     }
     if (role == 'CITIZEN') {
-      await setSessionType('otp');
-      return 'otp';
+      await setSessionType(citizenSession);
+      return citizenSession;
     }
     return null;
   }

@@ -30,7 +30,6 @@ enum DbKeys {
   assignedRegionIds, // Comma-separated list of region IDs assigned to employee
   tokenExpiry, // Access token expiration timestamp (ISO-8601)
   userData, // JSON-encoded user data
-  keycloakRoles, // JSON-encoded Keycloak roles list
   roleAttendanceAdmin, // Role flag: attendance admin
   roleAttendanceObserver, // Role flag: attendance observer
   roleSuperAdminAttend, // Role flag: super admin attend
@@ -367,14 +366,6 @@ class SecureStorage {
 
   Future<void> clearUserData() => deleteValue(DbKeys.userData);
 
-  // ---- Keycloak roles -------------------------------------------------------
-  Future<void> setKeycloakRoles(String jsonRoles) =>
-      setValue(DbKeys.keycloakRoles, jsonRoles);
-
-  Future<String?> getKeycloakRoles() => getValue(DbKeys.keycloakRoles);
-
-  Future<void> clearKeycloakRoles() => deleteValue(DbKeys.keycloakRoles);
-
   // ---- Role flags -----------------------------------------------------------
   Future<void> setRoleAttendanceAdmin(bool value) =>
       setBoolValue(DbKeys.roleAttendanceAdmin, value);
@@ -428,7 +419,6 @@ class SecureStorage {
     await setLoggedInStatus(false);
     await clearTokenExpiry();
     await clearUserData();
-    await clearKeycloakRoles();
     await deleteValue(DbKeys.roleAttendanceAdmin);
     await deleteValue(DbKeys.roleAttendanceObserver);
     await deleteValue(DbKeys.roleSuperAdminAttend);

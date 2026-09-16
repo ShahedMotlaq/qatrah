@@ -146,7 +146,7 @@ class _RegisterCitizenPageState extends State<RegisterCitizenPage> {
     setState(() => _isLoading = true);
 
     final result = await getIt<IAuthRepository>().citizenRegister(
-      username: username,
+      phoneNumber: username,
       fullName: _fullNameController.text.trim(),
       password: _passwordController.text.trim(),
     );

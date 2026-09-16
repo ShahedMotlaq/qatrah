@@ -183,6 +183,7 @@ class AppErrorMessages {
               ),
       _ErrorKind.server => l10n.serverError,
       _ErrorKind.payment => l10n.paymentError,
+      _ErrorKind.loginChannelNotAllowed => l10n.loginChannelNotAllowed,
       _ErrorKind.unknown => l10n.errorOccurred,
     };
 
@@ -201,6 +202,11 @@ class AppErrorMessages {
 
   static String unknown({String? code}) {
     return _encode(_ErrorKind.unknown, code ?? unknownCode);
+  }
+
+  /// 403 LOGIN_CHANNEL_NOT_ALLOWED — the account belongs to the other client.
+  static String loginChannelNotAllowed() {
+    return _encode(_ErrorKind.loginChannelNotAllowed, 'S7');
   }
 
   static String payment() {
@@ -244,6 +250,8 @@ class AppErrorMessages {
         _ErrorKind.rateLimited => AppErrorKind.rateLimited,
         _ErrorKind.server => AppErrorKind.server,
         _ErrorKind.payment => AppErrorKind.payment,
+        _ErrorKind.loginChannelNotAllowed =>
+          AppErrorKind.loginChannelNotAllowed,
         _ErrorKind.unknown => AppErrorKind.unknown,
       };
     }
@@ -318,6 +326,7 @@ enum AppErrorKind {
   rateLimited,
   server,
   payment,
+  loginChannelNotAllowed,
   unknown,
 }
 
@@ -333,6 +342,7 @@ enum _ErrorKind {
   rateLimited,
   server,
   payment,
+  loginChannelNotAllowed,
   unknown,
 }
 

@@ -16,18 +16,10 @@ class AuthRemoteDataSource {
   void clearAuthHeader() => _apiService.clearAuthHeader();
 
   /// Send OTP
-  Future<Map<String, dynamic>> sendOtp(
-    String phoneNumber, {
-    required bool rememberMe,
-    required String role,
-  }) async {
+  Future<Map<String, dynamic>> sendOtp(String phoneNumber) async {
     return _apiService.post(
       endPoint: ApiEndpoints.sendOtp,
-      data: {
-        'phoneNumber': InputSanitizer.sanitizeInput(phoneNumber),
-        'rememberMe': rememberMe,
-        'role': role,
-      },
+      data: {'phoneNumber': InputSanitizer.sanitizeInput(phoneNumber)},
     );
   }
 
@@ -45,16 +37,17 @@ class AuthRemoteDataSource {
     );
   }
 
-  /// Employee login
+  /// Employee login. Same route and payload as [citizenLogin] — the
+  /// response's `role` decides which experience opens.
   Future<Map<String, dynamic>> employeeLogin({
-    required String username,
+    required String phoneNumber,
     required String password,
     required bool rememberMe,
   }) async {
     return _apiService.post(
-      endPoint: ApiEndpoints.employeeLogin,
+      endPoint: ApiEndpoints.login,
       data: {
-        'username': InputSanitizer.sanitizeInput(username),
+        'phoneNumber': InputSanitizer.sanitizeInput(phoneNumber),
         'password': InputSanitizer.sanitizeInput(password),
       },
     );
@@ -62,27 +55,27 @@ class AuthRemoteDataSource {
 
   /// Citizen login
   Future<Map<String, dynamic>> citizenLogin({
-    required String username,
+    required String phoneNumber,
     required String password,
   }) async {
     return _apiService.post(
-      endPoint: ApiEndpoints.citizenLogin,
+      endPoint: ApiEndpoints.login,
       data: {
-        'username': InputSanitizer.sanitizeInput(username),
+        'phoneNumber': InputSanitizer.sanitizeInput(phoneNumber),
         'password': InputSanitizer.sanitizeInput(password),
       },
     );
   }
 
   Future<Map<String, dynamic>> citizenRegister({
-    required String username,
+    required String phoneNumber,
     required String fullName,
     required String password,
   }) async {
     return _apiService.post(
       endPoint: ApiEndpoints.register,
       data: {
-        'username': InputSanitizer.sanitizeInput(username),
+        'phoneNumber': InputSanitizer.sanitizeInput(phoneNumber),
         'fullName': InputSanitizer.sanitizeInput(fullName),
         'password': InputSanitizer.sanitizeInput(password),
       },

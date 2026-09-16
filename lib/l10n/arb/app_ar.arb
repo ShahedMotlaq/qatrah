@@ -1200,6 +1200,9 @@
     "forbidden": "ليس لديك صلاحية للوصول إلى هذه البيانات",
     "@forbidden": { "description": "Forbidden error 403" },
 
+    "loginChannelNotAllowed": "هذا الحساب يسجّل الدخول من لوحة التحكم على الويب، وليس من تطبيق الهاتف",
+    "@loginChannelNotAllowed": { "description": "403 LOGIN_CHANNEL_NOT_ALLOWED" },
+
     "serviceUnavailable": "الخدمة غير متوفرة حالياً",
     "@serviceUnavailable": { "description": "Service unavailable error 404" },
 

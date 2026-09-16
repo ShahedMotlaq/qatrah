@@ -5,12 +5,8 @@ import 'package:qatrah/core/errors/failures.dart';
 import 'package:qatrah/features/auth/domain/entities/user_entity.dart';
 
 abstract class IAuthRepository {
-  /// Send OTP to phone number (citizen login - step 1)
-  Future<Either<Failure, void>> sendOtp(
-    String phoneNumber, {
-    bool rememberMe = true,
-    String role = 'CITIZEN',
-  });
+  /// Send OTP to phone number (citizen registration - step 1)
+  Future<Either<Failure, void>> sendOtp(String phoneNumber);
 
   /// Verify OTP code (citizen login - step 2)
   Future<Either<Failure, UserEntity>> verifyOtp(
@@ -18,21 +14,21 @@ abstract class IAuthRepository {
     String otpCode,
   );
 
-  /// Employee login with username and password
+  /// Operator login — phone number and password (`POST /auth/login`).
   Future<Either<Failure, UserEntity>> employeeLogin(
-    String username,
+    String phoneNumber,
     String password, {
     required bool rememberMe,
   });
 
-  /// Citizen login with username and password
+  /// Citizen login — phone number and password (`POST /auth/login`).
   Future<Either<Failure, UserEntity>> citizenLogin(
-    String username,
+    String phoneNumber,
     String password,
   );
 
   Future<Either<Failure, UserEntity>> citizenRegister({
-    required String username,
+    required String phoneNumber,
     required String fullName,
     required String password,
   });

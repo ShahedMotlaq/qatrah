@@ -23,10 +23,10 @@ final class SplashMaintenance extends SplashState {}
 
 final class SplashUnauthenticated extends SplashState {}
 
-/// Employee/Keycloak session exists with PIN already configured — show the
+/// Employee session exists with PIN already configured — show the
 /// local lock screen.
 final class SplashEmployeeLocked extends SplashState {}
 
-/// Employee/Keycloak session exists but no PIN was set yet — force PIN
+/// Employee session exists but no PIN was set yet — force PIN
 /// creation before any protected screen.
 final class SplashEmployeePinSetup extends SplashState {}

@@ -21,18 +21,10 @@ class AuthRepositoryImpl implements IAuthRepository {
   final StorageService _storageService = getIt<StorageService>();
 
   @override
-  Future<Either<Failure, void>> sendOtp(
-    String phoneNumber, {
-    bool rememberMe = true,
-    String role = 'CITIZEN',
-  }) async {
+  Future<Either<Failure, void>> sendOtp(String phoneNumber) async {
     try {
       final formattedPhone = PhoneNumberFormatter.format(phoneNumber);
-      final response = await _remoteDataSource.sendOtp(
-        formattedPhone,
-        rememberMe: rememberMe,
-        role: role,
-      );
+      final response = await _remoteDataSource.sendOtp(formattedPhone);
       AppLogger.debug('Send OTP Response: $response');
 
       final success = response['success'];
@@ -117,12 +109,12 @@ class AuthRepositoryImpl implements IAuthRepository {
 
   @override
   Future<Either<Failure, UserEntity>> citizenLogin(
-    String username,
+    String phoneNumber,
     String password,
   ) async {
     try {
       final response = await _remoteDataSource.citizenLogin(
-        username: username.trim(),
+        phoneNumber: PhoneNumberFormatter.format(phoneNumber),
         password: password.trim(),
       );
       AppLogger.debug('Citizen Login Response: $response');
@@ -161,13 +153,13 @@ class AuthRepositoryImpl implements IAuthRepository {
 
   @override
   Future<Either<Failure, UserEntity>> citizenRegister({
-    required String username,
+    required String phoneNumber,
     required String fullName,
     required String password,
   }) async {
     try {
       final response = await _remoteDataSource.citizenRegister(
-        username: username.trim(),
+        phoneNumber: PhoneNumberFormatter.format(phoneNumber),
         fullName: fullName.trim(),
         password: password.trim(),
       );
@@ -207,13 +199,13 @@ class AuthRepositoryImpl implements IAuthRepository {
 
   @override
   Future<Either<Failure, UserEntity>> employeeLogin(
-    String username,
+    String phoneNumber,
     String password, {
     required bool rememberMe,
   }) async {
     try {
       final response = await _remoteDataSource.employeeLogin(
-        username: username.trim(),
+        phoneNumber: PhoneNumberFormatter.format(phoneNumber),
         password: password.trim(),
         rememberMe: rememberMe,
       );
@@ -229,7 +221,6 @@ class AuthRepositoryImpl implements IAuthRepository {
           ...response,
           'token': tokenStr,
           'refreshToken': refreshToken,
-          'username': response['username'] ?? username.trim(),
           'role': response['role'] ?? 'OPERATOR',
         });
 
@@ -239,9 +230,6 @@ class AuthRepositoryImpl implements IAuthRepository {
           userData: user.toJson(),
           refreshToken: refreshToken?.toString(),
           expiresIn: response['expires_in'] as int?,
-          keycloakRoles: user.role == 'ADMIN' || user.role == 'OPERATOR'
-              ? [user.role]
-              : null,
         );
 
         await _remoteDataSource.updateAuthHeader(tokenStr);
@@ -262,11 +250,8 @@ class AuthRepositoryImpl implements IAuthRepository {
     try {
       final refreshToken = await _secureStorage.getRefreshToken();
       if (refreshToken != null && refreshToken.isNotEmpty) {
-        final role = await _secureStorage.getRole();
         await _remoteDataSource.logout(
-          endPoint: role == 'CITIZEN'
-              ? ApiEndpoints.citizenLogout
-              : ApiEndpoints.employeeLogout,
+          endPoint: ApiEndpoints.logout,
           refreshToken: refreshToken,
         );
       }

@@ -56,11 +56,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
       await _secureStorage.deleteCitizenPhone();
     }
 
-    final result = await _repository.sendOtp(
-      event.phoneNumber.trim(),
-      rememberMe: event.rememberMe,
-      role: event.role,
-    );
+    final result = await _repository.sendOtp(event.phoneNumber.trim());
 
     await result.fold(
       (failure) async {

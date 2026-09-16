@@ -9,7 +9,7 @@ class Routes {
   static const String loginPageEmployee = '/login_employee';
   static const String registerCitizen = '/register_citizen';
 
-  // App-lock flow (employee/Keycloak only)
+  // App-lock flow (PIN/biometric sessions)
   static const String createPin = '/auth/create_pin';
   static const String biometricSetup = '/auth/biometric_setup';
   static const String appLock = '/auth/app_lock';

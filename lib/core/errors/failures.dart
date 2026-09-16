@@ -18,12 +18,14 @@ class ServerFailure extends Failure {
     int? retryAfterSeconds;
 
     if (response is Map) {
-      final retryAfter = response['retry_after'] ?? response['retryAfter'];
-      if (retryAfter is num) {
-        retryAfterSeconds = retryAfter.toInt();
-      } else if (retryAfter is String) {
-        retryAfterSeconds = int.tryParse(retryAfter.trim());
-      }
+      // `retry_after` rides on the OTP-send body; a 429 (OTP_RATE_LIMITED)
+      // carries the wait in `details.retryAfterSeconds` instead.
+      final details = response['details'];
+      retryAfterSeconds = _asSeconds(
+        response['retry_after'] ??
+            response['retryAfter'] ??
+            (details is Map ? details['retryAfterSeconds'] : null),
+      );
 
       final err = response['error'];
       if (err is Map) {
@@ -226,10 +228,22 @@ class ServerFailure extends Failure {
     );
   }
 
+  static int? _asSeconds(dynamic value) {
+    if (value is num) return value.toInt();
+    if (value is String) return int.tryParse(value.trim());
+    return null;
+  }
+
   /// Maps backend business error codes/messages to localizable domain keys.
   /// Returns `null` when no known business code is present.
   static String? _businessErrorKey(String? code, String? msg) {
     final haystack = '${code ?? ''} ${msg ?? ''}'.toUpperCase();
+    // Wrong app for this account (403 LOGIN_CHANNEL_NOT_ALLOWED): tell the
+    // user which app to use instead of showing a wrong-password or a generic
+    // "forbidden" message.
+    if (code == 'LOGIN_CHANNEL_NOT_ALLOWED') {
+      return AppErrorMessages.loginChannelNotAllowed();
+    }
     if (haystack.contains('START_TIME_IN_FUTURE') ||
         haystack.contains('CANNOT_START_BEFORE_SCHEDULED_TIME')) {
       return 'cannotStartBeforeScheduledTime';

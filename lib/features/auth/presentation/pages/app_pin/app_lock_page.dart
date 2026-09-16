@@ -24,7 +24,7 @@ import 'package:qatrah/features/auth/presentation/widgets/app_pin/biometric_logi
 /// PIN entry is the primary unlock method. If biometric is enabled and
 /// supported, the user can launch it manually from below the PIN fields.
 /// After a successful unlock the page hands control to the [Routes.splash]
-/// which performs the Keycloak refresh + role-based routing.
+/// which performs the session refresh + role-based routing.
 class AppLockPage extends StatelessWidget {
   const AppLockPage({super.key});
 

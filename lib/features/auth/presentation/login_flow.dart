@@ -61,7 +61,9 @@ Future<void> completeLogin({
       '${isCitizen ? 'Citizen' : 'Employee'} login success: $username',
     );
     await getIt<SecureAuthStorage>().setSessionType(
-      isCitizen ? 'otp' : 'keycloak',
+      isCitizen
+          ? SecureAuthStorage.citizenSession
+          : SecureAuthStorage.staffSession,
     );
     await storage.deleteDynamicValue(AuthSessionService.pendingLogoutReasonKey);
   } catch (e) {

@@ -11,7 +11,7 @@ import 'package:qatrah/features/auth/domain/repositories/i_auth_repository.dart'
 ///
 /// Order matters. Revoking needs the refresh token, so it must happen *before*
 /// storage is cleared — the settings page used to wipe storage first and the
-/// Keycloak refresh token was then never revoked server-side.
+/// refresh token was then never revoked server-side.
 ///
 /// Nothing here may throw: every step is best-effort, because a user who taps
 /// "sign out" must end up signed out locally even if the network is down.

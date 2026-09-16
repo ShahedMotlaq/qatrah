@@ -35,7 +35,6 @@ class StorageService {
     required Map<String, dynamic> userData,
     String? refreshToken,
     int? expiresIn,
-    List<String>? keycloakRoles,
     bool? roleAttendanceAdmin,
     bool? roleAttendanceObserver,
     bool? roleSuperAdminAttend,
@@ -58,12 +57,7 @@ class StorageService {
     await _secureStorage.setRole(userType);
     await _secureStorage.setUserData(jsonEncode(userData));
 
-    // 5. Keycloak roles
-    if (keycloakRoles != null && keycloakRoles.isNotEmpty) {
-      await _secureStorage.setKeycloakRoles(jsonEncode(keycloakRoles));
-    }
-
-    // 6. Role flags
+    // 5. Role flags
     if (roleAttendanceAdmin != null) {
       await _secureStorage.setRoleAttendanceAdmin(roleAttendanceAdmin);
     }
@@ -74,7 +68,7 @@ class StorageService {
       await _secureStorage.setRoleSuperAdminAttend(roleSuperAdminAttend);
     }
 
-    // 7. Logged-in flag
+    // 6. Logged-in flag
     await _secureStorage.setLoggedInStatus(true);
   }
 
@@ -103,19 +97,6 @@ class StorageService {
       userData = null;
     }
 
-    List<String>? keycloakRoles;
-    final rolesRaw = await _secureStorage.getKeycloakRoles();
-    if (rolesRaw != null && rolesRaw.isNotEmpty) {
-      try {
-        final decoded = jsonDecode(rolesRaw);
-        if (decoded is List) {
-          keycloakRoles = decoded.cast<String>();
-        }
-      } catch (_) {
-        keycloakRoles = null;
-      }
-    }
-
     return {
       'token': token,
       'refresh_token': await _secureStorage.getRefreshToken(),
@@ -123,7 +104,6 @@ class StorageService {
           ?.toIso8601String(),
       'user_type': userType,
       'user_data': userData,
-      'keycloak_roles': keycloakRoles,
       'role_attendance_admin': await _secureStorage.getRoleAttendanceAdmin(),
       'role_attendance_observer': await _secureStorage
           .getRoleAttendanceObserver(),

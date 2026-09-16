@@ -1201,6 +1201,9 @@
     "forbidden": "You don't have permission to access this data",
     "@forbidden": { "description": "Forbidden error 403" },
 
+    "loginChannelNotAllowed": "This account signs in on the web dashboard, not on the mobile app",
+    "@loginChannelNotAllowed": { "description": "403 LOGIN_CHANNEL_NOT_ALLOWED" },
+
     "serviceUnavailable": "Service is currently unavailable",
     "@serviceUnavailable": { "description": "Service unavailable error 404" },
 

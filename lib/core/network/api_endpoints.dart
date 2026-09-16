@@ -1,19 +1,17 @@
 class ApiEndpoints {
   ApiEndpoints._();
 
-  // Auth
-  static const String employeeLogin = '/auth/staff/login';
-  static const String citizenLogin = '/auth/citizen/login';
-  static const String citizenRefresh = '/auth/citizen/refresh';
-  static const String citizenLogout = '/auth/citizen/logout';
-  static const String refresh = '/auth/staff/refresh';
-  static const String employeeLogout = '/auth/staff/logout';
+  // Auth — mobile app. CITIZEN and OPERATOR share one set of routes; the
+  // login response's `role` decides which experience to open. ADMIN signs in
+  // on the web dashboard (`/auth/admin/*`) and is not reachable from here.
+  static const String login = '/auth/login';
+  static const String refresh = '/auth/refresh';
+  static const String logout = '/auth/logout';
   static const String register = '/auth/citizen/register';
-  static const String forgetPassword = '/auth/forget_password';
 
   //OTP
-  static const String sendOtp = '/auth/otp/send';
-  static const String verifyOtp = '/auth/otp/verify';
+  static const String sendOtp = '/auth/citizen/otp/send';
+  static const String verifyOtp = '/auth/citizen/otp/verify';
 
   //Location Hierarchy
   static const String getRegions = '/regions';

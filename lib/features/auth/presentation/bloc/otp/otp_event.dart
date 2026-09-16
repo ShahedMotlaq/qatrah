@@ -6,15 +6,13 @@ part of 'otp_bloc.dart';
 abstract class OtpEvent {}
 
 class SendOtpEvent extends OtpEvent {
-  SendOtpEvent(
-    this.phoneNumber, {
-    this.rememberMe = true,
-    this.role = 'CITIZEN',
-  });
+  SendOtpEvent(this.phoneNumber, {this.rememberMe = true});
 
   final String phoneNumber;
+
+  /// Local only — whether to remember this phone on the device. The OTP
+  /// request itself sends nothing but the number.
   final bool rememberMe;
-  final String role;
 }
 
 class VerifyOtpEvent extends OtpEvent {
