@@ -11,10 +11,15 @@ import 'package:qatrah/features/home/domain/entities/area_entity.dart';
 import 'package:qatrah/features/home/domain/entities/pumping_status_entity.dart';
 import 'package:qatrah/features/home/domain/entities/schedule_entity.dart';
 import 'package:qatrah/features/home/domain/repositories/i_home_repository.dart';
+import 'package:qatrah/features/profile/domain/repositories/i_hierarchy_repository.dart';
 
 class HomeRepositoryImpl implements IHomeRepository {
-  HomeRepositoryImpl(this._apiService);
+  HomeRepositoryImpl(this._apiService, this._hierarchyRepository);
   final ApiService _apiService;
+
+  /// Areas are the location tree seen flat, so they come from the same
+  /// session cache the pickers use instead of a second /hierarchy/flat call.
+  final IHierarchyRepository _hierarchyRepository;
 
   /// In-memory pumping-status cache for non-default addresses, keyed by zone
   /// (or neighbourhood). Lets the user switch back to a recently-viewed
@@ -227,72 +232,59 @@ class HomeRepositoryImpl implements IHomeRepository {
       schedule.startTime.isAfter(DateTime.now());
 
   // 1. Fetch watched areas
+  //
+  // ponytail: the tree carries no per-user watch flag, so every area comes
+  // back unwatched — same as before, since /hierarchy/flat never sent one
+  // either. Real watch state lives in the citizen's saved locations
+  // (GET /me/locations); wire that in when the feature is picked up.
   @override
-  Future<Either<Failure, List<AreaEntity>>> getWatchedAreas() async {
-    try {
-      final dynamic response = await _apiService.get(
-        endPoint: ApiEndpoints.hierarchyFlat,
-      );
-      final data = _extractList(response);
-      return Right(
-        data
-            .map((e) => AreaModelMapper.fromJson(e as Map<String, dynamic>))
-            .toList(),
-      );
-    } catch (e) {
-      return Left(ServerFailure(AppErrorMessages.fromException(e)));
-    }
-  }
+  Future<Either<Failure, List<AreaEntity>>> getWatchedAreas() => getAllAreas();
 
-  // 2. Fetch all areas
+  // 2. Fetch all areas — the cached tree, depth-first.
   @override
   Future<Either<Failure, List<AreaEntity>>> getAllAreas() async {
-    try {
-      final response = await _apiService.get(
-        endPoint: ApiEndpoints.hierarchyFlat,
-      );
-
-      final data = response['data'] is List<dynamic>
-          ? response['data'] as List<dynamic>
-          : <dynamic>[];
-
-      final areas = data
-          .map(
-            (e) => AreaModelMapper.fromHierarchyJson(e as Map<String, dynamic>),
-          )
-          .toList();
-
-      return Right(areas);
-    } catch (e) {
-      return Left(ServerFailure(AppErrorMessages.fromException(e)));
-    }
+    final result = await _hierarchyRepository.getTree();
+    return result.map(
+      (roots) => [
+        for (final root in roots)
+          for (final node in root.flatten())
+            AreaModelMapper.fromHierarchyNode(node),
+      ],
+    );
   }
 
-  // 3. Fetch available areas (with Pagination) - Recently added
+  // 3. Fetch available areas, paged.
+  //
+  // The location endpoints return plain arrays and are never paginated, so
+  // the page and the search are applied here over the cached tree.
   @override
   Future<Either<Failure, Pagination<AreaEntity>>> getAvailableAreas({
     int page = 0,
     int size = 20,
     String? search,
   }) async {
-    try {
-      final response = await _apiService.get(
-        endPoint: ApiEndpoints.hierarchyFlat,
-        queryParameters: {
-          'page': page,
-          'size': size,
-          'search': ?search,
-        },
+    final result = await getAllAreas();
+    return result.map((all) {
+      final query = search?.trim().toLowerCase();
+      final matches = query == null || query.isEmpty
+          ? all
+          : all.where((a) => a.name.toLowerCase().contains(query)).toList();
+
+      final start = (page * size).clamp(0, matches.length);
+      final end = (start + size).clamp(0, matches.length);
+      final totalPages = size <= 0 ? 0 : (matches.length / size).ceil();
+
+      return Pagination<AreaEntity>(
+        content: matches.sublist(start, end),
+        totalElements: matches.length,
+        totalPages: totalPages,
+        currentPage: page,
+        pageSize: size,
+        isFirst: page == 0,
+        isLast: end >= matches.length,
+        isEmpty: matches.isEmpty,
       );
-      return Right(
-        Pagination.fromJson(
-          response,
-          AreaModelMapper.fromJson,
-        ),
-      );
-    } catch (e) {
-      return Left(ServerFailure(AppErrorMessages.fromException(e)));
-    }
+    });
   }
 
   // 4. Toggle watch status - Parameters corrected to be Positional

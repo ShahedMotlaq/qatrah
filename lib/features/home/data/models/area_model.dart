@@ -4,40 +4,20 @@
 // JSON mapping lives here as an extension.
 
 import 'package:qatrah/features/home/domain/entities/area_entity.dart';
+import 'package:qatrah/features/profile/domain/entities/hierarchy_node_entity.dart';
 
 extension AreaModelMapper on AreaEntity {
-  static AreaEntity fromHierarchyJson(Map<String, dynamic> json) {
+  /// One node of the cached location tree as an area. A node names itself in
+  /// [AreaEntity.name] and its ancestors in the rest; [AreaEntity.zoneName] is
+  /// only filled for an actual zone, which is the level pumping happens at.
+  static AreaEntity fromHierarchyNode(HierarchyNodeEntity node) {
     return AreaEntity(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      regionName: json['regionName'] as String? ?? '',
-      unitName: json['unitName'] as String? ?? '',
-      neighborhoodName: json['neighborhoodName'] as String? ?? '',
-      zoneName: json['zoneName'] as String? ?? '',
+      id: node.id,
+      name: node.name,
+      regionName: node.regionName ?? '',
+      unitName: node.unitName ?? '',
+      neighborhoodName: node.neighborhoodName ?? '',
+      zoneName: node.level == HierarchyLevel.zone ? node.name : '',
     );
-  }
-
-  static AreaEntity fromJson(Map<String, dynamic> json) {
-    return AreaEntity(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      regionName: json['regionName'] as String,
-      unitName: json['unitName'] as String,
-      neighborhoodName: json['neighborhoodName'] as String,
-      zoneName: json['zoneName'] as String,
-      isWatched: json['isWatched'] as bool? ?? false,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'regionName': regionName,
-      'unitName': unitName,
-      'neighborhoodName': neighborhoodName,
-      'zoneName': zoneName,
-      'isWatched': isWatched,
-    };
   }
 }

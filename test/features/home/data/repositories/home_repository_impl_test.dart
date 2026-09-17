@@ -4,13 +4,18 @@ import 'package:qatrah/core/network/api_endpoints.dart';
 import 'package:qatrah/core/network/api_service.dart';
 import 'package:qatrah/features/home/data/repositories/home_repository_impl.dart';
 import 'package:qatrah/features/home/domain/entities/pumping_status_entity.dart';
+import 'package:qatrah/features/profile/domain/repositories/i_hierarchy_repository.dart';
 
 class _MockApiService extends Mock implements ApiService {}
+
+/// Areas come from the hierarchy cache now; these tests only exercise the
+/// pumping-status paths, which never touch it.
+class _MockHierarchyRepository extends Mock implements IHierarchyRepository {}
 
 void main() {
   test('default home status includes next scheduled schedule', () async {
     final api = _MockApiService();
-    final repository = HomeRepositoryImpl(api);
+    final repository = HomeRepositoryImpl(api, _MockHierarchyRepository());
     final start = DateTime.now().add(const Duration(hours: 1));
     final end = start.add(const Duration(hours: 2));
 
@@ -50,7 +55,7 @@ void main() {
     'default home status treats paused schedule without status as paused',
     () async {
       final api = _MockApiService();
-      final repository = HomeRepositoryImpl(api);
+      final repository = HomeRepositoryImpl(api, _MockHierarchyRepository());
       final start = DateTime.now().subtract(const Duration(minutes: 10));
       final end = start.add(const Duration(hours: 2));
 
@@ -91,7 +96,7 @@ void main() {
 
   test('default home status treats temporary failure as paused', () async {
     final api = _MockApiService();
-    final repository = HomeRepositoryImpl(api);
+    final repository = HomeRepositoryImpl(api, _MockHierarchyRepository());
     final start = DateTime.now().subtract(const Duration(minutes: 10));
     final end = start.add(const Duration(hours: 2));
 

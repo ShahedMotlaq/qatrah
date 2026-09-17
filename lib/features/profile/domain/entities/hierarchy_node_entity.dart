@@ -34,6 +34,9 @@ class HierarchyNodeEntity extends Equatable {
     this.regionId,
     this.unitId,
     this.neighborhoodId,
+    this.regionName,
+    this.unitName,
+    this.neighborhoodName,
     this.children = const [],
   });
 
@@ -45,6 +48,10 @@ class HierarchyNodeEntity extends Equatable {
   final int? regionId;
   final int? unitId;
   final int? neighborhoodId;
+
+  final String? regionName;
+  final String? unitName;
+  final String? neighborhoodName;
 
   final List<HierarchyNodeEntity> children;
 
@@ -59,6 +66,13 @@ class HierarchyNodeEntity extends Equatable {
   /// The shape the existing dropdowns and breadcrumb selector consume.
   LocationLookupEntity get asLookup =>
       LocationLookupEntity(id: id, name: name);
+
+  /// This node and its whole subtree, depth-first — the same order and
+  /// content `GET /hierarchy/flat` serves, without a second request.
+  List<HierarchyNodeEntity> flatten() => [
+    this,
+    for (final child in children) ...child.flatten(),
+  ];
 
   @override
   String toString() => name;

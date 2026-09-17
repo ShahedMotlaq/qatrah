@@ -10,7 +10,7 @@ import 'package:qatrah/features/home/presentation/bloc/home_bloc.dart';
 
 void registerHomeDependencies(GetIt getIt) {
   getIt.registerLazySingleton<IHomeRepository>(
-    () => HomeRepositoryImpl(getIt()),
+    () => HomeRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton(
     () => GetWatchedAreasUseCase(getIt<IHomeRepository>()),

@@ -22,7 +22,6 @@ class ApiEndpoints {
   /// nodes whose ancestors are all active, children sorted by id.
   static const String hierarchyTree = '/hierarchy/tree';
   static const String activeRegions = '/regions/active';
-  static const String hierarchyFlat = '/hierarchy/flat';
   static String hierarchyWatch(int areaId) => '/hierarchy/$areaId/watch';
   static String activeUnitsByRegion(int regionId) =>
       '/units/region/$regionId/active';

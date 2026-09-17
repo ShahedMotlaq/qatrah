@@ -22,6 +22,9 @@ extension HierarchyNodeModelMapper on HierarchyNodeEntity {
       regionId: (json['regionId'] as num?)?.toInt(),
       unitId: (json['unitId'] as num?)?.toInt(),
       neighborhoodId: (json['neighborhoodId'] as num?)?.toInt(),
+      regionName: json['regionName']?.toString(),
+      unitName: json['unitName']?.toString(),
+      neighborhoodName: json['neighborhoodName']?.toString(),
       children: fromJsonList(json['children']),
     );
   }
