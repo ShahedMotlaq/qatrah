@@ -1804,6 +1804,23 @@
     "@updateNow": {
       "description": "زر التحديث الإجباري"
     },
+    "updateAvailableTitle": "تحديث متوفر",
+    "@updateAvailableTitle": {
+      "description": "عنوان نافذة التحديث الاختياري"
+    },
+    "updateAvailableMessage": "يتوفر إصدار جديد من التطبيق.",
+    "@updateAvailableMessage": {
+      "description": "نص نافذة التحديث الاختياري"
+    },
+    "updateAvailableVersion": "الإصدار {version}",
+    "@updateAvailableVersion": {
+      "description": "سطر رقم الإصدار في نافذة التحديث الاختياري",
+      "placeholders": { "version": { "type": "String" } }
+    },
+    "updateLater": "لاحقاً",
+    "@updateLater": {
+      "description": "زر التأجيل في نافذة التحديث الاختياري"
+    },
     "pinWeak": "هذا الرمز يسهل تخمينه. اختر رمزاً آخر.",
     "@pinWeak": {},
     "pinDigitsOnly": "يجب أن يحتوي رمز الدخول على أرقام فقط",

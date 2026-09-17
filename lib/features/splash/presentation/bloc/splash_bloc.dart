@@ -41,12 +41,21 @@ class SplashCubit extends Cubit<SplashState> {
     final versionService = getIt<VersionCheckService>();
 
     try {
-      final isMaintenance = await maintenanceService.isMaintenance();
-      if (isMaintenance) {
-        emit(SplashMaintenance());
+      // 1. Server state. Nothing else is worth asking while the API is down.
+      final serverState = await maintenanceService.fetch();
+      if (serverState.isMaintenance) {
+        emit(
+          SplashMaintenance(
+            message: serverState.message,
+            retryAfterSeconds: serverState.retryAfterSeconds,
+          ),
+        );
         return;
       }
 
+      // 2. Version policy. Only a forced update stops the launch; an
+      // available one rides along on the terminal state and is offered as a
+      // dialog once the user has landed.
       final version = await versionService.check();
       if (version.forceUpdate) {
         emit(
@@ -54,7 +63,10 @@ class SplashCubit extends Cubit<SplashState> {
         );
         return;
       }
+      final offer = version.canOfferUpdate ? version : null;
 
+      // 3. Local session. Tokens decide login screen vs. dashboard; the
+      // server has the final say in ensureValidSession below.
       final token = await secureStorage.getToken();
       final logged = await secureStorage.getLoggedInStatus();
 
@@ -62,7 +74,7 @@ class SplashCubit extends Cubit<SplashState> {
         await secureStorage.deleteDynamicValue(
           AuthSessionService.pendingLogoutReasonKey,
         );
-        emit(SplashUnauthenticated());
+        emit(SplashUnauthenticated(optionalUpdate: offer));
         return;
       }
 
@@ -75,7 +87,7 @@ class SplashCubit extends Cubit<SplashState> {
       if (lastOpenedAt != null &&
           now.difference(lastOpenedAt) >= _sessionInactivityLimit) {
         await sessionService.clearSession(markSessionExpired: true);
-        emit(SplashUnauthenticated());
+        emit(SplashUnauthenticated(optionalUpdate: offer));
         return;
       }
 
@@ -102,13 +114,14 @@ class SplashCubit extends Cubit<SplashState> {
             const AuthSessionResult(status: AuthSessionStatus.unauthenticated),
       );
       if (!sessionResult.isAuthenticated) {
-        emit(SplashUnauthenticated());
+        emit(SplashUnauthenticated(optionalUpdate: offer));
         return;
       }
 
       emit(
         SplashAuthenticated(
           isEmployee: sessionResult.isEmployee,
+          optionalUpdate: offer,
         ),
       );
     } catch (e) {

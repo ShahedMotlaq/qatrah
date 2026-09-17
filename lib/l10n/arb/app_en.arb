@@ -1805,6 +1805,23 @@
     "@updateNow": {
       "description": "Force update primary button"
     },
+    "updateAvailableTitle": "Update Available",
+    "@updateAvailableTitle": {
+      "description": "Optional update dialog title"
+    },
+    "updateAvailableMessage": "A new version of the app is available.",
+    "@updateAvailableMessage": {
+      "description": "Optional update dialog body"
+    },
+    "updateAvailableVersion": "Version {version}",
+    "@updateAvailableVersion": {
+      "description": "Optional update dialog version line",
+      "placeholders": { "version": { "type": "String" } }
+    },
+    "updateLater": "Later",
+    "@updateLater": {
+      "description": "Optional update dialog dismiss button"
+    },
     "pinWeak": "This PIN is too easy to guess. Choose another.",
     "@pinWeak": { "description": "Error for weak PIN (sequential, repeating, common)" },
     "pinDigitsOnly": "PIN must contain numbers only",

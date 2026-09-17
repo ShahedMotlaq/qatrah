@@ -90,8 +90,13 @@ class AppRouter {
         path: Routes.maintenance,
         name: Routes.maintenance,
         builder: (context, state) {
+          final extra = state.extra is Map
+              ? state.extra! as Map<String, dynamic>
+              : const <String, dynamic>{};
           return MaintenancePage(
             onRetry: () => context.goNamed(Routes.splash),
+            message: extra['message'] as String?,
+            retryAfterSeconds: extra['retryAfterSeconds'] as int?,
           );
         },
       ),
