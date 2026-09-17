@@ -32,6 +32,11 @@ class ApiEndpoints {
   static const String updateProfile = '/users/me/profile';
   static const String currentUser = '/users/me';
   static const String addresses = '/addresses';
+
+  /// `/me/locations/{id}/pumping-stream` — the citizen's live pumping feed for
+  /// one saved location (SSE). Staff have no equivalent stream.
+  static String pumpingStream(int locationId) =>
+      '/me/locations/$locationId/pumping-stream';
   static const String serverState = '/server-state';
   static const String appVersion = '/app-version';
 

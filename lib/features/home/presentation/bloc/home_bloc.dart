@@ -15,6 +15,7 @@ import 'package:qatrah/features/home/domain/usecases/get_watched_areas_usecase.d
 import 'package:qatrah/features/home/domain/usecases/toggle_area_selection_usecase.dart';
 import 'package:qatrah/features/home/presentation/bloc/home_event.dart';
 import 'package:qatrah/features/home/presentation/bloc/home_state.dart';
+import 'package:qatrah/features/home/data/realtime/pumping_stream_service.dart';
 import 'package:qatrah/features/home/presentation/bloc/selected_home_address.dart';
 import 'package:qatrah/features/profile/domain/repositories/i_hierarchy_repository.dart';
 import 'package:qatrah/features/profile/domain/repositories/i_profile_repository.dart';
@@ -28,6 +29,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required IHierarchyRepository hierarchyRepository,
     required IProfileRepository profileRepository,
     required SecureStorage secureStorage,
+    required PumpingStreamService pumpingStream,
   }) : _getWatchedAreas = getWatchedAreas,
        _getPumpingStatus = getPumpingStatus,
        _getUpcomingSchedules = getUpcomingSchedules,
@@ -35,6 +37,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
        _hierarchyRepository = hierarchyRepository,
        _profileRepository = profileRepository,
        _secureStorage = secureStorage,
+       _pumpingStream = pumpingStream,
        super(const HomeState()) {
     // Subscribe to profile updates from other screens
     _profileSubscription = ProfileEventBus.instance.onProfileUpdated.listen(
@@ -80,6 +83,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final SecureStorage _secureStorage;
   StreamSubscription<void>? _profileSubscription;
   StreamSubscription<RemoteMessage>? _notificationSubscription;
+
+  final PumpingStreamService _pumpingStream;
+  StreamSubscription<PumpingStreamMessage>? _pumpingSubscription;
+
+  /// The location the stream is currently open on, so re-resolving the same
+  /// address doesn't tear down a healthy connection.
+  int? _streamedLocationId;
 
   static const _pumpingChangeTypes = {
     'SCHEDULE_CANCELLED',
@@ -1162,9 +1172,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     );
   }
 
+  /// The live stream follows whichever location the home screen is showing,
+  /// so it is (re)opened from the single place that resolves it.
+  void _watchPumpingStream(int locationId) {
+    if (_streamedLocationId == locationId) return;
+    _streamedLocationId = locationId;
+
+    _pumpingSubscription?.cancel();
+    _pumpingSubscription = _pumpingStream.watch(locationId).listen(
+      (message) {
+        // Payloads carry status and version, not times, and a resync means we
+        // missed too much to patch — both cases end in the same refetch. The
+        // silent variant keeps the screen from flashing a spinner on every
+        // event.
+        AppLogger.debug('[SSE] ${message.runtimeType} for $locationId');
+        _getPumpingStatus.clearCache();
+        add(SilentRefreshHomeDataEvent());
+      },
+      onError: (Object e) => AppLogger.error('[SSE] home stream error: $e'),
+    );
+  }
+
   Future<SelectedHomeAddress?> _loadSelectedHomeAddress() async {
     final addressId = await _secureStorage.getSelectedHomeAddressId();
     if (addressId == null) return null;
+
+    _watchPumpingStream(addressId);
 
     final regionId = await _secureStorage.getSelectedHomeRegionId();
     final unitId = await _secureStorage.getSelectedHomeUnitId();
@@ -1206,6 +1239,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Future<void> close() {
     _profileSubscription?.cancel();
     _notificationSubscription?.cancel();
+    // Closing the stream frees a server connection and stops the radio work.
+    _pumpingSubscription?.cancel();
+    _pumpingStream.close();
     return super.close();
   }
 }
