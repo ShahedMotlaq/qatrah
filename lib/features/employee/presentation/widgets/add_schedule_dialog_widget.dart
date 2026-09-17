@@ -186,10 +186,8 @@ class _AddScheduleDialogWidgetState extends State<AddScheduleDialogWidget> {
       _selectedNeighborhood = null;
       _selectedZone = null;
     });
-    if (val != null && _selectedRegion != null) {
-      context.read<DashboardBloc>().add(
-        FetchNeighborhoodsEvent(_selectedRegion!.id),
-      );
+    if (val != null) {
+      context.read<DashboardBloc>().add(FetchNeighborhoodsEvent(val.id));
     }
   }
 
@@ -198,10 +196,8 @@ class _AddScheduleDialogWidgetState extends State<AddScheduleDialogWidget> {
       _selectedNeighborhood = val;
       _selectedZone = null;
     });
-    if (val != null && _selectedRegion != null) {
-      context.read<DashboardBloc>().add(
-        FetchZonesEvent(_selectedRegion!.id),
-      );
+    if (val != null) {
+      context.read<DashboardBloc>().add(FetchZonesEvent(val.id));
     }
   }
 
@@ -338,10 +334,9 @@ class _AddScheduleDialogWidgetState extends State<AddScheduleDialogWidget> {
       if (_selectedRegion != null &&
           _selectedUnit == null &&
           availableUnits.length == 1) {
-        setState(() => _selectedUnit = availableUnits.first);
-        context.read<DashboardBloc>().add(
-          FetchNeighborhoodsEvent(_selectedRegion!.id),
-        );
+        final unit = availableUnits.first;
+        setState(() => _selectedUnit = unit);
+        context.read<DashboardBloc>().add(FetchNeighborhoodsEvent(unit.id));
         return;
       }
 
@@ -349,10 +344,9 @@ class _AddScheduleDialogWidgetState extends State<AddScheduleDialogWidget> {
           _selectedNeighborhood == null &&
           !state.isNeighborhoodsLoading &&
           state.neighborhoods.length == 1) {
-        setState(() => _selectedNeighborhood = state.neighborhoods.first);
-        context.read<DashboardBloc>().add(
-          FetchZonesEvent(_selectedRegion!.id),
-        );
+        final neighborhood = state.neighborhoods.first;
+        setState(() => _selectedNeighborhood = neighborhood);
+        context.read<DashboardBloc>().add(FetchZonesEvent(neighborhood.id));
         return;
       }
 

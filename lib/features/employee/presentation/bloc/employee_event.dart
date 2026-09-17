@@ -126,13 +126,13 @@ class FetchUnitsEvent extends DashboardEvent {
 }
 
 class FetchNeighborhoodsEvent extends DashboardEvent {
-  const FetchNeighborhoodsEvent(this.regionId);
-  final int regionId;
+  const FetchNeighborhoodsEvent(this.unitId);
+  final int unitId;
 }
 
 class FetchZonesEvent extends DashboardEvent {
-  const FetchZonesEvent(this.regionId);
-  final int regionId;
+  const FetchZonesEvent(this.neighborhoodId);
+  final int neighborhoodId;
 }
 
 class ResetHierarchyEvent extends DashboardEvent {}

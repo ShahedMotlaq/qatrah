@@ -275,18 +275,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
     }
 
-    // Level 3: Fetch neighborhoods (always, so dropdown is populated)
-    if (regionId != null && regionId > 0) {
-      final nhResult = await _hierarchyRepository.getNeighborhoods(regionId);
+    // Level 3: Fetch neighborhoods of the saved unit
+    if (expectedUnitId != null && expectedUnitId > 0) {
+      final nhResult = await _hierarchyRepository.getNeighborhoods(
+        expectedUnitId,
+      );
       nhResult.fold(
         (f) => emit(state.copyWith(errorMessage: f.errMessage)),
         (neighborhoods) => emit(state.copyWith(neighborhoods: neighborhoods)),
       );
     }
 
-    // Level 4: Fetch zones (always, so dropdown is populated)
-    if (regionId != null && regionId > 0) {
-      final zonesResult = await _hierarchyRepository.getZones(regionId);
+    // Level 4: Fetch zones of the saved neighborhood
+    if (expectedNeighborhoodId != null && expectedNeighborhoodId > 0) {
+      final zonesResult = await _hierarchyRepository.getZones(
+        expectedNeighborhoodId,
+      );
       zonesResult.fold(
         (f) => emit(state.copyWith(errorMessage: f.errMessage)),
         (zones) => emit(state.copyWith(zones: zones)),
@@ -944,9 +948,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ),
     );
 
-    final result = await _hierarchyRepository.getNeighborhoods(
-      state.selectedRegionId ?? 0,
-    );
+    final result = await _hierarchyRepository.getNeighborhoods(event.unitId);
     result.fold(
       (f) => emit(
         state.copyWith(
@@ -989,9 +991,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ),
     );
 
-    final result = await _hierarchyRepository.getZones(
-      state.selectedRegionId ?? 0,
-    );
+    final result = await _hierarchyRepository.getZones(event.neighborhoodId);
     result.fold(
       (f) => emit(
         state.copyWith(isZonesLoading: false, errorMessage: f.errMessage),

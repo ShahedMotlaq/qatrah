@@ -18,7 +18,9 @@ class ApiEndpoints {
   static const String getUnits = '/units';
   static const String getNeighborhoods = '/neighborhoods';
   static const String getZones = '/zones';
-  static const String getHierarchy = '/hierarchy';
+  /// `/hierarchy/tree` — the whole location tree in one request: only active
+  /// nodes whose ancestors are all active, children sorted by id.
+  static const String hierarchyTree = '/hierarchy/tree';
   static const String activeRegions = '/regions/active';
   static const String hierarchyFlat = '/hierarchy/flat';
   static String hierarchyWatch(int areaId) => '/hierarchy/$areaId/watch';

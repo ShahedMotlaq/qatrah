@@ -332,8 +332,9 @@ class EditProfileBloc extends Bloc<ProfileEvent, EditProfileState> {
         ),
       );
 
-      // Pass regionId instead of unitId per the updated API
-      final res = await _getNeighborhoods(state.selectedRegionId ?? val.id);
+      // Scoped to the chosen unit: the tree knows which neighborhoods belong
+      // to it, so the picker no longer lists the whole region's.
+      final res = await _getNeighborhoods(val.id);
       res.fold(
         (f) => emit(
           state.copyWith(
@@ -389,8 +390,8 @@ class EditProfileBloc extends Bloc<ProfileEvent, EditProfileState> {
         ),
       );
 
-      // Pass regionId instead of neighborhoodId per the updated API
-      final res = await _getZones(state.selectedRegionId ?? val.id);
+      // Scoped to the chosen neighborhood, for the same reason.
+      final res = await _getZones(val.id);
       res.fold(
         (f) => emit(
           state.copyWith(isZonesLoading: false, errorMessage: f.errMessage),

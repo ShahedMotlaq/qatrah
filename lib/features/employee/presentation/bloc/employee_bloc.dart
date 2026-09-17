@@ -286,9 +286,8 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
 
     if (event.unit != null && state.selectedRegion != null) {
       emit(newState.copyWith(isFilterNeighborhoodsLoading: true));
-      // Pass regionId, not unitId -- API uses region/{id} for neighborhoods
       final neighborhoodsRes = await _hierarchyRepository.getNeighborhoods(
-        state.selectedRegion!.id,
+        event.unit!.id,
       );
       neighborhoodsRes.fold(
         (f) => emit(
@@ -326,7 +325,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     if (event.neighborhood != null && state.selectedRegion != null) {
       emit(newState.copyWith(isFilterZonesLoading: true));
       final zonesRes = await _hierarchyRepository.getZones(
-        state.selectedRegion!.id,
+        event.neighborhood!.id,
       );
       zonesRes.fold(
         (f) => emit(
@@ -703,7 +702,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         zones: [],
       ),
     );
-    final result = await _hierarchyRepository.getNeighborhoods(event.regionId);
+    final result = await _hierarchyRepository.getNeighborhoods(event.unitId);
     result.fold(
       (f) => emit(
         state.copyWith(
@@ -722,7 +721,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     Emitter<DashboardState> emit,
   ) async {
     emit(state.copyWith(isZonesLoading: true, zones: []));
-    final result = await _hierarchyRepository.getZones(event.regionId);
+    final result = await _hierarchyRepository.getZones(event.neighborhoodId);
     result.fold(
       (f) => emit(
         state.copyWith(isZonesLoading: false, errorMessage: f.errMessage),
