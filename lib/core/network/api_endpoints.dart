@@ -55,6 +55,11 @@ class ApiEndpoints {
   static String notificationsPublicByRegion(int regionId) =>
       '/notifications/public/region/$regionId';
 
+  /// `/staff/pumping-runs` — the list staff actually operate on: one row per
+  /// pumping occurrence. Server-scoped (an operator sees only their assigned
+  /// units), paginated, and filterable by `zoneId`.
+  static const String staffPumpingRuns = '/staff/pumping-runs';
+
   // ── Schedules ────────────────────────────────────────────────────────────
 
   /// `/schedules` — returns ALL schedules (global view for admins).

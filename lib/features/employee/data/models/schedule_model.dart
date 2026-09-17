@@ -5,9 +5,28 @@
 
 import 'package:qatrah/features/employee/domain/entities/schedule_entity.dart';
 
+/// First non-empty value among [keys].
+String? _firstString(Map<String, dynamic> json, List<String> keys) {
+  for (final key in keys) {
+    final raw = json[key]?.toString();
+    if (raw != null && raw.isNotEmpty) return raw;
+  }
+  return null;
+}
+
 extension ScheduleModelMapper on ScheduleEntity {
+  /// Reads a `PumpingRunDto` — the staff-facing row. The older schedule field
+  /// names are kept as fallbacks so a cached or legacy payload still parses.
   static ScheduleEntity fromJson(Map<String, dynamic> json) {
-    final actualEndTimeRaw = json['actualEndTime']?.toString();
+    final startRaw = _firstString(json, ['plannedStartAt', 'startTime']);
+    final endRaw = _firstString(json, ['plannedEndAt', 'endTime']);
+    if (startRaw == null || endRaw == null) {
+      throw FormatException('run $json has no planned start/end');
+    }
+    final actualEndTimeRaw = _firstString(json, [
+      'actualEndAt',
+      'actualEndTime',
+    ]);
     final parsedStatus = json['status'] as String? ?? 'SCHEDULED';
 
     return ScheduleEntity(
@@ -21,8 +40,8 @@ extension ScheduleModelMapper on ScheduleEntity {
       neighborhoodName: json['neighborhoodName'] as String?,
       zoneName: json['zoneName'] as String?,
       fullLocationPath: json['fullLocationPath'] as String? ?? '',
-      startTime: DateTime.parse(json['startTime'] as String),
-      endTime: DateTime.parse(json['endTime'] as String),
+      startTime: DateTime.parse(startRaw),
+      endTime: DateTime.parse(endRaw),
       actualEndTime: actualEndTimeRaw != null
           ? DateTime.parse(actualEndTimeRaw)
           : null,

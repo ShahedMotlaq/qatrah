@@ -5,6 +5,7 @@ import 'package:qatrah/core/errors/failures.dart';
 import 'package:qatrah/core/network/api_endpoints.dart';
 import 'package:qatrah/core/network/api_service.dart';
 import 'package:qatrah/core/utils/input_sanitizer.dart';
+import 'package:qatrah/core/utils/pagination.dart';
 import 'package:qatrah/core/utils/user_helper.dart';
 import 'package:qatrah/features/employee/data/models/schedule_model.dart';
 import 'package:qatrah/features/employee/domain/entities/schedule_entity.dart';
@@ -25,29 +26,26 @@ class DashboardRepositoryImpl implements IDashboardRepository {
     int? page,
   }) async {
     try {
-      final isAdmin = await UserHelper.isAdmin();
-      final endPoint = zoneId != null
-          ? ApiEndpoints.schedulesByZone(zoneId)
-          : (isAdmin ? ApiEndpoints.schedules : ApiEndpoints.schedulesMy);
-      final queryParameters = <String, dynamic>{
-        if (status != null && status.isNotEmpty) 'status': status,
-        if (sort != null && sort.isNotEmpty) 'sort': sort,
-        'size': ?size,
-        'page': ?page,
-      };
-
+      // One route for both roles: the server scopes an operator to their
+      // assigned units and gives the admin everything. `zoneId` is a query
+      // filter, not a separate path.
       final response = await _apiService.get(
-        endPoint: endPoint,
-        queryParameters: queryParameters.isEmpty ? null : queryParameters,
+        endPoint: ApiEndpoints.staffPumpingRuns,
+        queryParameters: <String, dynamic>{
+          if (zoneId != null) 'zoneId': zoneId,
+          if (status != null && status.isNotEmpty) 'status': status,
+          ...pageQuery(
+            page: page,
+            size: size,
+            sort: sort == null || sort.isEmpty ? null : [sort],
+          ),
+        },
       );
 
-      final data = (response['data'] as List<dynamic>?) ?? [];
+      // Spring returns a Page: the rows live under `content`.
+      final runs = Pagination.fromJson(response, ScheduleModelMapper.fromJson);
 
-      final schedules = data
-          .map((e) => ScheduleModelMapper.fromJson(e as Map<String, dynamic>))
-          .toList();
-
-      return Right(schedules);
+      return Right(runs.content);
     } on Failure catch (f) {
       return Left(f);
     } catch (_) {

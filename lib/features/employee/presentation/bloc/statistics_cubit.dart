@@ -78,7 +78,7 @@ class StatisticsCubit extends Cubit<StatisticsState> {
 
     // Newest first so the recent past and next 24h are what fits in the page.
     final result = await _repository.getSchedules(
-      sort: 'startTime,desc',
+      sort: 'plannedStartAt,desc',
       size: _sampleSize,
     );
     if (isClosed) return;

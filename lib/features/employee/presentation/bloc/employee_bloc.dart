@@ -142,8 +142,8 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     //  • Any other specific status: closest startTime first (secondary rule).
     final sort = switch (selectedStatus?.toUpperCase()) {
       null => null,
-      'COMPLETED' => 'actualEndTime,desc',
-      _ => 'startTime,asc',
+      'COMPLETED' => 'actualEndAt,desc',
+      _ => 'plannedStartAt,asc',
     };
 
     final schedulesRes = await _repository.getSchedules(
