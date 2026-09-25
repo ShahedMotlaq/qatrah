@@ -34,7 +34,7 @@
     "description": "زر تسجيل الدخول للموظفين"
   },
 
-  "login_citizens": "تسجيل الدخول كمواطن",
+  "login_citizens": "تسجيل دخول",
   "@login_citizens": {
     "description": "زر تسجيل الدخول للمواطنين"
   },
@@ -77,6 +77,11 @@
   "phoneNumber": "رقم الهاتف",
   "@phoneNumber": {
     "description": "حقل رقم الهاتف"
+  },
+
+  "mobileNumber": "رقم الموبايل",
+  "@mobileNumber": {
+    "description": "حقل رقم الموبايل في شاشة تسجيل الدخول"
   },
 
   "fullName": "الاسم الكامل",

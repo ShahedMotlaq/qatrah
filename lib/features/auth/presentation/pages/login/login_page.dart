@@ -161,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                 24.verticalSpace,
                 AppTextField(
                   controller: _usernameController,
-                  hintText: l10n.username,
+                  hintText: l10n.mobileNumber,
                   errorText: _usernameError,
                   textInputAction: TextInputAction.next,
                   autofillHints: const <String>[],
@@ -216,14 +216,6 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: _isLoading
                       ? null
                       : () => context.pushNamed(Routes.registerCitizen),
-                ),
-                10.verticalSpace,
-                AppTextButton(
-                  text: l10n.login_employee,
-                  color: theme.primaryColor,
-                  onPressed: _isLoading
-                      ? null
-                      : () => context.pushNamed(Routes.loginPageEmployee),
                 ),
               ],
             ),

@@ -35,7 +35,7 @@
     "description": "Employee login button"
   },
 
-  "login_citizens": "Sign in as a Citizen",
+  "login_citizens": "Sign in",
   "@login_citizens": {
     "description": "Citizen login button"
   },
@@ -78,6 +78,11 @@
   "phoneNumber": "Phone Number",
   "@phoneNumber": {
     "description": "Phone number field"
+  },
+
+  "mobileNumber": "Mobile Number",
+  "@mobileNumber": {
+    "description": "Mobile number field on the login screen"
   },
 
   "fullName": "Full Name",
