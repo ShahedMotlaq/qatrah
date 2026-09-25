@@ -6,6 +6,9 @@ import 'package:qatrah/core/notification/notification_service.dart';
 import 'package:qatrah/features/employee/domain/entities/schedule_entity.dart';
 import 'package:qatrah/features/employee/domain/repositories/i_employee_repository.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_event.dart';
+import 'package:qatrah/core/utils/app_logger.dart';
+import 'package:qatrah/features/employee/data/realtime/operator_pumping_sse_service.dart';
+import 'package:qatrah/core/network/sse_client.dart';
 import 'package:qatrah/features/employee/presentation/bloc/employee_state.dart';
 import 'package:qatrah/features/profile/domain/repositories/i_hierarchy_repository.dart';
 
@@ -62,8 +65,11 @@ const pumpingChangeTypes = {
 };
 
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
-  DashboardBloc(this._repository, this._hierarchyRepository)
-    : super(const DashboardState()) {
+  DashboardBloc(
+    this._repository,
+    this._hierarchyRepository,
+    this._pumpingStream,
+  ) : super(const DashboardState()) {
     _notificationSubscription = NotificationService.instance.notificationStream
         .listen(
           _onPushNotification,
@@ -93,10 +99,18 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     on<ResetHierarchyEvent>(_onResetHierarchy);
     on<RefreshSchedulesEvent>(_onRefreshSchedules);
     on<PushNotificationReceivedEvent>(_onPushNotificationReceived);
+    on<FocusRunEvent>(_onFocusRun);
   }
   final IDashboardRepository _repository;
   final IHierarchyRepository _hierarchyRepository;
+  final OperatorPumpingSseService _pumpingStream;
   StreamSubscription<RemoteMessage>? _notificationSubscription;
+  StreamSubscription<SseEvent>? _pumpingSubscription;
+
+  /// Coalesces stream bursts into one refetch at a time, so a slow response
+  /// can never land after a newer one and roll the rows back.
+  bool _liveReloading = false;
+  bool _liveDirty = false;
 
   void _onPushNotification(RemoteMessage message) {
     final type = (message.data['type'] ?? '').toString().toUpperCase();
@@ -108,6 +122,10 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     }
   }
 
+  void _onFocusRun(FocusRunEvent event, Emitter<DashboardState> emit) {
+    emit(state.copyWith(focusedRunId: event.runId));
+  }
+
   Future<void> _onPushNotificationReceived(
     PushNotificationReceivedEvent event,
     Emitter<DashboardState> emit,
@@ -115,9 +133,48 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     add(LoadDashboardData());
   }
 
+  /// Opens `/staff/pumping-stream` once. The dashboard's own
+  /// `/staff/pumping-runs` load stays the source of truth; the stream only
+  /// decides *when* to reload.
+  void _ensureLiveStream() {
+    if (_pumpingSubscription != null) return;
+    _pumpingSubscription = _pumpingStream.watch().listen(
+      (event) {
+        if (isClosed) return;
+        // ponytail: any event reloads; patch rows in place once the staff
+        // payload shape is pinned down.
+        AppLogger.debug('[SSE] operator ${event.event}');
+        _requestLiveReload();
+      },
+      onError: (Object e) => AppLogger.error('[SSE] operator stream error: $e'),
+      // The client reconnects on its own; completing means it gave up. Clear
+      // the guard so the next load tries again.
+      onDone: () => _pumpingSubscription = null,
+    );
+  }
+
+  void _requestLiveReload() {
+    if (_liveReloading) {
+      _liveDirty = true;
+      return;
+    }
+    _liveReloading = true;
+    add(LoadDashboardData(silent: true));
+  }
+
+  void _liveReloadDone() {
+    _liveReloading = false;
+    if (_liveDirty && !isClosed) {
+      _liveDirty = false;
+      _requestLiveReload();
+    }
+  }
+
   @override
   Future<void> close() {
     _notificationSubscription?.cancel();
+    _pumpingSubscription?.cancel();
+    _pumpingStream.close();
     return super.close();
   }
 
@@ -125,7 +182,9 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     LoadDashboardData event,
     Emitter<DashboardState> emit,
   ) async {
-    emit(state.copyWith(isLoading: true, isSuccess: false));
+    if (!event.silent) emit(state.copyWith(isLoading: true, isSuccess: false));
+    // The dashboard renders from its own fetch whether or not the stream opens.
+    _ensureLiveStream();
     final regionsRes = await _repository.getActiveRegions();
     final selectedStatus =
         state.selectedStatus != null && state.selectedStatus != 'ALL'
@@ -151,6 +210,12 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
       status: selectedStatus,
       sort: sort,
     );
+
+    if (event.silent) _liveReloadDone();
+    if (event.silent && (regionsRes.isLeft() || schedulesRes.isLeft())) {
+      AppLogger.error('[SSE] operator live refresh failed');
+      return;
+    }
 
     regionsRes.fold(
       (f) => emit(state.copyWith(isLoading: false, errorMessage: f.errMessage)),

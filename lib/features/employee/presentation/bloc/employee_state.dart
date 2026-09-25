@@ -25,6 +25,7 @@ class DashboardState extends Equatable {
     this.selectedUnit,
     this.selectedNeighborhood,
     this.selectedZone,
+    this.focusedRunId,
     this.selectedStatus,
     this.fromDate,
     this.toDate,
@@ -59,6 +60,10 @@ class DashboardState extends Equatable {
   final LocationLookupEntity? selectedUnit;
   final LocationLookupEntity? selectedNeighborhood;
   final LocationLookupEntity? selectedZone;
+
+  /// The run a notification tap asked to open, highlighted in the list. Null
+  /// when the screen was not reached from a notification.
+  final int? focusedRunId;
   final String? selectedStatus;
   final DateTime? fromDate;
   final DateTime? toDate;
@@ -102,6 +107,7 @@ class DashboardState extends Equatable {
     LocationLookupEntity? selectedUnit,
     LocationLookupEntity? selectedNeighborhood,
     LocationLookupEntity? selectedZone,
+    int? focusedRunId,
     String? selectedStatus,
     DateTime? fromDate,
     DateTime? toDate,
@@ -139,6 +145,7 @@ class DashboardState extends Equatable {
           ? null
           : (selectedNeighborhood ?? this.selectedNeighborhood),
       selectedZone: clearFilters ? null : (selectedZone ?? this.selectedZone),
+      focusedRunId: focusedRunId ?? this.focusedRunId,
       selectedStatus: clearFilters
           ? null
           : (selectedStatus ?? this.selectedStatus),
@@ -177,5 +184,6 @@ class DashboardState extends Equatable {
     toDate,
     searchQuery,
     errorMessage,
+    focusedRunId,
   ];
 }

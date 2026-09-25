@@ -18,7 +18,11 @@ import 'package:qatrah/features/employee/presentation/widgets/dashboard_table_li
 import 'package:qatrah/l10n/gen/app_localizations.dart';
 
 class DashboardPage extends StatelessWidget {
-  const DashboardPage({super.key});
+  const DashboardPage({super.key, this.focusRunId});
+
+  /// A run to highlight, set when the screen was opened from a notification
+  /// tap on a pumping or feedback alert.
+  final int? focusRunId;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +30,11 @@ class DashboardPage extends StatelessWidget {
     final theme = Theme.of(context);
 
     return BlocProvider(
-      create: (context) => getIt<DashboardBloc>()..add(LoadDashboardData()),
+      create: (context) {
+        final bloc = getIt<DashboardBloc>()..add(LoadDashboardData());
+        if (focusRunId != null) bloc.add(FocusRunEvent(focusRunId!));
+        return bloc;
+      },
       child: BlocListener<DashboardBloc, DashboardState>(
         listener: (context, state) {
           if (state.errorMessage != null && state.errorMessage!.isNotEmpty) {

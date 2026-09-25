@@ -7,7 +7,13 @@ abstract class DashboardEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class LoadDashboardData extends DashboardEvent {}
+class LoadDashboardData extends DashboardEvent {
+  const LoadDashboardData({this.silent = false});
+
+  /// A live-stream refresh: no loading overlay or skeleton, and a failed
+  /// fetch keeps the rows on screen instead of toasting.
+  final bool silent;
+}
 
 class FilterRegionChanged extends DashboardEvent {
   const FilterRegionChanged(this.region);
@@ -138,6 +144,17 @@ class FetchZonesEvent extends DashboardEvent {
 class ResetHierarchyEvent extends DashboardEvent {}
 
 class RefreshSchedulesEvent extends DashboardEvent {}
+
+/// Highlights one run, so a notification tap lands the operator on the run it
+/// was about instead of the top of an unfiltered list.
+class FocusRunEvent extends DashboardEvent {
+  const FocusRunEvent(this.runId);
+
+  final int runId;
+
+  @override
+  List<Object?> get props => [runId];
+}
 
 class PushNotificationReceivedEvent extends DashboardEvent {
   const PushNotificationReceivedEvent({

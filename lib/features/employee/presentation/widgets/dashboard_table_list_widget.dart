@@ -25,7 +25,8 @@ class DashboardTableListWidget extends StatelessWidget {
     return BlocBuilder<DashboardBloc, DashboardState>(
       buildWhen: (p, c) =>
           p.filteredSchedules != c.filteredSchedules ||
-          p.isLoading != c.isLoading,
+          p.isLoading != c.isLoading ||
+          p.focusedRunId != c.focusedRunId,
       builder: (context, state) {
         if (state.filteredSchedules.isEmpty) {
           return SliverToBoxAdapter(
@@ -45,7 +46,10 @@ class DashboardTableListWidget extends StatelessWidget {
             child: Column(
               children: [
                 for (final schedule in state.filteredSchedules)
-                  _ScheduleCard(schedule: schedule),
+                  _ScheduleCard(
+                    schedule: schedule,
+                    isFocused: schedule.id == state.focusedRunId,
+                  ),
                 12.verticalSpace,
               ],
             ),
@@ -57,9 +61,13 @@ class DashboardTableListWidget extends StatelessWidget {
 }
 
 class _ScheduleCard extends StatelessWidget {
-  const _ScheduleCard({required this.schedule});
+  const _ScheduleCard({required this.schedule, this.isFocused = false});
 
   final ScheduleEntity schedule;
+
+  /// The run a notification tap opened. Outlined so the operator can see which
+  /// row they were sent to.
+  final bool isFocused;
 
   static const _statusesWithActions = {'SCHEDULED', 'ACTIVE', 'PAUSED'};
 
@@ -143,7 +151,10 @@ class _ScheduleCard extends StatelessWidget {
         color: theme.colorScheme.onPrimary,
         borderRadius: BorderRadius.circular(16.r),
         border: Border.all(
-          color: theme.colorScheme.outline.withValues(alpha: 0.15),
+          color: isFocused
+              ? theme.colorScheme.primary
+              : theme.colorScheme.outline.withValues(alpha: 0.15),
+          width: isFocused ? 2 : 1,
         ),
       ),
       child: Column(
