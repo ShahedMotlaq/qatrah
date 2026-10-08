@@ -47,23 +47,27 @@ class _PulsingLiveDotState extends State<PulsingLiveDot>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (_, _) => Transform.scale(
-        scale: _scale.value,
-        child: Container(
-          width: 12.w,
-          height: 12.w,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: widget.color.withValues(alpha: _opacity.value),
-            boxShadow: [
-              BoxShadow(
-                color: widget.color.withValues(alpha: _opacity.value * 0.5),
-                blurRadius: 8 * _scale.value,
-                spreadRadius: 1 * _scale.value,
-              ),
-            ],
+    // Loops forever with a blurred shadow; the boundary stops it repainting
+    // the whole live card every frame.
+    return RepaintBoundary(
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (_, _) => Transform.scale(
+          scale: _scale.value,
+          child: Container(
+            width: 12.w,
+            height: 12.w,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: widget.color.withValues(alpha: _opacity.value),
+              boxShadow: [
+                BoxShadow(
+                  color: widget.color.withValues(alpha: _opacity.value * 0.5),
+                  blurRadius: 8 * _scale.value,
+                  spreadRadius: 1 * _scale.value,
+                ),
+              ],
+            ),
           ),
         ),
       ),

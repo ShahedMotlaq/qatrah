@@ -229,6 +229,12 @@ class _HomeBody extends StatelessWidget {
     return BlocBuilder<NetworkStatusCubit, NetworkStatusState>(
       builder: (context, networkState) {
         return BlocBuilder<HomeBloc, HomeState>(
+          // Only what this shell reads; the child widgets filter their own
+          // slices, so a live pumping update must not rebuild the whole page.
+          buildWhen: (p, c) =>
+              p.isLoading != c.isLoading ||
+              p.isRefreshing != c.isRefreshing ||
+              hasVisibleContent(p) != hasVisibleContent(c),
           builder: (context, homeState) {
             final showOfflineState =
                 networkState.isOffline &&

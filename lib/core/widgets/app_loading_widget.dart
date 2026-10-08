@@ -60,17 +60,19 @@ class _AppLoadingWidgetState extends State<AppLoadingWidget>
         widget.waveColor ??
         context.colorScheme.primaryContainer.withValues(alpha: .4);
 
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, _) {
-        return Center(
-          child: SizedBox(
-            width: widget.size,
-            height: widget.size,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                CustomPaint(
+    // Loops forever: the boundary keeps each frame's repaint to the spinner
+    // instead of the whole page behind it.
+    return Center(
+      child: RepaintBoundary(
+        child: SizedBox(
+          width: widget.size,
+          height: widget.size,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              AnimatedBuilder(
+                animation: _animation,
+                builder: (context, _) => CustomPaint(
                   size: Size(widget.size, widget.size),
                   painter: _AppLoadingPainter(
                     progress: _animation.value,
@@ -80,16 +82,16 @@ class _AppLoadingWidgetState extends State<AppLoadingWidget>
                     drawWave: widget.child == null,
                   ),
                 ),
-                if (widget.child != null)
-                  SizedBox.square(
-                    dimension: widget.size * 0.6,
-                    child: Center(child: widget.child),
-                  ),
-              ],
-            ),
+              ),
+              if (widget.child != null)
+                SizedBox.square(
+                  dimension: widget.size * 0.6,
+                  child: Center(child: widget.child),
+                ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

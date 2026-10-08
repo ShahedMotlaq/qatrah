@@ -92,13 +92,16 @@ class _AppButtonState extends State<AppButton>
     return SizedBox(
       width: btnWidth,
       height: btnHeight,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: ColoredBox(
-          color: isOutline ? Colors.transparent : primary,
-          child: isOutline
-              ? _buildOutlineWave(context, primary, labelColor, btnHeight)
-              : _buildFilledWave(context, primary, labelColor),
+      // The wave loops while loading; keep its repaint inside the button.
+      child: RepaintBoundary(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: ColoredBox(
+            color: isOutline ? Colors.transparent : primary,
+            child: isOutline
+                ? _buildOutlineWave(context, primary, labelColor, btnHeight)
+                : _buildFilledWave(context, primary, labelColor),
+          ),
         ),
       ),
     );
